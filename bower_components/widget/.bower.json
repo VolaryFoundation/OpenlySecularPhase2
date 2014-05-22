@@ -1,0 +1,26 @@
+{
+  "name": "widget",
+  "main": "widget.js",
+  "authors": [
+    "bbarr <bbarr1384@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/bbarr/widget",
+  "_release": "6c1127068b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6c1127068b886e33920707e904a6e2a473d99252"
+  },
+  "_source": "git@github.com:bbarr/widget.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:bbarr/widget.git"
+}

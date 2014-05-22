@@ -1,0 +1,33 @@
+{
+  "name": "widget-server",
+  "version": "0.0.0",
+  "description": "widget server",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.2.0",
+    "browserify": "^3.46.1",
+    "debowerify": "^0.7.1",
+    "express": "*",
+    "lodash": "^2.4.1",
+    "node-sass": "^0.8.6",
+    "request": "^2.34.0",
+    "require-dir": "^0.1.0",
+    "rsvp": "^3.0.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/VolaryFoundation/multi-site-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VolaryFoundation/multi-site-client/issues"
+  },
+  "homepage": "https://github.com/VolaryFoundation/multi-site-client"
+}

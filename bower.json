@@ -1,0 +1,25 @@
+{
+  "name": "widget-server",
+  "version": "0.0.0",
+  "homepage": "https://github.com/VolaryFoundation/widget-server",
+  "authors": [
+    "bbarr <bbarr1384@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "widget": "git@github.com:bbarr/widget.git",
+    "backbone": "~1.1.2",
+    "rivets": "~0.6.8",
+    "lodash": "~2.4.1",
+    "jquery": "~2.1.1",
+    "toast": "~1.2.3"
+  }
+}
