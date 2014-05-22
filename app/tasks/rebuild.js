@@ -2,6 +2,9 @@
 var rsvp = require('rsvp')
 var fs = require('fs')
 var _ = require('lodash')
+var sass = require('node-sass')
+var browserify = require('browserify')
+var debowerify = require('debowerify')
 var widgetPath = function(name) { return __dirname + '/../widgets/' + name }
 
 function promise(fn) { return new rsvp.Promise(fn) }
@@ -22,6 +25,18 @@ function readFile(path) {
       e ? rej(e) : res(data)
     })
   })
+}
+
+function writeFile(path, name, contents) {
+  return promise(function(res, rej) {
+    fs.writeFile(path + '/' + name, contents, function(e) {
+      e ? rej(e) : res()
+    })
+  })
+}
+
+function join(delim) {
+  return function(arr) { return arr.join(delim) }
 }
 
 function buildWidgetList(widgetName) {
@@ -71,18 +86,51 @@ function buildWidgetList(widgetName) {
   return subWidgets([], widgetName)
 }
 
-function buildFiles(widgets) {
+function buildFiles(config, widgets) {
 
   function buildCSS() {
-    return promise(function(res, rej) { res('') })
+    return promise(function(res, rej) {
+      var reading = _.flatten(_.pluck(widgets, 'css')).map(readFile)
+      rsvp.all(reading)
+        .then(join('\n\n'))
+        .then(function(contents) {
+
+          // lets deal with this later TODO
+          var compiled
+          try { 
+            compiled = _.template(contents, config) 
+          } catch(e) {
+            rej(e)
+          }
+
+          sass.render({
+            data: compiled,
+            success: function(css) { res(css) },
+            error: function(e) { rej(e) }
+          })
+        })
+    })
   }
 
   function buildJS() {
-    return promise(function(res, rej) { res('') })
+    return promise(function(res, rej) { 
+      var paths = _.flatten(_.pluck(widgets, 'js'))
+      browserify([ __dirname + '/../tasks/updateConfig' ])
+        .transform(debowerify)
+        .bundle({}, function(e, js) {
+          e ? rej(e) : res(js)
+        })
+    })
   }
 
   function buildHTML() {
-    return promise(function(res, rej) { res('') })
+    var paths = _.flatten(_.pluck(widgets, 'html'))
+    var reading = paths.map(readFile)
+    return rsvp.all(reading).then(function(htmls) {
+      return htmls.map(function(html, i) {
+        return "<script type='text/html' id='" + paths[i] + "'>" + html + "</script>"
+      })
+    })
   }
 
   return rsvp.hash({
@@ -92,12 +140,17 @@ function buildFiles(widgets) {
   })
 }
 
-function storeFiles(files) {
-  console.log('storing files', files)
+function storeFiles(config, files) {
+  var path = __dirname + '/../domains/' + config.domain + '/build' 
+  return rsvp.all([
+    writeFile(path, 'build.css', files.css),
+    writeFile(path, 'build.js', files.js),
+    writeFile(path, 'build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body>" + files.html + "<script src='build.js'></script></body></html>")
+  ])
 }
 
 module.exports = function(config) {
   return buildWidgetList(config.widget)
-    .then(buildFiles)
-    .then(storeFiles)
+    .then(_.partial(buildFiles, config))
+    .then(_.partial(storeFiles, config))
 }

@@ -1,1 +1,1 @@
-module.exports = {"domain":"bar","widget":"awareness"}
+module.exports = {"domain":"bar","widget":"awareness","brandPrimary":"#fff"}
