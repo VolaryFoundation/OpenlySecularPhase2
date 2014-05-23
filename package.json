@@ -7,15 +7,22 @@
     "test": "test"
   },
   "dependencies": {
+    "backbone": "^1.1.2",
     "body-parser": "^1.2.0",
     "browserify": "^3.46.1",
     "debowerify": "^0.7.1",
     "express": "*",
+    "jquery": "^2.1.1",
+    "jquery-browserify": "^1.8.1",
     "lodash": "^2.4.1",
     "node-sass": "^0.8.6",
     "request": "^2.34.0",
     "require-dir": "^0.1.0",
-    "rsvp": "^3.0.6"
+    "rivets": "^0.6.8",
+    "rsvp": "^3.0.6",
+    "through": "^2.3.4",
+    "underscore": "^1.6.0",
+    "widget": "git://github.com/bbarr/widget.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

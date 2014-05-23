@@ -3,11 +3,14 @@ var rsvp = require('rsvp')
 var fs = require('fs')
 var _ = require('lodash')
 var sass = require('node-sass')
+var through = require('through')
 var browserify = require('browserify')
-var debowerify = require('debowerify')
 var widgetPath = function(name) { return __dirname + '/../widgets/' + name }
 
 function promise(fn) { return new rsvp.Promise(fn) }
+function handlePromise(res, rej) {
+  return function(e, data) { e ? rej(e) : res(data) }
+}
 
 function contains(str) {
   return function(testee) {
@@ -114,12 +117,32 @@ function buildFiles(config, widgets) {
 
   function buildJS() {
     return promise(function(res, rej) { 
-      var paths = _.flatten(_.pluck(widgets, 'js'))
-      browserify([ __dirname + '/../tasks/updateConfig' ])
-        .transform(debowerify)
-        .bundle({}, function(e, js) {
-          e ? rej(e) : res(js)
-        })
+      var paths = _.flatten(_.pluck(widgets, 'js')).map(function(path) { return path.replace('.js', '') })
+
+      var afterHook = promise(function(res, rej) {
+        browserify('./app/hooks/after').bundle({ debug: true }, handlePromise(res, rej))
+      })
+
+      var main = promise(function(res, rej) {
+        browserify(paths)
+          .transform(function() {
+            var data = ''
+            return through(function(b) { data += b }, function() {
+              var replaced = data
+                .replace(/underscore/g, 'lodash')
+              this.queue(replaced)
+              this.queue(null)
+            })
+          })
+          .add('./app/hooks/after')
+          .bundle({ debug: true }, handlePromise(res, rej))
+      })
+
+      rsvp.all([ main, afterHook ]).then(function(scripts) {
+        res(scripts[0])
+      }, function(e) {
+        rej(e)
+      })
     })
   }
 
@@ -128,8 +151,8 @@ function buildFiles(config, widgets) {
     var reading = paths.map(readFile)
     return rsvp.all(reading).then(function(htmls) {
       return htmls.map(function(html, i) {
-        return "<script type='text/html' id='" + paths[i] + "'>" + html + "</script>"
-      })
+        return "<script type='text/html' id='" + paths[i].replace(/.*\/widgets/, '/widgets') + "'>" + html + "</script>"
+      }).join('')
     })
   }
 
@@ -140,12 +163,13 @@ function buildFiles(config, widgets) {
   })
 }
 
+// clean up TODO
 function storeFiles(config, files) {
   var path = __dirname + '/../domains/' + config.domain + '/build' 
   return rsvp.all([
     writeFile(path, 'build.css', files.css),
     writeFile(path, 'build.js', files.js),
-    writeFile(path, 'build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body>" + files.html + "<script src='build.js'></script></body></html>")
+    writeFile(path, 'build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>")
   ])
 }
 

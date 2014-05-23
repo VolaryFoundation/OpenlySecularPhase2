@@ -2,6 +2,8 @@
 var asWidget = require('widget')
 var rivets = require('rivets')
 
+// require all widgets
+
 rivets.adapters['.'] = {
   subscribe: function(obj, keypath, callback) { },
   unsubscribe: function(obj, keypath, callback) { },
@@ -32,10 +34,10 @@ rivets.adapters[':'] = {
 asWidget('awareness', function(hub) {
   var widget = this
 
-  widget.set('html', '<h1>Demo for widget server</h1><div rv-widget data-widget-name="newsletter-subscribe"></div>')
-  widget.start()
+  widget.template('/widgets/awareness/index.html')
+  widget.on('installed', function() {
+    widget.start()
+  })
 })
 
-setTimeout(function() {
-  rivets.bind(document.getElementById('app'), {})
-}, 100)
+module.exports = {}

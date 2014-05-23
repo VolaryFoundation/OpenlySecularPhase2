@@ -1,10 +1,11 @@
-console.log('from newsletter-subscribe widget')
 
 var asWidget = require('widget')
 
-asWidget('newsletter-subscribe', function(req, res) {
+asWidget('newsletter-subscribe', function(hub) {
   var widget = this
 
   widget.template('/widgets/newsletter-subscribe/index.html')
-  widget.start()
+  widget.on('installed', function() {
+    widget.start()
+  })
 })

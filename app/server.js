@@ -21,4 +21,22 @@ server.put('/domain', function(req, res) {
     .then(lazyReply(200), lazyReply(400, 'Sorry something went wrong on the server. WTF?'))
 })
 
+function withDomainDirectory(req, res, next) {
+  var host = req.host
+  req.domainDirectory = __dirname + '/domains/' + host + '/build/'
+  next()
+}
+
+server.get('/build.js', withDomainDirectory, function(req, res) {
+  res.sendfile(req.domainDirectory + 'build.js')
+})
+
+server.get('/build.css', withDomainDirectory, function(req, res) {
+  res.sendfile(req.domainDirectory + 'build.css')
+})
+
+server.get('*', withDomainDirectory, function(req, res) {
+  res.sendfile(req.domainDirectory + 'build.html')
+})
+
 module.exports = server
