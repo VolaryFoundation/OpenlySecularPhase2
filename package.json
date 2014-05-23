@@ -36,5 +36,9 @@
   "bugs": {
     "url": "https://github.com/VolaryFoundation/multi-site-client/issues"
   },
-  "homepage": "https://github.com/VolaryFoundation/multi-site-client"
+  "homepage": "https://github.com/VolaryFoundation/multi-site-client",
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-util": "^2.2.14"
+  }
 }

@@ -1,0 +1,1 @@
+module.exports = {"domain":"bbarr.dev","widget":"awareness","brandPrimary":"blue"}
