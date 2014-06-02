@@ -5,4 +5,5 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 .DS_store
-app/domains/*
+app/domains/build/build.*
+app/domains/config.*
