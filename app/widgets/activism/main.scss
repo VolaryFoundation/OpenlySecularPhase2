@@ -1,0 +1,9 @@
+@import "app/assets/stylesheets/normalize";
+@import "app/assets/stylesheets/foundation/_settings";
+@import "app/assets/stylesheets/foundation";
+
+$brand-primary: <%= brandPrimary %>;
+
+body {
+  background: #fff;
+}
