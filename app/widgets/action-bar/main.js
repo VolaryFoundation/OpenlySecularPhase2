@@ -1,10 +1,10 @@
 
 var asWidget = require('widget')
 
-asWidget('bar', function(hub) {
+asWidget('action-bar', function(hub) {
   var widget = this
 
-  this.template('/widgets/bar/index.html')
+  this.template('/widgets/action-bar/index.html')
   this.on('installed', function() {
     widget.start()
   })
