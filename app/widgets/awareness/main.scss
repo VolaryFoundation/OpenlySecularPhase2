@@ -7,3 +7,17 @@ $brand-primary: <%= brandPrimary %>;
 body {
   background: #fff;
 }
+
+.top-header {
+  background: $topbar-bg-color;
+  padding: 2em 0 1em 0;
+}
+
+.footer-nav {
+  background: #333;
+  padding: 2em 0;
+
+  nav {
+    @include grid-row();
+  }
+}

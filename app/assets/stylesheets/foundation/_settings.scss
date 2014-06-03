@@ -20,8 +20,8 @@
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
-// $base-font-size: 14px;
- //$rem-base: $base-font-size;
+ $base-font-size: 14px;
+ $rem-base: $base-font-size;
 
 // The $base-font-size is 100% while $base-line-height is 150%
 // $base-line-height: 150%;
@@ -36,7 +36,7 @@
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
+ $row-width: rem-calc(1088);
 // $total-columns: 12;
 
 // Global
@@ -140,10 +140,10 @@
  $h6-font-size: 1rem;
 
 // We use these to control header size reduction on small screens
-// $h1-font-reduction: rem-calc(10) !default;
-// $h2-font-reduction: rem-calc(10) !default;
-// $h3-font-reduction: rem-calc(5) !default;
-// $h4-font-reduction: rem-calc(5) !default;
+ $h1-font-reduction: 0;
+ $h2-font-reduction: 0;
+ $h3-font-reduction: 0;
+ $h4-font-reduction: 0;
 // $h5-font-reduction: 0 !default;
 // $h6-font-reduction: 0 !default;
 
@@ -1196,7 +1196,7 @@
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: $font-weight-normal;
-// $topbar-title-font-size: rem-calc(17);
+ $topbar-title-font-size: rem-calc(27);
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;
