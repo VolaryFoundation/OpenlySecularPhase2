@@ -9,9 +9,82 @@ body {
 }
 
 .top-header {
-  background: $topbar-bg-color;
-  padding: 2em 0 1em 0;
+  background: #fff;
+  padding: 0 0 6em 0;
 }
+
+.header-bar {
+  @include grid-row();
+
+  .logo {
+    @include grid-column($columns: 12, $collapse: true);
+    text-align: center;
+
+    img {
+      max-width: 300px;
+    }
+
+    @media #{$medium-up} {
+      @include grid-column($columns: 4, $collapse: true);
+      img {
+        max-width: 150px;
+      }
+    }
+  }
+
+  nav {
+    @include grid-column($columns: 12, $collapse: true);
+    background: #88aacc;
+    max-height: 47px;
+
+    @media #{$medium-up} {
+      @include grid-column($columns: 8, $collapse: true);
+      margin-top: 4.5em;
+    }
+
+    ul {
+      @include inline-list;
+      margin: 0;
+      padding: 0;
+
+      &.donate-button {
+        float: right;
+        border-left: 2px solid #fff;
+
+        a {
+          background: $alert-color;
+          border: none;
+
+          &:hover {
+            background: #cf280e;
+          }
+        }
+      }
+
+      li {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    a {
+      color: #fff;
+      padding: 1rem 2rem .9rem 2rem;
+      font-size: rem-calc(13);
+      margin: 0;
+      position: relative;
+      text-align: center;
+      border-bottom: 2px solid transparent;
+    }
+
+    a:hover {
+      background: rgba(0,0,0,0.1);
+      border-bottom: 2px solid $primary-color;
+    }
+
+  }
+}
+
 
 .footer-nav {
   background: #333;

@@ -1,0 +1,24 @@
+
+.nav-bar {
+  background: $primary-bg-color;
+  padding: 2em 0;
+  text-align: center;
+
+   ul {
+    list-style: none;
+    margin: 0 auto;
+
+    li {
+      display: inline;
+      margin-right: 10%;
+      padding: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+
+      &.current {
+        border-color: #fff;
+      }
+    }
+  }
+}

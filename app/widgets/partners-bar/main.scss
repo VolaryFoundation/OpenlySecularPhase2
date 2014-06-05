@@ -1,0 +1,15 @@
+.partners-bar {
+  @include grid-row();
+}
+
+.partners-list {
+  @include block-grid($per-row: 2, $spacing: $block-grid-default-spacing, $base-style: true);
+
+  @media #{$medium-up} {
+    @include block-grid($per-row: 3, $spacing: $block-grid-default-spacing, $base-style: true);
+  }
+
+  @media #{$large-up} {
+    @include block-grid($per-row: 4, $spacing: $block-grid-default-spacing, $base-style: true);
+  }
+}
