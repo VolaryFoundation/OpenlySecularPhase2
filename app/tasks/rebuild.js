@@ -33,7 +33,7 @@ function readFile(path) {
 }
 
 function writeFileToS3(name, contents, domain, contentType) {
-  var s3 = new AWS.S3({params: {Bucket: 'nicks-test-sites', Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
+  var s3 = new AWS.S3({params: {Bucket: 'www.nejohannsen.com', Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
   return promise(function(res, rej) {
     s3.createBucket(function() {
       s3.putObject({Body: contents}, function(e) {
