@@ -14,6 +14,7 @@ var server = express()
 server.use(bodyParser())
 
 server.put('/domain', function(req, res) {
+  console.log("See if this outputs")
 
   var config = req.body
   var lazyReply = function(code, msg) { return function() { res.send(code, msg) } }
