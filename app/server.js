@@ -4,6 +4,10 @@ var bodyParser = require('body-parser')
 var requireDir = require('require-dir')
 var tasks = requireDir('./tasks')
 var _ = require('lodash')
+var db = require('mongo-promise')
+var envConfig = require('config')
+
+db.url = process.env.MONGOLAB_URI || envConfig.servers.mongodb
 
 var server = express()
 
