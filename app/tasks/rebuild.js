@@ -1,4 +1,6 @@
 
+var AWS = require('aws-sdk');
+AWS.config.region = 'us-west-2';
 var rsvp = require('rsvp')
 var fs = require('fs')
 var _ = require('lodash')
@@ -26,6 +28,17 @@ function readFile(path) {
   return promise(function(res, rej) {
     fs.readFile(path, 'utf-8', function(e, data) {
       e ? rej(e) : res(data)
+    })
+  })
+}
+
+function writeFileToS3(name, contents, domain, contentType) {
+  var s3 = new AWS.S3({params: {Bucket: 'nicks-test-sites', Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
+  return promise(function(res, rej) {
+    s3.createBucket(function() {
+      s3.putObject({Body: contents}, function(e) {
+        e ? rej(e) : res()
+      })
     })
   })
 }
@@ -165,12 +178,21 @@ function buildFiles(config, widgets) {
 
 // clean up TODO
 function storeFiles(config, files) {
-  var path = __dirname + '/../domains/' + config.domain + '/build' 
-  return rsvp.all([
-    writeFile(path, 'build.css', files.css),
-    writeFile(path, 'build.js', files.js),
-    writeFile(path, 'build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>")
-  ])
+ 
+  if (config.storageLocation == 's3') {
+    return rsvp.all([
+      writeFileToS3('build.css', files.css, config.domain, 'text/css'),
+      writeFileToS3('build.js', files.js, config.domain, 'application/javascript'),
+      writeFileToS3('build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html' )
+    ])
+  }else{
+    var path = __dirname + '/../domains/' + config.domain + '/build' 
+    return rsvp.all([
+      writeFile(path, 'build.css', files.css),
+      writeFile(path, 'build.js', files.js),
+      writeFile(path, 'build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>" )
+    ])
+  }
 }
 
 module.exports = function(config) {
