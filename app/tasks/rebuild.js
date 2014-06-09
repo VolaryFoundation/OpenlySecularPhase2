@@ -116,19 +116,14 @@ function buildFiles(config, widgets) {
         .then(function(contents) {
 
           // lets deal with this later TODO
-          var compiled
-          try { 
-            compiled = _.template(contents, config) 
-          } catch(e) {
-            rej(e)
-          }
+          var compiled = _.template(contents, config)
 
           sass.render({
             data: compiled,
             success: function(css) { res(css) },
             error: function(e) { rej(e) }
           })
-        })
+        }).catch(console.log.bind(console, 'ERROR: '))
     })
   }
 
@@ -173,11 +168,15 @@ function buildFiles(config, widgets) {
     })
   }
 
-  return rsvp.hash({
+  var hash = rsvp.hash({
     css: buildCSS(),
     js: buildJS(),
     html: buildHTML()
   })
+
+  hash.then(function(h) { console.log(h) })
+
+  return hash
 }
 
 // clean up TODO

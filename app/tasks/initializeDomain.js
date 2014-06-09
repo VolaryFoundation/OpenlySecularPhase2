@@ -20,7 +20,6 @@ function buildFootprint(domain) {
 }
 
 module.exports = function(config) {
-  console.log(process.env.NODE_ENV)
   return new rsvp.Promise(function(res, rej) {
     if (process.env.NODE_ENV == 'production') {
       res(config)

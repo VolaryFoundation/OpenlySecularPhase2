@@ -31,9 +31,9 @@ gulp.task('build', function(done) {
       return tasks.validateConfig(doc)
         .then(tasks.initializeDomain)
         .then(tasks.rebuild)
-        .then(console.log("built " + doc.domain))
     })
-    rsvp.all(rebuilds).then(done)
+    if (!rebuilds[0]) return done()
+    else return rsvp.all(rebuilds).then(done)
   })
 })
 
