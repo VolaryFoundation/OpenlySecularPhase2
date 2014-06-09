@@ -32,24 +32,28 @@ function readFile(path) {
   })
 }
 
-function writeFileToS3(name, contents, domain, contentType) {
-  var s3 = new AWS.S3({params: {Bucket: 'www.nejohannsen.com', Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
-  return promise(function(res, rej) {
-    s3.createBucket(function() {
-      s3.putObject({Body: contents}, function(e) {
+var writeFile = {
+  s3: function(name, contents, domain, contentType) {
+    var s3 = new AWS.S3({params: {Bucket: 'www.nejohannsen.com', Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
+    return promise(function(res, rej) {
+      s3.createBucket(function() {
+        s3.putObject({Body: contents}, function(e) {
+          e ? rej(e) : res()
+        })
+      })
+    })
+  },
+
+
+  local: function(name, contents, domain, notUsed) {
+    var path = __dirname + '/../domains/' + domain + '/build'
+    return promise(function(res, rej) {
+      fs.writeFile(path + '/' + name, contents, function(e) {
         e ? rej(e) : res()
       })
     })
-  })
-}
-
-function writeFile(path, name, contents) {
-  return promise(function(res, rej) {
-    fs.writeFile(path + '/' + name, contents, function(e) {
-      e ? rej(e) : res()
-    })
-  })
-}
+  }
+};
 
 function join(delim) {
   return function(arr) { return arr.join(delim) }
@@ -178,21 +182,12 @@ function buildFiles(config, widgets) {
 
 // clean up TODO
 function storeFiles(config, files) {
- 
-  if (config.storageLocation == 's3') {
-    return rsvp.all([
-      writeFileToS3('build.css', files.css, config.domain, 'text/css'),
-      writeFileToS3('build.js', files.js, config.domain, 'application/javascript'),
-      writeFileToS3('build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html' )
-    ])
-  }else{
-    var path = __dirname + '/../domains/' + config.domain + '/build' 
-    return rsvp.all([
-      writeFile(path, 'build.css', files.css),
-      writeFile(path, 'build.js', files.js),
-      writeFile(path, 'build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>" )
-    ])
-  }
+  var location = 'local'
+  return rsvp.all([
+    writeFile[location]('build.css', files.css, config.domain, 'text/css'),
+    writeFile[location]('build.js', files.js, config.domain, 'application/javascript'),
+    writeFile[location]('build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html' )
+  ])
 }
 
 module.exports = function(config) {
