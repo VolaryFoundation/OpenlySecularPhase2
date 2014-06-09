@@ -22,11 +22,15 @@ function buildFootprint(domain) {
 module.exports = function(config) {
   console.log(process.env.NODE_ENV)
   return new rsvp.Promise(function(res, rej) {
-    footprintExists(config.domain, function(exists) {
-      if (exists) return res(config)
-      else {
-        buildFootprint(config.domain).then(function() { res(config) }, rej)
-      }
-    })
+    if (process.env.NODE_ENV == 'production') {
+      res(config)
+    } else {
+      footprintExists(config.domain, function(exists) {
+        if (exists) return res(config)
+        else {
+          buildFootprint(config.domain).then(function() { res(config) }, rej)
+        }
+      })
+    }
   })
 }
