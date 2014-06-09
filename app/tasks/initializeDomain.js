@@ -20,6 +20,7 @@ function buildFootprint(domain) {
 }
 
 module.exports = function(config) {
+  console.log(process.env)
   return new rsvp.Promise(function(res, rej) {
     footprintExists(config.domain, function(exists) {
       if (exists) return res(config)
