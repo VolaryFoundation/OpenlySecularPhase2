@@ -32,10 +32,6 @@ function withDomainDirectory(req, res, next) {
   next()
 }
 
-server.get('/', function(req, res) {
-  res.send('Alive');
-});
-
 server.get('/build.js', withDomainDirectory, function(req, res) {
   res.sendfile(req.domainDirectory + 'build.js')
 })

@@ -33,7 +33,7 @@ gulp.task('build', function(done) {
         .then(tasks.rebuild)
         .then(console.log("built " + doc.domain))
     })
-    rsvp.all(rebuilds).then(done())
+    rsvp.all(rebuilds).then(done)
   })
 })
 
