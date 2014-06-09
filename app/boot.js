@@ -1,1 +1,1 @@
-require('./server').listen(process.env.PORT || 3000)
+require('./server').listen(process.env.PORT || 8080)

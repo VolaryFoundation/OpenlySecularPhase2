@@ -1,8 +1,14 @@
 <section class="blog">
   <h2>Blog</h2>
+    <ul id="posts">
+      <li rv-each-post="widget:posts">
+        <article class="blog-post">
+         <header>
+           <h3>{post.title}</h3>
+         </header>
 
-  <div rv-widget-blog-post id="blog-post"></div>
-
-  <div rv-widget-blog-post id="blog-post"></div>
-
+         <p>{post.content}</p>
+        </article>
+      </li>
+    </ul>
 </section>

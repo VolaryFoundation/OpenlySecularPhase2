@@ -31,13 +31,36 @@ rivets.adapters[':'] = {
   }
 }
 
+
+rivets.formatters.eql = function(name, input) {
+  return name == input;
+}
+
 asWidget('awareness', function(hub) {
   var widget = this
+  var win = window
 
   widget.template('/widgets/awareness/index.html')
   widget.on('installed', function() {
     widget.start()
   })
+
+  hub.on("pageSelected", function(name) {
+    widget.set("page", name);
+  })
+
+  widget.homepage = function() {
+    hub.trigger('pageSelected', 'home')
+  }
+
+  widget.aboutpage = function() {
+    hub.trigger('pageSelected', 'about')
+  }
+
+  widget.updatepage = function() {
+    hub.trigger('pageSelected', 'update')
+  }
+
 })
 
 module.exports = {}
