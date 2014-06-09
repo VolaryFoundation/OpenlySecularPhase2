@@ -20,12 +20,19 @@
 </header>
 
 <div rv-show="widget:page | eql home">
-  <div rv-widget-action-bar id="action-bar"></div>
+  <div class="action-bar">
+    <ul>
+    <li><div rv-widget-action-newsletter id="action-newsletter"></div></li>
+    <li><div rv-widget-action-donate id="action-donate"></div></li>
+    <li><div rv-widget-action-share id="action-share"></div></li>
+    </ul>
+  </div>
   <div rv-widget-footer-bar id="footer-bar"></div>
 </div>
 
 <div rv-show="widget:page | eql about">
   <div class="about-page">
+    <div rv-widget-about-text id="about-text"></div>
     <div rv-widget-partners-bar id="partners-bar"></div>
     <div rv-widget-press-bar id="press-bar"></div>
     <div rv-widget-footer-bar id="footer-bar"></div>

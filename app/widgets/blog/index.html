@@ -4,10 +4,10 @@
       <li rv-each-post="widget:posts">
         <article class="blog-post">
          <header>
-           <h3>{post.title}</h3>
-         </header>
+           <h3 rv-html>{post.title}</h3>
+           </header>
 
-         <p>{post.content}</p>
+         <p rv-html="post.content"></p>
         </article>
       </li>
     </ul>

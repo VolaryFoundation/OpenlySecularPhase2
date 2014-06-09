@@ -43,6 +43,7 @@ asWidget('awareness', function(hub) {
   widget.template('/widgets/awareness/index.html')
   widget.on('installed', function() {
     widget.start()
+    widget.homepage()
   })
 
   hub.on("pageSelected", function(name) {
