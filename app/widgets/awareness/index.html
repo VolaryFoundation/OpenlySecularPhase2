@@ -8,9 +8,9 @@
   </div>
    <nav>
       <ul>
-        <span class="button small" rv-on-click="widget.homepage">Home</span>
-        <span class="button small" rv-on-click="widget.aboutpage">About</span>
-        <span class="button small" rv-on-click="widget.updatepage">Update</span>
+        <li><a rv-on-click="widget.homepage">Home</a></li>
+        <li><a rv-on-click="widget.aboutpage">About</a></li>
+        <li><a rv-on-click="widget.updatepage">Update</a></li>
         <ul class="donate-button">
           <li><a href="#">Donate</a></li>
         </ul>
@@ -27,14 +27,13 @@
     <li><div rv-widget-action-share id="action-share"></div></li>
     </ul>
   </div>
-  <div rv-widget-footer-bar id="footer-bar"></div>
+  <div rv-widget-partners-bar id="partners-bar"></div>
+  <div rv-widget-press-bar id="press-bar"></div>
 </div>
 
 <div rv-show="widget:page | eql about">
   <div class="about-page">
     <div rv-widget-about-text id="about-text"></div>
-    <div rv-widget-partners-bar id="partners-bar"></div>
-    <div rv-widget-press-bar id="press-bar"></div>
     <div rv-widget-footer-bar id="footer-bar"></div>
   </div>
 </div>
@@ -43,6 +42,19 @@
   <div class="update-page">
     <div rv-widget-blog id="blog"></div>
     <div rv-widget-action-bar-mini id="action-bar-mini"></div>
-    <div rv-widget-footer-bar id="footer-bar"></div>
   </div>
 </div>
+
+<footer class="bottom-footer">
+   <div rv-widget-footer-bar id="footer-bar"></div>
+     <div class="footer-nav">
+       <nav>
+         &copy; 2014 Openly Secular
+         <ul class="inline-list right">
+           <li><a href="#">Privacy Policy</a></li>
+           <li><a href="#">Terms of Use</a></li>
+           <li><a href="#">Press</a></li>
+         </ul>
+       </nav>
+     </div>
+ </footer>
