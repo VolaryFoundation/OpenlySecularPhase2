@@ -8,19 +8,16 @@ asWidget('about-text', function(hub) {
   this.template('/widgets/about-text/index.html')
   this.on('installed', function() {
     widget.start()
-    $.ajax ({
-      url : "http://secularstates.wpengine.com/wp-json",
-      type: "GET",
-      success: function(body) {
-        widget.set("body", body);
-      }
-    })
-
-
+    hub.trigger('aboutTextNeeded')
+    hub.trigger('missionNeeded')
   })
 
-  widget.click = function() {
-    alert('I CLICKED')
-  }
+  hub.on('missionLoaded', function(text) {
+    widget.set('mission', text)
+  })
+
+  hub.on('aboutTextLoaded', function(text) {
+    widget.set('about', text)
+  })
 
 })
