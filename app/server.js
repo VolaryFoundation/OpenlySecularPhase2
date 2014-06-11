@@ -12,6 +12,7 @@ db.url = process.env.MONGOLAB_URI || envConfig.servers.mongodb
 var server = express()
 
 server.use(bodyParser())
+server.use('/widgets', express.static(__dirname + '/widgets'))
 
 server.put('/domain', function(req, res) {
   console.log("See if this outputs")

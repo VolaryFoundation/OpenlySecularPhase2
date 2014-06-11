@@ -44,6 +44,11 @@ asWidget('awareness', function(hub) {
   widget.on('installed', function() {
     widget.start()
     widget.homepage()
+
+    widget.set('partners', [
+      { name: 'john', company: '...he doesnt have one' },
+      { name: 'kendra', company: 'loves the cats' }
+    ])
   })
 
   hub.on("pageSelected", function(name) {
@@ -62,6 +67,16 @@ asWidget('awareness', function(hub) {
     hub.trigger('pageSelected', 'update')
   }
 
+  var arr = [ 'GO.', 'AWAY.', 'JOHN.' ]
+  widget.set('zapMessage', '')
+
+  var interval = setInterval(function() {
+    if (!arr[0]) clearInterval(interval)
+    else {
+      var text = arr.shift()
+      widget.set('zapMessage', widget.get('zapMessage') + ' ' + text)
+    }
+  }, 2000)
 })
 
 module.exports = {}

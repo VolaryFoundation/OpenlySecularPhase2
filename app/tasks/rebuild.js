@@ -174,8 +174,6 @@ function buildFiles(config, widgets) {
     html: buildHTML()
   })
 
-  hash.then(function(h) { console.log(h) })
-
   return hash
 }
 
