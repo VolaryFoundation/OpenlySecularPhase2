@@ -67,16 +67,6 @@ asWidget('awareness', function(hub) {
     hub.trigger('pageSelected', 'update')
   }
 
-  var arr = [ 'GO.', 'AWAY.', 'JOHN.' ]
-  widget.set('zapMessage', '')
-
-  var interval = setInterval(function() {
-    if (!arr[0]) clearInterval(interval)
-    else {
-      var text = arr.shift()
-      widget.set('zapMessage', widget.get('zapMessage') + ' ' + text)
-    }
-  }, 2000)
 })
 
 module.exports = {}
