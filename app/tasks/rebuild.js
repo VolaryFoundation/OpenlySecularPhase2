@@ -179,7 +179,8 @@ function buildFiles(config, widgets) {
 
 // clean up TODO
 function storeFiles(config, files) {
-  var location = 'local'
+  var location = (config.storageLocation) ? config.storageLocation : 'local'
+  if (['local', 's3'].indexOf(location) <= -1) {rej()}
   return rsvp.all([
     writeFile[location]('build.css', files.css, config.domain, 'text/css'),
     writeFile[location]('build.js', files.js, config.domain, 'application/javascript'),
