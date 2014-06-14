@@ -1,2 +1,4 @@
 servers:
   mongodb: 'mongodb://localhost:27017/widget-server'
+s3:
+  bucket: 'replace'

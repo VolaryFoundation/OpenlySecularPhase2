@@ -7,6 +7,7 @@ var _ = require('lodash')
 var sass = require('node-sass')
 var through = require('through')
 var browserify = require('browserify')
+var envConfig = require('config')
 var widgetPath = function(name) { return __dirname + '/../widgets/' + name }
 
 function promise(fn) { return new rsvp.Promise(fn) }
@@ -33,8 +34,10 @@ function readFile(path) {
 }
 
 var writeFile = {
-  s3: function(name, contents, domain, contentType) {
-    var s3 = new AWS.S3({params: {Bucket: 'www.nejohannsen.com', Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
+
+  s3: function(name, contents, domain, contentType, locationConfig) {
+    var bucket = locationConfig.bucket ||process.env.S3_BUCKET || envConfig.aws.bucket
+    var s3 = new AWS.S3({params: {Bucket: bucket, Key: domain + '/' + name, ACL: "public-read", ContentType: contentType}});
     return promise(function(res, rej) {
       s3.createBucket(function() {
         s3.putObject({Body: contents}, function(e) {
@@ -179,12 +182,12 @@ function buildFiles(config, widgets) {
 
 // clean up TODO
 function storeFiles(config, files) {
-  var location = (config.storageLocation) ? config.storageLocation : 'local'
+  var location = (config.storageLocation && config.storageLocation.service) ? config.storageLocation.service : 'local'
   if (['local', 's3'].indexOf(location) <= -1) {rej()}
   return rsvp.all([
-    writeFile[location]('build.css', files.css, config.domain, 'text/css'),
-    writeFile[location]('build.js', files.js, config.domain, 'application/javascript'),
-    writeFile[location]('build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html' )
+    writeFile[location]('build.css', files.css, config.domain, 'text/css', config.storageLocation),
+    writeFile[location]('build.js', files.js, config.domain, 'application/javascript', config.storageLocation),
+    writeFile[location]('build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html', config.storageLocation )
   ])
 }
 
