@@ -1,0 +1,46 @@
+
+.about-widget {
+  .mission {
+    margin-top: 50px;
+    p {
+      font-size: 14px;
+      line-height: 24px;
+    }
+    .divider {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    img {
+      float: right;
+    }
+  }
+  .who-are-we {
+    margin-top: 50px;
+    ul {
+      margin-top: 40px;
+      li {
+        list-style: none;
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+        text-align: center;
+      }
+    }
+  }
+  .partners {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    ul {
+      margin-top: 40px;
+      li {
+        list-style: none;
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+        text-align: center;
+      }
+    }
+  }
+}

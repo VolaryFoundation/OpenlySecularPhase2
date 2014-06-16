@@ -31,6 +31,13 @@ rivets.adapters[':'] = {
   }
 }
 
+rivets.configure({
+  handler: function(target, event, binding) {
+    if (!this.allowDefault) event.preventDefault()
+    this.call(binding.model, event, target, binding)
+  }
+})
+
 
 rivets.formatters.eql = function(name, input) {
   return name == input;
@@ -65,6 +72,10 @@ asWidget('awareness', function(hub) {
 
   widget.updatepage = function() {
     hub.trigger('pageSelected', 'update')
+  }
+
+  widget.showDonation = function() {
+    hub.trigger('showDonation')
   }
 
 })

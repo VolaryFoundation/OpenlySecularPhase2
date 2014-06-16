@@ -1,0 +1,38 @@
+<div class="about-widget">
+  <div class="divider">
+    <strong>About Page</strong>
+  </div>
+  <div class="row mission">
+    <div class="columns small-6">
+      <img rv-src="widget:about.about_img | default http://placehold.it/300x200" />
+    </div>
+    <div class="columns small-6">
+      <div class="divider inline-divider">
+        <strong>Our Mission</strong>
+      </div>
+      <p rv-html="widget:about.mission"></p>
+    </div>
+  </div>
+  <div class="who-are-we">
+    <div class="divider inline-divider">
+      <strong>Who We Are</strong>
+    </div>
+    <ul class="row">
+      <li class="small-3 columns" rv-each-person="widget:team">
+        <img rv-src="person | featuredImage | default http://placehold.it/175x200" />
+        { person.title }
+      </li>
+    </ul>
+  </div>
+  <div class="partners">
+    <div class="divider inline-divider">
+      <strong>Partners &amp; Allies</strong>
+    </div>
+    <ul class="row">
+      <li class="small-4 columns" rv-each-partner="widget:partners">
+        <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+        { partner.title }
+      </li>
+    </ul>
+  </div>
+</div>

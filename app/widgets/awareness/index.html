@@ -1,17 +1,18 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
+
 <header class="top-header">
   <div class="header-bar">
     <div class="logo">
-      <img src="https://lh5.googleusercontent.com/F6xTCOBMmgvMUyG7VXVS5s0PnRCJMdD36SSGYCL1LcXjD0Js69v2KJyovon-JAh17qyGrn4CZAoL0-ENrhEnkPZ_WPn2Yon3Xlh6u_L3oBSPlsAVv6MiJ5dsEiG40eCGmA">
-    </div>
-    <nav>
+    <img src="https://lh5.googleusercontent.com/F6xTCOBMmgvMUyG7VXVS5s0PnRCJMdD36SSGYCL1LcXjD0Js69v2KJyovon-JAh17qyGrn4CZAoL0-ENrhEnkPZ_WPn2Yon3Xlh6u_L3oBSPlsAVv6MiJ5dsEiG40eCGmA">
+  </div>
+   <nav>
       <ul>
         <li><a rv-on-click="widget.homepage">Home</a></li>
         <li><a rv-on-click="widget.aboutpage">About</a></li>
-        <li><a rv-on-click="widget.updatepage">Update</a></li>
+        <li><a rv-on-click="widget.updatepage">Media</a></li>
         <ul class="donate-button">
-          <li><a href="#">Donate</a></li>
+          <li><a href="#" rv-on-click="widget.showDonation">Donate</a></li>
         </ul>
       </ul>
     </nav>
@@ -31,17 +32,14 @@
 </div>
 
 <div rv-show="widget:page | eql about">
-  <div class="about-page">
-    <div rv-widget-nav-bar id="nav-bar"></div>
-    <div rv-widget-about-text id="about-text"></div>
-  </div>
+  <div class="about-page" rv-widget-about></div>
 </div>
 
 <div rv-show="widget:page | eql update">
-  <div class="update-page">
-    <div rv-widget-blog id="blog"></div>
-  </div>
+  <div class="update-page" rv-widget-media></div>
 </div>
+
+<div rv-widget-donation></div>
 
 <div rv-widget-action-bar-mini id="action-bar-mini"></div>
 <footer class="bottom-footer">

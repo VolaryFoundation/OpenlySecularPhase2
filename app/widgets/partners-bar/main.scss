@@ -1,5 +1,10 @@
 .partners-bar {
   @include grid-row();
+  img {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 .partners-list {

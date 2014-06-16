@@ -10,7 +10,44 @@ body {
 
 .top-header {
   background: #fff;
-  padding: 0 0 6em 0;
+  padding: 0 0 20px 0;
+}
+
+$divider-size: 30;
+.divider {
+  border-top: 2px solid #ccc;
+  text-align: center;
+  font-weight: bold;
+  strong {
+    display: block;
+    &:before {
+      content: "";
+      height: #{$divider-size}px;
+      width: #{$divider-size}px;
+      border-radius: #{$divider-size / 2}px;
+      border: 1px solid #aaa;
+      display: block;
+      background: #ccc;
+      margin: -#{$divider-size / 2}px auto 5px;
+    }
+  }
+  &.inline-divider {
+    border-top: 1px solid #ccc;
+    strong {
+      margin-top: -#{$divider-size / 2}px;
+      line-height: #{$divider-size}px;
+      height: #{$divider-size}px;
+      vertical-align: top;
+      display: inline-block;
+      padding: 0 25px;
+      background: #fff;
+      &:before {
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .header-bar {
@@ -87,6 +124,7 @@ body {
 
 .action-bar {
   background: $primary-bg-color;
+  margin-bottom: 20px;
 
   ul {
     @include grid-row();

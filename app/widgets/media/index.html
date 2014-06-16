@@ -1,0 +1,38 @@
+<div class="media-widget">
+  <div class="divider">
+    <strong>Media</strong>
+  </div>
+  <div class="row">
+    <div class="columns small-8">
+      <h3>Blog</h3>
+      <ul>
+        <li rv-each-post="widget:posts">
+          <h5 class="title">{ post.title }</h5>
+          <p class="meta">{ post.modified | postDate }</p>
+          <img rv-src="post | featuredImage" />
+          <div rv-html="post.excerpt"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="columns small-4">
+      <div class="news">
+        <h3>In the news</h3>
+        <ul>
+          <li rv-each-article="widget:news">
+            <h5 class="title">{ article.title }</h5>
+            <p class="meta">{ article.modified | postDate }</p>
+          </li>
+        </ul>
+      </div>
+      <div class="press-releases">
+        <h3>Press Releases</h3>
+        <ul>
+          <li rv-each-release="widget:releases">
+            <h5 class="title">{ release.title }</h5>
+            <p class="meta">{ release.modified | postDate }</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

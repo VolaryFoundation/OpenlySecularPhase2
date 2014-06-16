@@ -2,27 +2,74 @@
 var hub = require('widget').hub
 var $ = require('jquery')
 
+var BASE_URL = 'http://dev-openly-secular.gotpantheon.com/wp-json'
+
 var cache = {}
 
 function loadAbout() {
   $.ajax({
-    url: 'http://secularstates.wpengine.com/wp-json',
+    url: BASE_URL,
     type: 'GET',
     success: function(body) {
       cache.about = body
-      hub.trigger('aboutTextLoaded', body.group_data.about)
-      hub.trigger('missionLoaded', body.group_data.mission)
+      hub.trigger('aboutLoaded', body.group_data)
     }
   })
 }
 
-hub.on('aboutTextNeeded', function() {
-  if (cache.about) hub.trigger('aboutTextLoaded', cache.about.group_data.about)
+function loadPosts() {
+  $.ajax({
+    url: BASE_URL + '/posts',
+    type: 'GET',
+    success: function(body) {
+      debugger
+    }
+  })
+}
+
+hub.on('aboutNeeded', function() {
+  if (cache.about) hub.trigger('aboutLoaded', cache.about)
   else loadAbout()
 })
 
-hub.on('missionNeeded', function() {
-  if (cache.about) hub.trigger('missionLoaded', cache.about.group_data.mission)
-  else loadAbout()
+hub.on('teamNeeded', function() {
+  $.ajax(BASE_URL + '/posts?type=team', {
+    type: 'GET',
+    success: function(team) {
+      hub.trigger('teamLoaded', team)
+    }
+  })
 })
 
+hub.on('partnersNeeded', function() {
+  $.ajax(BASE_URL + '/posts?type=partners', {
+    type: 'GET',
+    success: function(partners) {
+      hub.trigger('partnersLoaded', partners)
+    }
+  })
+})
+
+hub.on('blogNeeded', function() {
+  $.ajax(BASE_URL + '/posts?filter[category_name]=blog', {
+    success: function(blog) {
+      hub.trigger('blogLoaded', blog)
+    }
+  })
+})
+
+hub.on('newsNeeded', function() {
+  $.ajax(BASE_URL + '/posts?filter[category_name]=media-mention', {
+    success: function(news) {
+      hub.trigger('newsLoaded', news)
+    }
+  })
+})
+
+hub.on('releasesNeeded', function() {
+  $.ajax(BASE_URL + '/posts?filter[category_name]=press-release', {
+    success: function(releases) {
+      hub.trigger('releasesLoaded', releases)
+    }
+  })
+})
