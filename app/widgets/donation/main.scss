@@ -1,0 +1,52 @@
+
+$step-size: 40;
+
+.donation-widget {
+  padding: 0;
+  .lock {
+    position: absolute;
+    top: 0;
+    right: 100px;
+  }
+  .steps {
+    width: 300px;
+    margin: auto;
+    padding: 40px;
+    overflow: auto;
+    div {
+      border: 1px solid #000;
+      border-radius: #{$step-size / 2}px;
+      height: #{$step-size}px;
+      width: #{$step-size}px;
+      float: left;
+      line-height: #{$step-size}px;
+      text-align: center;
+      i {
+        display: none;
+      }
+      &.active {
+        background: $blue;
+        color: #fff;
+      }
+      &.done {
+        strong {
+          display: none;
+        }
+        i {
+          display: block;
+          line-height: inherit;
+        }
+      }
+    }
+    & > span {
+      margin-top: #{$step-size / 2}px;
+      height: 2px;
+      width: 50px;
+      background: #000;
+      float: left;
+      &.active {
+        background: $blue;
+      }
+    }
+  }
+}

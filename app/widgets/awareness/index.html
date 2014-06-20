@@ -1,57 +1,98 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-
-<header class="top-header">
-  <div class="header-bar">
-    <div class="logo">
-    <img src="https://lh5.googleusercontent.com/F6xTCOBMmgvMUyG7VXVS5s0PnRCJMdD36SSGYCL1LcXjD0Js69v2KJyovon-JAh17qyGrn4CZAoL0-ENrhEnkPZ_WPn2Yon3Xlh6u_L3oBSPlsAVv6MiJ5dsEiG40eCGmA">
+<header>
+  <div class="row collapse photos">
+    <div class="column small-3" rv-each-photolist="widget:photoLists">
+      <img rv-each-photo="photolist" rv-src="photo" />
+    </div>
   </div>
-   <nav>
-      <ul>
-        <li><a rv-on-click="widget.homepage">Home</a></li>
-        <li><a rv-on-click="widget.aboutpage">About</a></li>
-        <li><a rv-on-click="widget.updatepage">Media</a></li>
-        <ul class="donate-button">
-          <li><a href="#" rv-on-click="widget.showDonation">Donate</a></li>
-        </ul>
-      </ul>
-    </nav>
+  <div id="overlay"></div>
+  <div class="content">
+    <img class="logo" rv-src="widget:logo" />
+    <h2 class="tagline">Let's end secular discrimination and increase acceptance<small>by being open about our beliefs</small></h2>
+    <button><i class="fa fa-play"></i></button>
   </div>
 </header>
 
-<div rv-show="widget:page | eql home">
-  <div class="action-bar">
-    <ul>
-      <li><div rv-widget-action-newsletter id="action-newsletter"></div></li>
-      <li><div rv-widget-action-donate id="action-donate"></div></li>
-      <li><div rv-widget-action-share id="action-share"></div></li>
-    </ul>
-  </div>
-  <div rv-widget-partners-bar id="partners-bar"></div>
-  <div rv-widget-press-bar id="press-bar"></div>
+<div id="placeholder"></div>
+
+<footer>
+  <nav>
+    <a href="#" rv-class-active="widget:activeSection | eql about">Who We Are</a>
+    <a href="#" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a>
+    <a href="#" rv-class-active="widget:activeSection | eql faq">FAQ</a>
+    <a href="#" rv-class-active="widget:activeSection | eql media">Media</a>
+    <a href="#">Contact</a>
+  </nav>
+</footer>
+
+<div id="sections" rv-autoscroll="widget:page">
+
+  <section id="home">
+    <div class="action-bar">
+      <div class="row">
+        <div class="column small-10 small-offset-1">
+          <div class="action subscribe-action column small-4">
+            <h4><i class="fa fa-star"></i> Stay Informed</h4>
+            <div rv-if="widget:subscribeStep | eql 1">
+              <p>Sign up for our newsletter.</p>
+              <form rv-on-submit="widget.nextSubscribeStep">
+                <div class="row collapse">
+                  <div class="small-10 columns">
+                    <input rv-value="widget:subscribeEmail" type="email" name="email" class="subscribe-input" placeholder="Email address">
+                  </div>
+                  <div class="small-2 columns">
+                    <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div rv-if="widget:subscribeStep | eql 2">
+              <p>Thanks for signing up! Care to give us your name so we know what to call you?</p>
+              <form rv-on-submit="widget.nextSubscribeStep">
+                <div class="row collapse">
+                  <div class="small-10 columns">
+                    <input rv-value="widget:subscribeName" type="text" class="subscribe-input" placeholder="Full Name">
+                  </div>
+                  <div class="small-2 columns">
+                    <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div rv-if="widget:subscribeStep | eql 3">
+              <p>Great! We have everything we need now to keep you informed.</p>
+            </div>
+          </div>
+          <div class="action column small-4">
+            <h4><i class="fa fa-star"></i> Make a Donation</h4>
+            <p>
+              Contribute towards a difference.
+              <small>All donations are tax-deductable</small>
+            </p>
+            <form>
+              <button>Donate</button>
+            </form>
+          </div>
+          <div class="action column small-4">
+            <h4><i class="fa fa-star"></i> Get Involved</h4>
+            <p> Share your own story.  </p>
+            <form>
+              <button>Share</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="about" rv-widget-about></section>
+
+  <section id="faq">
+    FAQ STUFF
+  </section>
+
+  <section id="media" rv-widget-media></section>
+
 </div>
-
-<div rv-show="widget:page | eql about">
-  <div class="about-page" rv-widget-about></div>
-</div>
-
-<div rv-show="widget:page | eql update">
-  <div class="update-page" rv-widget-media></div>
-</div>
-
-<div rv-widget-donation></div>
-
-<div rv-widget-action-bar-mini id="action-bar-mini"></div>
-<footer class="bottom-footer">
-   <div rv-widget-footer-bar id="footer-bar"></div>
-     <div class="footer-nav">
-       <nav>
-         &copy; 2014 Openly Secular
-         <ul class="inline-list right">
-           <li><a href="#">Privacy Policy</a></li>
-           <li><a href="#">Terms of Use</a></li>
-           <li><a href="#">Press</a></li>
-         </ul>
-       </nav>
-     </div>
- </footer>

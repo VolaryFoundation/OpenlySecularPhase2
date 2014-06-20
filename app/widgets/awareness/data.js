@@ -2,7 +2,7 @@
 var hub = require('widget').hub
 var $ = require('jquery')
 
-var BASE_URL = 'http://dev-openly-secular.gotpantheon.com/wp-json'
+var BASE_URL = 'http://tinytower.info/wp-json'
 
 var cache = {}
 

@@ -2,15 +2,188 @@
 @import "app/assets/stylesheets/foundation/_settings";
 @import "app/assets/stylesheets/foundation";
 
-$brand-primary: <%= brandPrimary %>;
-
-body {
-  background: #fff;
+@font-face {
+  font-family: Mank;
+  src: url('/widgets/awareness/fonts/MankSans-Medium.ttf') format('truetype');
+  font-weight:400;
 }
 
-.top-header {
-  background: #fff;
-  padding: 0 0 20px 0;
+$brand-primary: <%= brandPrimary %>;
+$blue: #005CB9;
+$red: #fA4616;
+$white: #fff;
+$black: #000;
+$gray: #aaa;
+$z-content: 20;
+$z-base: 0;
+$z-overlay: 10;
+
+body {
+  background: $white;
+  font-family: Mank;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Mank;
+}
+
+.logo {
+  width: 200px;
+  margin: 0 auto;
+  background: $blue;
+  display: block;
+  padding: 20px;
+}
+
+#sections {
+  position: relative;
+}
+
+#placeholder {
+  background: transparent;
+}
+
+#home {
+  background: $white;
+  padding-bottom: 20px;
+}
+
+#about {
+  background: $white;
+}
+
+#media {
+  background: $white;
+}
+
+#faq {
+  height: 400px;
+  background: $white;
+}
+
+header {
+
+  .photos {
+    z-index: $z-base;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  text-align: center;
+  color: $white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 200px;
+  .tagline {
+    color: inherit;
+    font-size: 30px;
+    margin: 100px 0 60px;
+    small {
+      margin-top: 20px;
+      display: block;
+      color: $white;
+    }
+  }
+  #overlay {
+    background: $blue;
+    opacity: .6;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $z-overlay;
+  }
+  .content {
+    z-index: $z-content;
+    position: relative;
+  }
+  button {
+    font-size: 26px;
+    border: 1px solid $white;
+    border-radius: 30px;
+    padding: 0;
+    height: 60px;
+    width: 60px;
+    background: transparent;
+    text-indent: 3px;
+  }
+}
+
+.action-bar {
+  padding: 20px 0;
+  background: $white;
+  .action {
+    text-align: center;
+    border-right: 1px solid $gray;
+    padding: 0 20px;
+    height: 180px;
+    position: relative;
+    &:last-child {
+      border: none;
+    }
+    form {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      right: 20px;
+      input {
+        margin: 0 0 6px;
+      }
+      a {
+        margin: 0 0 6px;
+      }
+      button {
+        margin: 0 auto;
+        display: block;
+      }
+    }
+    p {
+      font-size: 14px;
+      small {
+        font-size: 12px;
+      }
+    }
+    h4 {
+      border-bottom: 1px solid $gray;
+      padding: 10px 0;
+    }
+  }
+}
+
+footer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: $blue;
+  color: $white;
+  padding: 25px 10px;
+  z-index: 1;
+  nav {
+    text-align: center;
+    a {
+      color: $white;
+      display: inline-block;
+      margin: 0 20px;
+      border-bottom: 2px solid transparent;
+      padding: 0 0 5px;
+      &:hover, &.active {
+        border-bottom: 2px solid $red;
+        color: $white;
+      }
+      &:last-child {
+        margin: 0 20px 0 0;
+        float: right;
+      }
+    }
+  }
 }
 
 $divider-size: 30;
@@ -50,166 +223,3 @@ $divider-size: 30;
   }
 }
 
-.header-bar {
-  @include grid-row();
-
-  .logo {
-    @include grid-column($columns: 12, $collapse: true);
-    text-align: center;
-
-    img {
-      max-width: 300px;
-    }
-
-    @media #{$medium-up} {
-      @include grid-column($columns: 4, $collapse: true);
-      img {
-        max-width: 150px;
-      }
-    }
-  }
-
-  nav {
-    @include grid-column($columns: 12, $collapse: true);
-    background: #88aacc;
-    max-height: 47px;
-
-    @media #{$medium-up} {
-      @include grid-column($columns: 8, $collapse: true);
-      margin-top: 4.5em;
-    }
-
-    ul {
-      @include inline-list;
-      margin: 0;
-      padding: 0;
-
-      &.donate-button {
-        float: right;
-        border-left: 2px solid #fff;
-
-        a {
-          background: $alert-color;
-          border: none;
-
-          &:hover {
-            background: #cf280e;
-          }
-        }
-      }
-
-      li {
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-    a {
-      color: #fff;
-      padding: 1rem 2rem .9rem 2rem;
-      font-size: rem-calc(13);
-      margin: 0;
-      position: relative;
-      text-align: center;
-      border-bottom: 2px solid transparent;
-    }
-
-    a:hover {
-      background: rgba(0,0,0,0.1);
-      border-bottom: 2px solid $primary-color;
-    }
-
-  }
-}
-
-.action-bar {
-  background: $primary-bg-color;
-  margin-bottom: 20px;
-
-  ul {
-    @include grid-row();
-    list-style: none;
-    text-align: center;
-
-    li {
-      min-height: 200px;
-      border-left: 1px solid rgba(255,255,255,0.5);
-
-      @media #{$medium-up} {
-        @include grid-column($columns:6, $collapse: true);
-      }
-
-      @media #{$large-up} {
-        @include grid-column($columns:4, $collapse: true);
-      }
-    }
-
-    @media #{$medium-only} {
-      li:first-child {
-        @include grid-column($columns:12, $collapse: true);
-        border-bottom: 1px solid rgba(255,255,255,0.5);
-      }
-    }
-
-    li:last-child {
-      border-right: 1px solid rgba(255,255,255,0.5);
-    }
-  }
-
-  #action-newsletter > article {
-    .content {
-      padding: 3px 0;
-    }
-  }
-
-  .action {
-    padding: 1em;
-
-    header {
-      margin-bottom: 3em;
-
-      i {
-         color:  rgba(255,255,255,0.9);
-      }
-
-      h3 {
-        position: relative;
-        color: rgba(0,0,0,0.6);
-        font-weight: 700;
-        margin-bottom: 2em;
-
-        &:after {
-          position: absolute;
-          bottom: -13px;
-          left: 0;
-          right: 0;
-          margin: auto;
-          width: 40px;
-          height: 1px;
-          background: rgba(255,255,255,0.9);
-          content: "";
-        }
-      }
-
-      p {
-        color: rgba(0,0,0,0.4);
-      }
-    }
-
-    &.focused {
-      background:  darken( $primary-bg-color, 5% );;
-    }
-  }
-
-
-}
-
-
-.footer-nav {
-  background: #333;
-  padding: 2em 0;
-
-  nav {
-    @include grid-row();
-  }
-}

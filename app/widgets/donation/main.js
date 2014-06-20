@@ -6,8 +6,10 @@ asWidget('donation', function(hub) {
 
   widget.template('/widgets/donation/index.html')
   widget.on('installed', function() {
-    widget.start().hide()
+    widget.start().show()
   })
+
+  widget.set('step', 1)
 
   hub.on('showDonation', function() {
     widget.show()

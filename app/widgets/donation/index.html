@@ -1,3 +1,29 @@
-<dialog open>
-  <h2>Donations</h2>
+<dialog class="donation-widget" open>
+
+  <div class="lock"><i class="fa fa-lock"></i>Secure</div>
+
+  <div class="steps">
+    <div class="done active" rv-class-done="widget:step | gt 1" rv-class-active="widget:step | eql 1">
+      <strong>1</strong>
+      <i class="fa fa-check"></i>
+    </div>
+    <span rv-class-active="widget:step | gt 1"></span>
+    <div rv-class-done="widget:step | gt 2" rv-class-active="widget:step | eql 2">
+      <strong>2</strong>
+      <i class="fa fa-check"></i>
+    </div>
+    <span rv-class-active="widget:step | gt 2"></span>
+    <div rv-class-done="widget:step | gt 3" rv-class-active="widget:step | eql 3">
+      <strong>3</strong>
+      <i class="fa fa-check"></i>
+    </div>
+  </div>
+
+  <form>
+
+  </form>
+
+  <div class="next-steps">
+
+  </div>
 </dialog>

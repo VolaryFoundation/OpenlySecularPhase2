@@ -14,9 +14,11 @@ asWidget('about', function(hub) {
   this.template('/widgets/about/index.html')
   this.on('installed', function() {
     widget.start()
-    hub.trigger('aboutNeeded')
-    hub.trigger('teamNeeded')
-    hub.trigger('partnersNeeded')
+    hub.once('aboutScrolledTo', function() {
+      hub.trigger('aboutNeeded')
+      hub.trigger('teamNeeded')
+      hub.trigger('partnersNeeded')
+    })
   })
 
   hub.on('aboutLoaded', function(about) {

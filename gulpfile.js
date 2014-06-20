@@ -33,7 +33,7 @@ gulp.task('build', function(done) {
         .then(tasks.rebuild)
     })
     if (!rebuilds[0]) return done()
-    else return rsvp.all(rebuilds).then(done)
+    else return rsvp.all(rebuilds).then(done).catch(console.log.bind(console))
   })
 })
 
