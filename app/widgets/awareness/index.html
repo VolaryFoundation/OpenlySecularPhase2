@@ -30,57 +30,55 @@
 
   <section id="home">
     <div class="action-bar">
-      <div class="row">
-        <div class="column small-10 small-offset-1">
-          <div class="action subscribe-action column small-4">
-            <h4><i class="fa fa-star"></i> Stay Informed</h4>
-            <div rv-if="widget:subscribeStep | eql 1">
-              <p>Sign up for our newsletter.</p>
-              <form rv-on-submit="widget.nextSubscribeStep">
-                <div class="row collapse">
-                  <div class="small-10 columns">
-                    <input rv-value="widget:subscribeEmail" type="email" name="email" class="subscribe-input" placeholder="Email address">
-                  </div>
-                  <div class="small-2 columns">
-                    <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
-                  </div>
+      <div class="row collapse">
+        <div class="action subscribe-action column small-12 medium-4" id="sign-up">
+          <h4><i class="fa fa-lg fa-paper-plane"></i> Stay Informed</h4>
+          <div rv-if="widget:subscribeStep | eql 1">
+            <p>Sign up for our newsletter.</p>
+            <form rv-on-submit="widget.nextSubscribeStep">
+              <div class="row collapse">
+                <div class="small-10 columns">
+                  <input rv-value="widget:subscribeEmail" type="email" name="email" class="subscribe-input" placeholder="Email address">
                 </div>
-              </form>
-            </div>
-            <div rv-if="widget:subscribeStep | eql 2">
-              <p>Thanks for signing up! Care to give us your name so we know what to call you?</p>
-              <form rv-on-submit="widget.nextSubscribeStep">
-                <div class="row collapse">
-                  <div class="small-10 columns">
-                    <input rv-value="widget:subscribeName" type="text" class="subscribe-input" placeholder="Full Name">
-                  </div>
-                  <div class="small-2 columns">
-                    <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
-                  </div>
+                <div class="small-2 columns">
+                  <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
                 </div>
-              </form>
-            </div>
-            <div rv-if="widget:subscribeStep | eql 3">
-              <p>Great! We have everything we need now to keep you informed.</p>
-            </div>
-          </div>
-          <div class="action column small-4">
-            <h4><i class="fa fa-star"></i> Make a Donation</h4>
-            <p>
-              Contribute towards a difference.
-              <small>All donations are tax-deductable</small>
-            </p>
-            <form>
-              <button>Donate</button>
+              </div>
             </form>
           </div>
-          <div class="action column small-4">
-            <h4><i class="fa fa-star"></i> Get Involved</h4>
-            <p> Share your own story.  </p>
-            <form>
-              <button>Share</button>
+          <div rv-if="widget:subscribeStep | eql 2">
+            <p>Thanks! You are all set.<br>But you should let us know your name.</p>
+            <form rv-on-submit="widget.nextSubscribeStep">
+              <div class="row collapse">
+                <div class="small-10 columns">
+                  <input rv-value="widget:subscribeName" type="text" class="subscribe-input" placeholder="Full Name">
+                </div>
+                <div class="small-2 columns">
+                  <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
+                </div>
+              </div>
             </form>
           </div>
+          <div rv-if="widget:subscribeStep | eql 3">
+            <p>Great! Thanks for signing up.<br>Keep your friends informed too.</p>
+          </div>
+        </div>
+        <div class="action column small-6 medium-4" id="donate">
+          <h4><i class="fa fa-lg fa-heart"></i> Make a Donation</h4>
+          <p>
+            Contribute towards a difference.
+            <br><small>All donations are tax-deductable</small>
+          </p>
+          <form>
+            <button class="small">Donate</button>
+          </form>
+        </div>
+        <div class="action column small-6 medium-4">
+          <h4><i class="fa fa-lg fa-group"></i> Get Involved</h4>
+          <p> Share your own story.  </p>
+          <form>
+            <button  class="small">Share</button>
+          </form>
         </div>
       </div>
     </div>
