@@ -3,27 +3,108 @@
   <div class="lock"><i class="fa fa-lock"></i>Secure</div>
 
   <div class="steps">
-    <div class="done active" rv-class-done="widget:step | gt 1" rv-class-active="widget:step | eql 1">
-      <strong>1</strong>
-      <i class="fa fa-check"></i>
-    </div>
-    <span rv-class-active="widget:step | gt 1"></span>
-    <div rv-class-done="widget:step | gt 2" rv-class-active="widget:step | eql 2">
-      <strong>2</strong>
-      <i class="fa fa-check"></i>
-    </div>
-    <span rv-class-active="widget:step | gt 2"></span>
-    <div rv-class-done="widget:step | gt 3" rv-class-active="widget:step | eql 3">
-      <strong>3</strong>
-      <i class="fa fa-check"></i>
+    <div class="inner">
+      <div class="done active" rv-class-done="widget:step | gt 1" rv-class-active="widget:step | eql 1">
+        <strong>1</strong>
+        <i class="fa fa-check"></i>
+      </div>
+      <span rv-class-active="widget:step | gt 1"></span>
+      <div rv-class-done="widget:step | gt 2" rv-class-active="widget:step | eql 2">
+        <strong>2</strong>
+        <i class="fa fa-check"></i>
+      </div>
+      <span rv-class-active="widget:step | gt 2"></span>
+      <div rv-class-done="widget:step | eql 3" rv-class-active="widget:step | eql 3">
+        <strong>3</strong>
+        <i class="fa fa-check"></i>
+      </div>
     </div>
   </div>
 
-  <form>
+  <form class="row">
 
+    <div rv-if="widget:step | eql 1">
+      <div class="column small-5">
+        <div class="amount-section">
+          <label>Select an amount:</label>
+          <div class="amounts">
+            <div class="amount column small-4" rv-each-preset="widget:presetAmounts" rv-on-click="widget.setAmount" rv-class-active="preset:active"><span>${ preset:amount }</span></div>
+          </div>
+          <div class="divider inline-divider">
+            <strong>OR</strong>
+          </div>
+          <label>Enter your own:</label>
+          <input type="text" rv-value="widget:customAmount" />
+        </div>
+      </div>
+
+      <div class="column small-7 amount-meta">
+        <fieldset>
+          <div class="column small-4">
+            <input type="checkbox" rv-value="widget:donation:recurring" />
+            <label>Recurring</label>
+          </div>
+          <select class="column small-8" rv-show="widget:donation:recurring" rv-value="widget:donation:recurringFrequency">
+            <option>weekly</option>
+            <option>monthly</option>
+            <option>yearly</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <div class="column small-12">
+            <input type="checkbox" rv-value="widget:donation:anonymous" />
+            <label>List my donation anonymously</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="column small-12">
+            <label>Let us know why you chose to donate?</label>
+            <select rv-value="widget:reason">
+              <option value="none">Decline to say</option>
+            </select>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="next-steps column small-12">
+        <button rv-on-click="widget.back" class="back">Cancel</button>
+        <button rv-on-click="widget.next" class="next">Continue</button>
+      </div>
+    </div>
+
+    <div rv-if="widget:step | eql 2">
+      <div class="column small-6 personal-details">
+        <label>Name:</label>
+        <input type="text" rv-value="widget:donation:firstName" placeholder="First" class="column small-6" />
+        <input type="text" rv-value="widget:donation:lastName" placeholder="Last" class="column small-6" />
+      </div>
+      <div class="column small-6 payment-details">
+        <strong class="total">{ widget:amount }</strong>
+        <span rv-if="widget:recurring"> recurring { widget:recurringFrequency }</span>
+        <div class="card-details">
+          <label>Card Number:</label>
+          <input type="text" rv-value="widget:donation:cardNumber" placeholder="xxxx xxxx xxxx xxxx" />
+          <label>Card Expiration:</label>
+          <select rv-value="widget:donation:cardExpiration.month" class="column small-6">
+            <option value="">Month</option>
+          </select>
+          <select rv-value="widget:donation:cardExpiration.year" class="column small-6">
+            <option value="">Year</option>
+          </select>
+        </div>
+      </div>
+      <div class="next-steps column small-12">
+        <button rv-on-click="widget.back" class="back">Back</button>
+        <button rv-on-click="widget.next" class="next">Confirm</button>
+      </div>
+    </div>
+
+    <div rv-if="widget:step | eql 3">
+      <div class="next-steps column small-12">
+        <button rv-on-click="widget.back" class="back">Back</button>
+        <button rv-on-click="widget.next" class="next">Confirm</button>
+      </div>
+    </div>
   </form>
 
-  <div class="next-steps">
-
-  </div>
 </dialog>

@@ -38,3 +38,7 @@ rivets.configure({
 rivets.formatters.eql = function(name, input) {
   return name == input;
 }
+
+rivets.formatters.gt = function(a, b) {
+  return a > b
+}

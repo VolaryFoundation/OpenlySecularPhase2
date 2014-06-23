@@ -22,15 +22,17 @@ rivets.binders.autoscroll = function(el, val) {
   }
 }
 
-function isElementInViewport(elem) {
+function isElementInViewport(el) {
 
-  var docViewTop = $(window).scrollTop();
-  var docViewBottom = docViewTop + $(window).height();
+  var docTop = $(window).scrollTop()
+  var docHeight = $(window).height()
+  var docBottom = docTop + docHeight
 
-  var elemTop = $(elem).offset().top;
-  var elemBottom = elemTop + $(elem).height();
+  var elTop = $(el).offset().top;
+  var elBottom = elTop + $(el).height();
 
-  return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+  // eltop is in top half of page, or elbottom is in bottom half of page
+  return ((elTop >= docTop && elTop <= docTop + (docHeight / 2)) || (elBottom <= docBottom && elBottom >= docBottom - (docHeight / 2)))
 }
 
 asWidget('awareness', function(hub) {
@@ -42,12 +44,15 @@ asWidget('awareness', function(hub) {
     var bodyTop = bodyBounds.top * -1
     var docRange = [ bodyTop, bodyTop + bodyBounds.height ]
     var sections = document.querySelectorAll('section')
-    var sectionRanges = _.each(sections, function(section) {
-      if (isElementInViewport(section)) {
-        hub.trigger(section.getAttribute('id') + 'ScrolledTo')
-        hub.trigger('sectionInView', section.getAttribute('id'))
-      }
+    var possibleSections = _.filter(sections, function(section) {
+      return isElementInViewport(section)
     })
+    if (possibleSections[0]) {
+      var section = _.last(possibleSections)
+      if (section.getAttribute('id') == widget.get('activeSection')) return
+      hub.trigger(section.getAttribute('id') + 'ScrolledTo')
+      hub.trigger('sectionInView', section.getAttribute('id'))
+    }
   }, 500))
 
   widget.set('logo', '/widgets/awareness/img/logo.png')
@@ -65,7 +70,7 @@ asWidget('awareness', function(hub) {
   })
 
   hub.on("pageSelected", function(name) {
-    widget.set("page", name);
+    widget.set("page", name)
   })
 
   widget.toHomePage = function() {

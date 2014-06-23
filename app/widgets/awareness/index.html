@@ -14,8 +14,6 @@
   </div>
 </header>
 
-<div id="placeholder"></div>
-
 <footer>
   <nav>
     <a href="#" rv-class-active="widget:activeSection | eql about">Who We Are</a>
@@ -29,6 +27,7 @@
 <div id="sections" rv-autoscroll="widget:page">
 
   <section id="home">
+    <div id="placeholder"></div>
     <div class="action-bar">
       <div class="row collapse">
         <div class="action subscribe-action column small-12 medium-4" id="sign-up">
@@ -82,15 +81,17 @@
         </div>
       </div>
     </div>
-
   </section>
 
-  <section id="about" rv-widget-about></section>
+  <div rv-widget-about></div>
 
   <section id="faq">
     FAQ STUFF
   </section>
 
   <section id="media" rv-widget-media></section>
+
+  <div rv-widget-donation></div>
+  <div rv-widget-contact></div>
 
 </div>

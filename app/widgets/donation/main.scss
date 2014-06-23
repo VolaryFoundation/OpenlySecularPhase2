@@ -3,50 +3,123 @@ $step-size: 40;
 
 .donation-widget {
   padding: 0;
+  fieldset {
+    padding: 0;
+    margin: 0;
+  }
   .lock {
     position: absolute;
     top: 0;
     right: 100px;
+    padding: 5px 15px;
+    border: 1px solid $black;
+    border-top: none;
+    i {
+      float: left;
+      margin-right: 3px;
+    }
   }
   .steps {
-    width: 300px;
-    margin: auto;
-    padding: 40px;
-    overflow: auto;
-    div {
-      border: 1px solid #000;
-      border-radius: #{$step-size / 2}px;
-      height: #{$step-size}px;
-      width: #{$step-size}px;
-      float: left;
-      line-height: #{$step-size}px;
-      text-align: center;
-      i {
-        display: none;
-      }
-      &.active {
-        background: $blue;
-        color: #fff;
-      }
-      &.done {
-        strong {
+    background: $gray;
+    margin-bottom: 20px;
+    .inner {
+      width: 300px;
+      margin: auto;
+      overflow: auto;
+      padding: 40px;
+      div {
+        border: 1px solid #000;
+        border-radius: #{$step-size / 2}px;
+        height: #{$step-size}px;
+        width: #{$step-size}px;
+        float: left;
+        line-height: #{$step-size}px;
+        text-align: center;
+        i {
           display: none;
         }
-        i {
-          display: block;
-          line-height: inherit;
+        &.active {
+          background: $blue;
+          color: #fff;
+        }
+        &.done {
+          background: $blue;
+          color: #fff;
+          strong {
+            display: none;
+          }
+          i {
+            display: block;
+            line-height: inherit;
+          }
+        }
+      }
+      & > span {
+        margin-top: #{$step-size / 2}px;
+        height: 2px;
+        width: 50px;
+        background: #000;
+        float: left;
+        &.active {
+          background: $blue;
         }
       }
     }
-    & > span {
-      margin-top: #{$step-size / 2}px;
-      height: 2px;
-      width: 50px;
-      background: #000;
+  }
+  .amount-section {
+    label {
+      font-size: 20px;
+      text-align: center;
+      display: block;
+      margin: 0 0 20px;
+    }
+    .divider {
+      margin-bottom: 10px;
+    }
+    .amounts {
+      overflow: auto;
+      margin: 0 0 30px;
+    }
+    .amount {
       float: left;
-      &.active {
-        background: $blue;
+      margin-bottom: 10px;
+      span {
+        display: block;
+        text-align: center;
+        line-height: 30px;
+        margin: 0 15px;
+        border: 1px solid $black;
+        border-radius: 5px;
+        &:hover {
+          background: $blue;
+          color: $white;
+          cursor: pointer;
+        }
       }
+      &.active {
+        span {
+          background: $blue;
+          color: $white;
+        }
+      }
+    }
+  }
+  select {
+    margin-bottom: 0;
+  }
+  .amount-meta {
+    margin-top: 58px;
+    fieldset {
+      min-height: 40px;
+    }
+  }
+  .next-steps {
+    margin-top: 50px;
+    .back {
+      float: left;
+    }
+    .next {
+      float: right;
     }
   }
 }
