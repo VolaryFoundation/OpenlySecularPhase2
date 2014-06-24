@@ -102,8 +102,11 @@
         <input type="text" rv-value="widget:donation:firstName" placeholder="Email Address">
       </div>
       <div class="column small-12 large-6 payment-details">
-        <strong class="total">{ widget:amount }</strong>
-        <span rv-if="widget:recurring"> recurring { widget:recurringFrequency }</span>
+        <div class="credit-card">
+        <div class="row collapse">
+          <div class="column small-8 stripe">recurring weekly<span rv-if="widget:recurring"> recurring { widget:recurringFrequency }</span></div>
+          <strong class="column small-4 total">{ widget:amount }$20</strong>
+        </div>
         <div class="card-details">
           <label>Card Number:</label>
           <input type="text" rv-value="widget:donation:cardNumber" placeholder="xxxx xxxx xxxx xxxx" />
@@ -116,6 +119,7 @@
           </select>
         </div>
       </div>
+      </div>
       <div class="next-steps column small-12">
         <button rv-on-click="widget.back" class="small secondary back">Back</button>
         <button rv-on-click="widget.next" class="small next">Confirm</button>
@@ -123,6 +127,13 @@
     </div>
 
     <div rv-if="widget:step | eql 3">
+      <div class="action column small-6 medium-4">
+        <h4><i class="fa fa-lg fa-bullhorn"></i> Increase your Impact</h4>
+        <p> Inform all your friends.  </p>
+          <figure class="social-button"><i class="fa fa-twitter"></i></figure>
+          <figure class="social-button"><i class="fa fa-facebook"></i></figure>
+      </div>
+      <p>Thank you!</p>
       <div class="next-steps column small-12">
         <button rv-on-click="widget.back" class="small secondary back">Back</button>
         <button rv-on-click="widget.next" class="small next">Confirm</button>

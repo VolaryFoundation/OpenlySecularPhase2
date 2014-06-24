@@ -164,10 +164,30 @@ $step-size: 35;
   }
 }
 
-.card-details {
-  padding: 30px 40px;
+.credit-card {
+  padding: 20px 0;
   min-height: 200px;
   background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.15);
   border-radius: 5px;
   @media #{$large-up} { margin-top: 30px;}
+
+  .stripe {
+    text-align: center;
+    color: $blue;
+    font-size: 12px;
+    line-height: 30px;
+    background: $blue-light;
+    height: 30px;
+  }
+  .total {
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    color: $blue;
+  }
+}
+
+.card-details {
+  padding: 20px 40px 60px 40px;
 }
