@@ -6,17 +6,23 @@
     <div class="inner">
       <div class="done active" rv-class-done="widget:step | gt 1" rv-class-active="widget:step | eql 1">
         <strong>1</strong>
-        <i class="fa fa-check"></i>
+        <i class="fa fa-heart active"></i>
+        <i class="fa fa-check done"></i>
+        <span class="step-info">Donation</span>
       </div>
       <span rv-class-active="widget:step | gt 1"></span>
       <div rv-class-done="widget:step | gt 2" rv-class-active="widget:step | eql 2">
         <strong>2</strong>
-        <i class="fa fa-check"></i>
+        <i class="fa fa-heart active"></i>
+        <i class="fa fa-check done"></i>
+        <span class="step-info">Payment</span>
       </div>
       <span rv-class-active="widget:step | gt 2"></span>
       <div rv-class-done="widget:step | eql 3" rv-class-active="widget:step | eql 3">
         <strong>3</strong>
-        <i class="fa fa-check"></i>
+        <i class="fa fa-heart active"></i>
+        <i class="fa fa-check done"></i>
+        <span class="step-info">Success</span>
       </div>
     </div>
   </div>
@@ -24,7 +30,7 @@
   <form class="row">
 
     <div rv-if="widget:step | eql 1">
-      <div class="column small-5">
+      <div class="column medium-12 large-6">
         <div class="amount-section">
           <label>Select an amount:</label>
           <div class="amounts">
@@ -38,13 +44,14 @@
         </div>
       </div>
 
-      <div class="column small-7 amount-meta">
+      <div class="column medium-12 large-6 amount-meta">
+        <div class="row collapse">
         <fieldset>
           <div class="column small-4">
             <input type="checkbox" rv-value="widget:donation:recurring" />
             <label>Recurring</label>
           </div>
-          <select class="column small-8" rv-show="widget:donation:recurring" rv-value="widget:donation:recurringFrequency">
+          <select class="column end small-5" rv-show="widget:donation:recurring" rv-value="widget:donation:recurringFrequency">
             <option>weekly</option>
             <option>monthly</option>
             <option>yearly</option>
@@ -61,48 +68,64 @@
             <label>Let us know why you chose to donate?</label>
             <select rv-value="widget:reason">
               <option value="none">Decline to say</option>
+              <option value="inspired">I was inspired to be open because of Openly Secular, and wanted to help others be open too!</option>
+              <option value="video">I saw one of the videos, and it made me want to support the campaign.</option>
+              <option value="other">Something else inspired me to give!</option>
             </select>
           </div>
         </fieldset>
+        </div>
       </div>
 
       <div class="next-steps column small-12">
-        <button rv-on-click="widget.back" class="back">Cancel</button>
-        <button rv-on-click="widget.next" class="next">Continue</button>
+        <button rv-on-click="widget.back" class="small secondary back">Cancel</button>
+        <button rv-on-click="widget.next" class="small next">Continue</button>
       </div>
     </div>
 
     <div rv-if="widget:step | eql 2">
-      <div class="column small-6 personal-details">
+      <div class="column small-12 large-6 personal-details">
         <label>Name:</label>
-        <input type="text" rv-value="widget:donation:firstName" placeholder="First" class="column small-6" />
-        <input type="text" rv-value="widget:donation:lastName" placeholder="Last" class="column small-6" />
+        <div class="row">
+          <div class="column small-6"><input type="text" rv-value="widget:donation:firstName" placeholder="First" /></div>
+          <div class="column small-6"><input type="text" rv-value="widget:donation:lastName" placeholder="Last" /></div>
+        </div>
+        <label>Address:</label>
+        <input type="text" rv-value="widget:donation:firstName" placeholder="Address 1">
+        <input type="text" rv-value="widget:donation:lastName" placeholder="Address 2">
+        <div class="row">
+          <div class="column small-6"><input type="text" rv-value="widget:donation:firstName" placeholder="City" /></div>
+          <div class="column small-3"><input type="text" rv-value="widget:donation:lastName" placeholder="State" /></div>
+          <div class="column small-3"><input type="text" rv-value="widget:donation:lastName" placeholder="Zip" /></div>
+        </div>
+        <label>Email:</label>
+        <input type="text" rv-value="widget:donation:firstName" placeholder="Email Address">
       </div>
-      <div class="column small-6 payment-details">
+      <div class="column small-12 large-6 payment-details">
         <strong class="total">{ widget:amount }</strong>
         <span rv-if="widget:recurring"> recurring { widget:recurringFrequency }</span>
         <div class="card-details">
           <label>Card Number:</label>
           <input type="text" rv-value="widget:donation:cardNumber" placeholder="xxxx xxxx xxxx xxxx" />
           <label>Card Expiration:</label>
-          <select rv-value="widget:donation:cardExpiration.month" class="column small-6">
+          <select rv-value="widget:donation:cardExpiration.month" class="column small-7">
             <option value="">Month</option>
           </select>
-          <select rv-value="widget:donation:cardExpiration.year" class="column small-6">
+          <select rv-value="widget:donation:cardExpiration.year" class="column small-5">
             <option value="">Year</option>
           </select>
         </div>
       </div>
       <div class="next-steps column small-12">
-        <button rv-on-click="widget.back" class="back">Back</button>
-        <button rv-on-click="widget.next" class="next">Confirm</button>
+        <button rv-on-click="widget.back" class="small secondary back">Back</button>
+        <button rv-on-click="widget.next" class="small next">Confirm</button>
       </div>
     </div>
 
     <div rv-if="widget:step | eql 3">
       <div class="next-steps column small-12">
-        <button rv-on-click="widget.back" class="back">Back</button>
-        <button rv-on-click="widget.next" class="next">Confirm</button>
+        <button rv-on-click="widget.back" class="small secondary back">Back</button>
+        <button rv-on-click="widget.next" class="small next">Confirm</button>
       </div>
     </div>
   </form>

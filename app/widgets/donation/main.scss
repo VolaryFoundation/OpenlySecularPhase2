@@ -1,18 +1,25 @@
 
-$step-size: 40;
+$step-size: 35;
 
 .donation-widget {
+  max-width: 960px;
   padding: 0;
+  border: 1px solid rgba(0,0,0,0.3);
   fieldset {
     padding: 0;
     margin: 0;
+  }
+  .divider strong:before{
+    display:none;
   }
   .lock {
     position: absolute;
     top: 0;
     right: 100px;
     padding: 5px 15px;
-    border: 1px solid $black;
+    color: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.3);
     border-top: none;
     i {
       float: left;
@@ -20,35 +27,64 @@ $step-size: 40;
     }
   }
   .steps {
-    background: $gray;
+    background: $blue-light;
     margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     .inner {
-      width: 300px;
+      width: 400px;
       margin: auto;
       overflow: auto;
       padding: 40px;
       div {
-        border: 1px solid #000;
+        position: relative;
+        border: 2px solid rgba(0,0,0,0.3);
         border-radius: #{$step-size / 2}px;
         height: #{$step-size}px;
         width: #{$step-size}px;
         float: left;
-        line-height: #{$step-size}px;
+        line-height: #{$step-size - 5}px;
         text-align: center;
+        background: rgba(0,0,0,0.1);
+        color: rgba(0,0,0,0.5);
         i {
           display: none;
         }
-        &.active {
-          background: $blue;
-          color: #fff;
+        .step-info {
+          visibility: hidden;
+          position: absolute;
+          top: 30px;
+          left: -30%;
+          font-size: 12px;
+          font-weight: 700;
+          color: $blue;
         }
-        &.done {
-          background: $blue;
+        &.active {
+          background: $blue-medium;
           color: #fff;
+          .step-info {
+            visibility: visible;
+          }
           strong {
             display: none;
           }
-          i {
+          i.active {
+            display: block;
+            line-height: inherit;
+          }
+        }
+        &.done {
+          background: $blue-medium;
+          border-color: $blue-medium;
+          .step-info {
+            visibility: visible;
+          }
+          strong {
+            display: none;
+          }
+          i.active {
+            display: none;
+          }
+          i.done {
             display: block;
             line-height: inherit;
           }
@@ -57,18 +93,18 @@ $step-size: 40;
       & > span {
         margin-top: #{$step-size / 2}px;
         height: 2px;
-        width: 50px;
-        background: #000;
+        width: 33%;
+        background: rgba(0,0,0,0.3);
         float: left;
         &.active {
-          background: $blue;
+          background: $blue-medium;
         }
       }
     }
   }
   .amount-section {
     label {
-      font-size: 20px;
+      font-size: 16px;
       text-align: center;
       display: block;
       margin: 0 0 20px;
@@ -85,13 +121,16 @@ $step-size: 40;
       margin-bottom: 10px;
       span {
         display: block;
+        padding: 10px 0;
         text-align: center;
         line-height: 30px;
-        margin: 0 15px;
-        border: 1px solid $black;
+        font-weight: 700;
+        margin: 5px 10px;
+        background: rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.3);
         border-radius: 5px;
         &:hover {
-          background: $blue;
+          background: $blue-medium;
           color: $white;
           cursor: pointer;
         }
@@ -108,7 +147,8 @@ $step-size: 40;
     margin-bottom: 0;
   }
   .amount-meta {
-    margin-top: 58px;
+    margin-top: 20px;
+    @media #{$large-up} { margin-top: 100px;}
     fieldset {
       min-height: 40px;
     }
@@ -122,4 +162,12 @@ $step-size: 40;
       float: right;
     }
   }
+}
+
+.card-details {
+  padding: 30px 40px;
+  min-height: 200px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 5px;
+  @media #{$large-up} { margin-top: 30px;}
 }
