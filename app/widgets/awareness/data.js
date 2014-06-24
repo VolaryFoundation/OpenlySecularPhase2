@@ -42,7 +42,7 @@ hub.on('teamNeeded', function() {
 })
 
 hub.on('partnersNeeded', function() {
-  $.ajax(BASE_URL + '/posts?type=partners', {
+  $.ajax(BASE_URL + '/partners', {
     type: 'GET',
     success: function(partners) {
       hub.trigger('partnersLoaded', partners)
@@ -72,4 +72,11 @@ hub.on('releasesNeeded', function() {
       hub.trigger('releasesLoaded', releases)
     }
   })
+})
+
+hub.on('faqNeeded', function() {
+  hub.trigger('faqLoaded', [
+    { question: 'How?', answer: 'None of your business.' },
+    { question: 'Why?', answer: 'Because.' }
+  ])
 })

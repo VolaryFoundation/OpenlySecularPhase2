@@ -16,18 +16,20 @@
 
 <footer>
   <nav>
-    <a href="#" rv-class-active="widget:activeSection | eql about">Who We Are</a>
-    <a href="#" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a>
-    <a href="#" rv-class-active="widget:activeSection | eql faq">FAQ</a>
-    <a href="#" rv-class-active="widget:activeSection | eql media">Media</a>
+    <a href="#" rv-on-click="widget.toMission" rv-class-active="widget:activeSection | eql mission">Mission</a>
+    <a href="#" rv-on-click="widget.toWhoWeAre" rv-class-active="widget:activeSection | eql whoWeAre">Who We Are</a>
+    <a href="#" rv-on-click="widget.toPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a>
+    <a href="#" rv-on-click="widget.toFAQ" rv-class-active="widget:activeSection | eql faq">FAQ</a>
+    <a href="#" rv-on-click="widget.toMedia" rv-class-active="widget:activeSection | eql media">Media</a>
     <a href="#">Contact</a>
   </nav>
 </footer>
 
+<div id="placeholder"></div>
+
 <div id="sections" rv-autoscroll="widget:page">
 
   <section id="home">
-    <div id="placeholder"></div>
     <div class="action-bar">
       <div class="row collapse">
         <div class="action subscribe-action column small-12 medium-4" id="sign-up">
@@ -69,7 +71,7 @@
             <br><small>All donations are tax-deductable</small>
           </p>
           <form>
-            <button class="small">Donate</button>
+            <button rv-on-click="widget.showDonation" class="small">Donate</button>
           </form>
         </div>
         <div class="action column small-6 medium-4">
@@ -83,13 +85,12 @@
     </div>
   </section>
 
+  <div rv-widget-faq></div>
+
   <div rv-widget-about></div>
 
-  <section id="faq">
-    FAQ STUFF
-  </section>
-
   <section id="media" rv-widget-media></section>
+
 
   <div rv-widget-donation></div>
   <div rv-widget-contact></div>

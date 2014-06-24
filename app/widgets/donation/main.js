@@ -8,7 +8,7 @@ asWidget('donation', function(hub) {
 
   widget.template('/widgets/donation/index.html')
   widget.on('installed', function() {
-    widget.start().show()
+    widget.start().hide()
   })
 
   widget.set('donation', new Backbone.Model({
