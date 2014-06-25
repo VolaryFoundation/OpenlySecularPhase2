@@ -35,6 +35,11 @@ fieldset {
 
 button {
   border-radius: 5px;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+
+  &:hover {
+    border-bottom: 2px solid rgba(0,0,0,0.4);
+  }
 }
 
 .logo {
@@ -114,7 +119,7 @@ header {
   }
   button {
     font-size: 26px;
-    border: 1px solid $white;
+    border: 2px solid $white;
     border-radius: 30px;
     padding: 0;
     height: 60px;
@@ -148,7 +153,7 @@ header {
     button {
       margin: 0 auto;
       display: block;
-      border-radius: 5px;
+      //border-radius: 5px;
     }
   }
   p {
@@ -284,7 +289,7 @@ footer {
   }
 }
 
-$divider-size: 30;
+$divider-size: 40;
 .divider {
   border-top: 1px solid $blue-light;
   text-align: center;
@@ -300,22 +305,31 @@ $divider-size: 30;
       border-radius: #{$divider-size / 2}px;
       border: 1px solid rgba(0,0,0,0.1);
       display: block;
-      background: $blue-light;
+      background: $blue;
+      background-image: url('widgets/awareness/img/footer-dna.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position-x: -10px;
       margin: -#{$divider-size / 2}px auto 5px;
     }
   }
   &.inline-divider {
-    border-top: 1px solid $blue-light;
+    border-top: 0px solid $blue-light;
     strong {
-      margin-top: -#{$divider-size / 2}px;
+      margin-bottom: #{$divider-size}px;
       line-height: #{$divider-size}px;
       height: #{$divider-size}px;
       vertical-align: top;
       display: inline-block;
-      padding: 0 25px;
-      background: #fff;
+      padding: 0 45px;
+      color: $white;
+      background: $blue;
+      background-image: url('widgets/awareness/img/footer-dna.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position-x: -10px;
       &:before {
-        display: inline-block;
+        display: none;
         margin-top: 0;
         margin-right: 10px;
       }

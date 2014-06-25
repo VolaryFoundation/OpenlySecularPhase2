@@ -1,8 +1,42 @@
-#faq {
+.faq {
+  text-align: center;
+  .qa {
+    margin-bottom: 40px;
+  }
+  h4 {
+    background: $blue-light;
+    color: rgba(0,0,0,0.6);
+    font-weight: 700;
+    margin-bottom: 0;
+    padding: 10px 0;
+    border-radius: 5px;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    &:hover {
+      background: $blue;
+      color: $white;
+    }
+  }
+  h4:after {
+    content: "\f067";
+    font-family: FontAwesome;
+    font-weight: 300;
+    margin-left: 20px;
+  }
+  .open h4 {
+    border-radius: 0;
+    &:after {
+      content: "\f068";
+      font-family: FontAwesome;
+      margin-left: 20px;
+    }
+  }
   p {
     display: none;
   }
   .open p {
     display: block;
+    padding: 20px 0;
+    color: rgba(0,0,0,0.6);
+    background: lighten( $blue-light, 5% );
   }
 }

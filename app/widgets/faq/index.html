@@ -1,6 +1,13 @@
-<section id="faq">
-  <div rv-each-faq="widget:faqs" rv-class-open="faq:open">
-    <h4 rv-on-click="faq.toggle">{ faq:question }</h4>
-    <p>{ faq:answer }</p>
+<section id="faq" class="faq">
+  <div class="divider inline-divider">
+    <strong>FAQ</strong>
   </div>
+  <div class="row">
+    <div class="column medium-10 medium-offset-1">
+      <div rv-each-faq="widget:faqs" rv-class-open="faq:open" class="qa">
+        <h4 rv-on-click="faq.toggle">{ faq:question }</h4>
+        <p>{ faq:answer }</p>
+      </div>
+    </div>
+    </div>
 </section>

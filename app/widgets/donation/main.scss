@@ -127,7 +127,7 @@ $step-size: 35;
         font-weight: 700;
         margin: 5px 10px;
         background: rgba(0,0,0,0.1);
-        border: 1px solid rgba(0,0,0,0.3);
+        border-bottom: 2px solid rgba(0,0,0,0.3);
         border-radius: 5px;
         &:hover {
           background: $blue-medium;

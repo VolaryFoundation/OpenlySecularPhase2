@@ -24,12 +24,17 @@
     <div class="divider inline-divider">
       <strong>Partners &amp; Allies</strong>
     </div>
-    <ul class="row">
-      <li class="small-4 columns" rv-each-partner="widget:partners">
-        <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-        { partner.title }
-      </li>
-    </ul>
+    <div class="partners-list">
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+        <li rv-each-partner="widget:partners">
+          <div class="partner">
+            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+            <span class="partners-title">{ partner.title }</span>
+          </div>
+        </li>
+        <li><button  class="small">Apply</button></li>
+      </ul>
+    </div>
   </section>
 </div>
 
