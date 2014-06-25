@@ -10,7 +10,7 @@
   <div class="content">
     <img class="logo" rv-src="widget:logo" />
     <h2 class="tagline">Let's end secular discrimination and increase acceptance<small>by being open about our beliefs</small></h2>
-    <button><i class="fa fa-play"></i></button>
+    <button rv-on-click="widget.play"><i class="fa fa-play"></i></button>
   </div>
 </header>
 
@@ -21,7 +21,7 @@
     <a href="#" rv-on-click="widget.toPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a>
     <a href="#" rv-on-click="widget.toFAQ" rv-class-active="widget:activeSection | eql faq">FAQ</a>
     <a href="#" rv-on-click="widget.toMedia" rv-class-active="widget:activeSection | eql media">Media</a>
-    <a href="#">Contact</a>
+    <a href="#" rv-on-click="widget.showContact">Contact</a>
   </nav>
 </footer>
 
@@ -96,8 +96,7 @@
 
 <div rv-widget-donation></div>
 <div rv-widget-contact></div>
-
-
+<div rv-widget-video></div>
 
 <!--=========================================================================-->
 <!-- This file is part of Widget Server.                                     -->

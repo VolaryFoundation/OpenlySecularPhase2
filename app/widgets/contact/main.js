@@ -1,8 +1,26 @@
 
 var asWidget = require('widget')
+var Backbone = require('backbone')
 
 asWidget('contact', function(hub) {
+  var widget = this
 
+  widget.template('/widgets/contact/index.html')
+  widget.on('installed', function() {
+    widget.start().hide()
+  })
+
+  hub.on('showContact', function() {
+    widget.show()
+  })
+
+  widget.contact = new Backbone.Model
+
+  widget.submit = function() {
+    console.log('sending contact form', widget.contact.toJSON())
+    widget.contact.attributes = {}
+    widget.hide()
+  }
 })
 
 //==========================================================================//

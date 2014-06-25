@@ -1,0 +1,13 @@
+
+<dialog class="contact-widget" open>
+  <h3>Contact</h3>
+  <form rv-on-submit="widget.submit">
+    <label>Name:</label>
+    <input type="text" rv-value="widget.contact:name" />
+    <label>Email:</label>
+    <input type="text" rv-value="widget.contact:email" />
+    <label>Message:</label>
+    <textarea rv-value="widget.contact:message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</dialog>

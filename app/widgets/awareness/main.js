@@ -94,6 +94,10 @@ asWidget('awareness', function(hub) {
     widget.set("page", name)
   })
 
+  widget.play = function() {
+    hub.trigger('play')
+  }
+
   widget.toWhoWeAre = function() {
     hub.trigger('pageSelected', 'whoWeAre')
   }
@@ -114,9 +118,12 @@ asWidget('awareness', function(hub) {
     hub.trigger('pageSelected', 'media')
   }
 
-
   widget.showDonation = function() {
     hub.trigger('showDonation')
+  }
+
+  widget.showContact = function() {
+    hub.trigger('showContact')
   }
 
   widget.set('subscribeStep', 1)
