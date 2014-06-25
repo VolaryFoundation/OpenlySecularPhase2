@@ -82,6 +82,8 @@ section {
 
 header {
   .photos {
+    width: 100%;
+    max-width: 100%;
     z-index: $z-base;
     position: fixed;
     top: 0;
@@ -320,7 +322,7 @@ $divider-size: 40;
   &.inline-divider {
     border-top: 0px solid $blue-light;
     strong {
-      margin-bottom: #{$divider-size}px;
+      margin-bottom: #{$divider-size / 2}px;
       line-height: #{$divider-size}px;
       height: #{$divider-size}px;
       vertical-align: top;
