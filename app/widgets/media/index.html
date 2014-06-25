@@ -1,20 +1,9 @@
 <div class="media-widget">
-  <div class="divider">
+  <div class="divider inline-divider">
     <strong>Media</strong>
   </div>
   <div class="row">
     <div class="columns small-8">
-      <h3>Blog</h3>
-      <ul>
-        <li rv-each-post="widget:posts">
-          <h5 class="title">{ post.title }</h5>
-          <p class="meta">{ post.modified | postDate }</p>
-          <img rv-src="post | featuredImage" />
-          <div rv-html="post.excerpt"></div>
-        </li>
-      </ul>
-    </div>
-    <div class="columns small-4">
       <div class="news">
         <h3>In the news</h3>
         <ul>
@@ -33,6 +22,13 @@
           </li>
         </ul>
       </div>
+    </div>
+    <div class="columns small-4">
+      <h3>Press Contact</h3>
+      <p>John Doh - press@openlysecular.org</p>
+      <h3>Press Kit</h3>
+      <p>Probably some description of what you're downloading.</p>
+      <button  class="small">Download</button>
     </div>
   </div>
 </div>

@@ -54,9 +54,9 @@ button {
   position: relative;
 }
 
-section { 
+section {
   padding-bottom: 40px;
-  min-height: 300px; 
+  min-height: 300px;
 }
 
 #placeholder {
@@ -297,7 +297,6 @@ footer {
 
 $divider-size: 40;
 .divider {
-  border-top: 1px solid $blue-light;
   text-align: center;
   font-weight: bold;
   strong {
@@ -311,7 +310,7 @@ $divider-size: 40;
       border-radius: #{$divider-size / 2}px;
       border: 1px solid rgba(0,0,0,0.1);
       display: block;
-      background: $blue;
+      background: $blue-light;
       background-image: url('widgets/awareness/img/footer-dna.png');
       background-repeat: no-repeat;
       background-size: cover;
@@ -320,7 +319,6 @@ $divider-size: 40;
     }
   }
   &.inline-divider {
-    border-top: 0px solid $blue-light;
     strong {
       margin-bottom: #{$divider-size / 2}px;
       line-height: #{$divider-size}px;
