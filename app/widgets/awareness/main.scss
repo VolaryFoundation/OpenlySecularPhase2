@@ -42,6 +42,32 @@ button {
   }
 }
 
+.close {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+
+  i {
+    color: $blue-medium;
+    font-size: 24px;
+    background: $blue-light;
+    border: 2px solid $blue-light;
+    border-radius: 30px;
+    padding: 0;
+    height: 36px;
+    width: 36px;
+    line-height: 30px;
+    text-align: center;
+  }
+  &:hover {
+    i {
+      color: $white;
+      background: $blue-medium;
+      border-color: $blue;
+    }
+  }
+}
+
 .logo {
   width: 200px;
   margin: 0 auto;
