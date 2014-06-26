@@ -9,14 +9,27 @@
   </section>
   <section id="whoWeAre">
     <div class="row who-we-are">
-      <div class="column small-5">
-        <img rv-src="widget:about.about_img" />
-      </div>
       <div class="column small-7">
         <div class="divider inline-divider">
           <strong>Who We Are</strong>
         </div>
         <p rv-html="widget:about.about"></p>
+      </div>
+      <div class="column small-5">
+        <div class="partners-list">
+          <ul class="small-block-grid-1 medium-block-grid-2">
+            <li rv-each-partner="widget:partners">
+              <div class="partner">
+                <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+              </div>
+            </li>
+            <li rv-each-partner="widget:partners">
+              <div class="partner">
+                <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -25,6 +38,8 @@
       <strong>Partners &amp; Allies</strong>
     </div>
     <div class="partners-list">
+      <p class="section-description">These groups are openly committed to supporting equality and fighting discrimination.</p>
+      <h3>Movement Partners</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:partners">
           <div class="partner">
@@ -32,8 +47,29 @@
             <span class="partners-title">{ partner.title }</span>
           </div>
         </li>
-        <li><button  class="small">Apply</button></li>
+        <li rv-each-partner="widget:partners">
+          <div class="partner">
+            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+            <span class="partners-title">{ partner.title }</span>
+          </div>
+        </li>
       </ul>
+      <h3>Organizational Allies</h3>
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+        <li rv-each-partner="widget:partners">
+          <div class="partner">
+            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+            <span class="partners-title">{ partner.title }</span>
+          </div>
+        </li>
+        <li rv-each-partner="widget:partners">
+          <div class="partner">
+            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+            <span class="partners-title">{ partner.title }</span>
+          </div>
+        </li>
+      </ul>
+      <button class="apply small">Apply</button>
     </div>
   </section>
 </div>

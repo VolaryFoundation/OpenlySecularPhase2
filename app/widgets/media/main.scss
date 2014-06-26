@@ -1,16 +1,4 @@
 .media-widget {
-  h3 {
-    color: $blue;
-    font-size: 18px;
-    font-weight: 700;
-  }
-  h3:after {
-    display: block;
-    border-bottom: 1px solid $blue-light;
-    content: " ";
-    padding-top: 2px;
-    width: 40px;
-  }
   ul {
     margin: 0;
     padding: 0;

@@ -15,7 +15,7 @@ $blue-light:  lighten( $blue, 50% );
 $red: #fA4616;
 $white: #fff;
 $black: #000;
-$gray: #aaa;
+$gray: #78777a;
 $z-content: 20;
 $z-base: 0;
 $z-overlay: 10;
@@ -23,10 +23,20 @@ $z-overlay: 10;
 body {
   background: $white;
   //font-family: Mank;
+  color: $gray;
 }
 
 h1, h2, h3, h4, h5, h6 {
 //  font-family: Mank;
+}
+
+h3 {
+  display: inline-block;
+  color: $blue;
+  padding: 2px 6px;
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid $blue-light;
 }
 
 fieldset {
@@ -62,8 +72,8 @@ button {
   &:hover {
     i {
       color: $white;
-      background: $blue-medium;
-      border-color: $blue;
+      background: $blue;
+      border-color: $blue-medium;
     }
   }
 }
@@ -116,6 +126,7 @@ header {
     right: 0;
     bottom: 0;
     left: 0;
+    background: $black;
   }
 
   text-align: center;
@@ -158,6 +169,10 @@ header {
     width: 60px;
     background: transparent;
     text-indent: 3px;
+  }
+  button:hover {
+    border-color: $blue-medium;
+    background: $blue;
   }
 }
 
@@ -286,6 +301,11 @@ header {
   }
 }
 
+.faq-link {
+  color: $blue-medium;
+  font-weight: 700;
+}
+
 footer {
   display: block;
   position: fixed;
@@ -337,7 +357,7 @@ $divider-size: 40;
       border: 1px solid rgba(0,0,0,0.1);
       display: block;
       background: $blue-light;
-      background-image: url('widgets/awareness/img/footer-dna.png');
+      background-image: url('widgets/awareness/img/os_heart.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-position-x: -10px;
@@ -353,11 +373,11 @@ $divider-size: 40;
       display: inline-block;
       padding: 0 45px;
       color: $white;
-      background: $blue;
-      background-image: url('widgets/awareness/img/footer-dna.png');
+      background: $red;
+      background-image: url('widgets/awareness/img/footer-dna.png'), url('widgets/awareness/img/os_heart.png');
       background-repeat: no-repeat;
       background-size: contain;
-      background-position-x: -10px;
+      background-position-x: -10px, 95%;
       &:before {
         display: none;
         margin-top: 0;
@@ -367,6 +387,9 @@ $divider-size: 40;
   }
 }
 
+.section-description {
+    text-align: center;
+}
 input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, textarea:focus {
   background: #fafafa;
   border-color: $blue-medium;

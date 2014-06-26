@@ -40,13 +40,12 @@
     }
   }
   .partners-list {
-    margin-top: -#{$divider-size}px;
-    background: lighten( $blue-light, 5%);
-    border-top: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    h3 {
+      margin-left: 20%;
+    }
     ul {
       margin: 0 auto;
-      padding: 80px 0 40px 0;
+      padding: 40px 0 40px 0;
       max-width: 77.71429rem;
     }
     .partner {
@@ -54,6 +53,7 @@
       background: $white;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
+      text-align: center;
 
       img {
         max-height: 100px;
@@ -89,5 +89,30 @@
         }
       }
     }
+    .apply {
+      left: 62%;
+      margin-bottom: -20px;
+    }
+  }
+}
+
+#whoWeAre {
+  .partner {
+    img {
+      max-height: 50px;
+    }
+  }
+}
+
+#partners > .partners-list {
+  margin-top: -#{$divider-size}px;
+  padding-top: 50px;
+  background: lighten( $blue-light, 5%);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+
+  h3 {
+    color: rgba(0,0,0,0.6);
+    border-color: rgba(0,0,0,0.1);
   }
 }

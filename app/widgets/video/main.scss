@@ -1,4 +1,20 @@
 .video-widget {
+  background: rgba(0,0,0,0.8);
+
+  .close {
+    i {
+      color: $gray;
+      background: $black;
+      border-color: $gray;
+    }
+    &:hover {
+      i {
+        color: $white;
+        background: $blue;
+        border-color: $blue-medium;
+      }
+    }
+  }
   iframe {
     width: 100%;
     height: 100%;
