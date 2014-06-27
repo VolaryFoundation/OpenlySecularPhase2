@@ -26,6 +26,17 @@ body {
   color: $gray;
 }
 
+dialog {
+}
+
+.story-form {
+  iframe {
+    max-height: 600px;
+    overflow-y: auto;
+    width: 100%;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Mank;
 }

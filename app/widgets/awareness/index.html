@@ -83,7 +83,7 @@
           <h4><i class="fa fa-lg fa-group"></i> Get Involved</h4>
           <p> Share your own story.  </p>
           <form>
-            <button  class="small">Share</button>
+            <button rv-on-click="widget.toggleStoryForm" class="small">Share</button>
           </form>
         </div>
       </div>
@@ -94,14 +94,16 @@
 
   <div rv-widget-faq></div>
 
-  <dialog rv-show="widget:showingStoryForm">
-    <iframe src="https://docs.google.com/forms/d/18hMfj36YbhQJKbU9cnbj9_7pyx9zAVONPJuRAKFtKjg/viewform?embedded=true" width="700" height="1500" frameborder="0">Loading...</iframe>
-  </dialog>
-
   <section id="media" rv-widget-media></section>
 
 
 </div>
+
+<dialog class="story-form" rv-show="widget:showingStoryForm" open>
+  <div class="close" rv-on-click="widget.toggleStoryForm"><i class="fa fa-times"></i></div>
+  <iframe src="https://docs.google.com/forms/d/18hMfj36YbhQJKbU9cnbj9_7pyx9zAVONPJuRAKFtKjg/viewform?embedded=true" width="700" height="1500" frameborder="0">Loading...</iframe>
+</dialog>
+
 
 <div rv-widget-donation></div>
 <div rv-widget-contact></div>

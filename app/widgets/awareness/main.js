@@ -18,7 +18,7 @@ rivets.binders.autoscroll = function(el, val) {
     var bodyRect = document.body.getBoundingClientRect()
     var elemRect = section.getBoundingClientRect()
     var offset   = elemRect.top - bodyRect.top
-    document.body.scrollTop = offset - 100
+    $(document.body).animate({ scrollTop: offset - 100 }, '500')
   }
 }
 
@@ -96,6 +96,10 @@ asWidget('awareness', function(hub) {
 
   widget.play = function() {
     hub.trigger('play')
+  }
+
+  widget.toggleStoryForm = function() {
+    widget.set('showingStoryForm', !widget.get('showingStoryForm'))
   }
 
   widget.toWhoWeAre = function() {
