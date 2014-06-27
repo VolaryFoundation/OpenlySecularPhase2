@@ -36,7 +36,7 @@ function isElementInViewport(el) {
 }
 
 function shouldSectionBeLoaded(el) {
-  
+
   var docTop = $(window).scrollTop()
   var docHeight = $(window).height()
   var docBottom = docTop + docHeight
@@ -137,21 +137,22 @@ asWidget('awareness', function(hub) {
   }
 
   var photos = [
-    '/widgets/awareness/img/6a00d8341c730253ef0133f5948308970b-800wi.jpg',
-    '/widgets/awareness/img/6a00d8341c730253ef01538f60a0d5970b.jpg',
-    '/widgets/awareness/img/6a00d8341c730253ef015435cd8835970c-800wi.png',
-    '/widgets/awareness/img/6a00d8341c730253ef019102c3ed31970c.jpg',
-    '/widgets/awareness/img/6a00d8341c730253ef016304818ad8970d-800wi.jpg',
-    '/widgets/awareness/img/628x471.jpg',
-    '/widgets/awareness/img/169951478_640.jpg',
-    '/widgets/awareness/img/Barack-Obama-Makes-a-Stand-with-It-Gets-Better-Video-2.jpg',
-    '/widgets/awareness/img/colbert.png',
-    '/widgets/awareness/img/donte-whiter-it-gets-better.jpg',
-    '/widgets/awareness/img/Eric-James-Borges-620x465.jpg',
-    '/widgets/awareness/img/ht_adam_white_BYU_youtube2_120408_wmain.jpg',
-    '/widgets/awareness/img/it-gets-better-book-video.jpg',
-    '/widgets/awareness/img/itgetsbetter1.png',
-    '/widgets/awareness/img/molly-tarlov-awkward-it-gets-better-project.png'
+    '/widgets/awareness/img/01.png',
+    '/widgets/awareness/img/02.png',
+    '/widgets/awareness/img/03.png',
+    '/widgets/awareness/img/04.png',
+    '/widgets/awareness/img/05.png',
+    '/widgets/awareness/img/06.png',
+    '/widgets/awareness/img/07.png',
+    '/widgets/awareness/img/08.png',
+    '/widgets/awareness/img/09.png',
+    '/widgets/awareness/img/10.png',
+    '/widgets/awareness/img/11.png',
+    '/widgets/awareness/img/12.png',
+    '/widgets/awareness/img/13.png',
+    '/widgets/awareness/img/14.png',
+    '/widgets/awareness/img/15.png',
+    '/widgets/awareness/img/16.png',
   ]
 
   widget.set('photoLists', _.times(6, function() {

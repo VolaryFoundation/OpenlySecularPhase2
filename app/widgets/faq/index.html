@@ -5,8 +5,8 @@
   <div class="row">
     <div class="column medium-10 medium-offset-1">
       <div rv-each-faq="widget:faqs" rv-class-open="faq:open" class="qa">
-        <h4 rv-on-click="faq.toggle">{ faq:question }</h4>
-        <p>{ faq:answer }</p>
+        <h4 rv-html="faq:question" rv-on-click="faq.toggle"></h4>
+        <p rv-html="faq:answer"></p>
       </div>
     </div>
     </div>
