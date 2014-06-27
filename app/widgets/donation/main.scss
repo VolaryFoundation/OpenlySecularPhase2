@@ -8,8 +8,11 @@ $step-size: 35;
     padding: 0;
     margin: 0;
   }
-  .divider strong:before{
-    display:none;
+  .divider strong {
+    background-image: none;
+    &:before{
+      display:none;
+    }
   }
   .lock {
     position: absolute;

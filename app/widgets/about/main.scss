@@ -13,8 +13,14 @@
   .vision {
     margin: 20px auto;
     padding: 40px;
-    font-size: 18px;
     background: $blue-light;
+    background-image: url('widgets/awareness/img/dna_2.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid rgba(0,0,0,0.1);
+    p{
+      font-size: 18px;
+    }
   }
   .who-we-are {
     margin-top: 50px;
