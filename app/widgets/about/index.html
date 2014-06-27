@@ -4,7 +4,8 @@
       <div class="divider inline-divider">
         <strong>Our Mission</strong>
       </div>
-        <p class="column small-8 small-offset-2" rv-html="widget:about.mission"></p>
+      <p class="section-description">The mission of Openly Secular is to eliminate discrimination and increase acceptance by getting secular people to be open about their beliefs.</p>
+        <p class="column small-10 small-offset-1" rv-html="widget:about.mission"></p>
     </div>
     <div class="row vision">
         <p class="column small-10 small-offset-1">We envision a world where there are no social costs for being secular, where families and communities remain whole when some members have moved away from religion or supernaturalism.</p>
@@ -12,26 +13,31 @@
   </section>
   <section id="whoWeAre">
     <div class="row who-we-are">
-      <div class="column small-7">
+      <div class="column">
         <div class="divider inline-divider">
           <strong>Who We Are</strong>
         </div>
-        <p rv-html="widget:about.about"></p>
-      </div>
-      <div class="column small-5">
+        <p class="section-description">Openly Secular is the joint project of four of the best-known and respected secular organizations:</p>
         <div class="partners-list">
-          <ul class="small-block-grid-1 medium-block-grid-2">
+          <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
             <li rv-each-partner="widget:partners">
               <div class="partner">
                 <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+                <span class="partners-title">{ partner.title }</span>
               </div>
             </li>
             <li rv-each-partner="widget:partners">
               <div class="partner">
                 <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+                <span class="partners-title">{ partner.title }</span>
               </div>
             </li>
           </ul>
+        </div>
+        <div class="row">
+          <div class="column medium-10 medium-offset-1">
+            <p rv-html="widget:about.about"></p>
+          </div>
         </div>
       </div>
     </div>

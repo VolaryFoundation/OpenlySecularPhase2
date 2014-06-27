@@ -109,10 +109,14 @@
 }
 
 #whoWeAre {
-  .partner {
-    img {
-      max-height: 50px;
-    }
+  ul {
+    padding-top: 0;
+  }
+  h3 {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    border-bottom: none;
   }
 }
 

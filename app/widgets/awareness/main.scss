@@ -22,12 +22,12 @@ $z-overlay: 10;
 
 body {
   background: $white;
-  //font-family: Mank;
+  font-family: Mank;
   color: $gray;
 }
 
 h1, h2, h3, h4, h5, h6 {
-//  font-family: Mank;
+  font-family: Mank;
 }
 
 h3 {
@@ -456,6 +456,7 @@ $divider-size: 40;
       background-repeat: no-repeat;
       background-size: contain;
       background-position-x: 95%;
+      border-bottom: 2px solid $red;
       &:after {
         display: none;
         margin-top: -20px;

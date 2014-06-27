@@ -14,13 +14,26 @@
     &:hover {
       background: $blue;
       color: $white;
+      small {
+        color: $white;
+      }
+    }
+    small {
+      color: rgba(0,0,0,0.6);
+      font-size: 85%;
     }
   }
   h4:after {
+    color: rgba(0,0,0,0.2);
     content: "\f067";
     font-family: FontAwesome;
     font-weight: 300;
     margin-left: 20px;
+    position: absolute;
+    right: 40px;
+    @media #{$small-only} {
+      display: none;
+    }
   }
   .open h4 {
     border-radius: 0;
