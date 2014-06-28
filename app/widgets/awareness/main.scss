@@ -402,12 +402,19 @@ footer {
   background-image: url('widgets/awareness/img/dna_1.png');
   background-repeat: no-repeat;
   background-size: contain;
-  background-position-x: 90%;
+  background-position-x: 70%;
   color: $white;
-  padding: 25px 10px;
+  padding: 5px 10px;
   z-index: 3;
+  @media #{$medium-up} {
+    padding: 25px 10px;
+    background-position-x: 90%;
+  }
   nav {
     text-align: center;
+    @media #{$small-only} {
+      display: none;
+    }
     a {
       color: $blue-light;
       font-weight: 700;
@@ -425,30 +432,63 @@ footer {
       }
       */
     }
-    .contact-links {
-      position: absolute;
-      top: 15px;
-      right: 1%;
-      a {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        margin: 0 5px;
-        text-align: center;
-        line-height: 40px;
-        color: $blue-light;
-        background: rgba(0,0,0,0.1);
-        transition: background-color 300ms ease-out;
-        border-radius: 5px;
-        &:hover {
-          color: $white;
-          background: rgba(0,0,0,0.3);
-        }
-      }
-    }
+
   }
 }
 
+.mobile-menu-button {
+  display: block;
+  width: 38px;
+  height: 38px;
+  margin: 0 5px;
+  font-size: 21px;
+  text-align: center;
+  padding-top: 7px;
+  color: $blue-light;
+  background: rgba(0,0,0,0.1);
+  transition: background-color 300ms ease-out;
+  border-radius: 5px;
+  @media #{$medium-up} {
+    display: none;
+  }
+    &:hover {
+      color: $white;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 2px solid $red;
+      &:after {
+        border-bottom: 2px solid $red;
+      }
+    }
+    &:after {
+      display: block;
+      font-size: 16px;
+      content: "Menu";
+      position: absolute;
+      top: 16px;
+      margin-left: 50px;
+    }
+}
+.contact-links {
+  position: absolute;
+  top: 15px;
+  right: 1%;
+  a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    text-align: center;
+    line-height: 40px;
+    color: $blue-light;
+    background: rgba(0,0,0,0.1);
+    transition: background-color 300ms ease-out;
+    border-radius: 5px;
+    &:hover {
+      color: $white;
+      background: rgba(0,0,0,0.3);
+    }
+  }
+}
 $divider-size: 40;
 .divider {
   text-align: center;

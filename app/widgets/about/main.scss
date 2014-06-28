@@ -110,13 +110,24 @@
 
 #whoWeAre {
   ul {
-    padding-top: 0;
+    padding: 0;
   }
   h3 {
     display: block;
     text-align: center;
     margin-top: 20px;
     border-bottom: none;
+  }
+  .partners-list {
+    .partners-title {
+      background: none;
+      border: none;
+    }
+    li:hover {
+      .partners-title {
+        color: $blue;
+      }
+    }
   }
 }
 
