@@ -26,7 +26,20 @@ body {
   color: $gray;
 }
 
-dialog {
+.error {
+  display: none;
+}
+.error-field {
+  .error {
+    display: block;
+    background: $red;
+    color: $white;
+    padding: 5px 20px;
+  }
+  input {
+    border-color: $red;
+    margin-bottom: 0 !important;
+  }
 }
 
 .story-form {
@@ -71,6 +84,9 @@ button {
   top: -6px;
   left: -6px;
 
+  &:hover {
+    cursor: pointer;
+  }
   i {
     color: $blue-medium;
     font-size: 24px;
@@ -356,7 +372,6 @@ header {
 
 #sign-up {
     button {
-      margin-left: -5px;
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
   }

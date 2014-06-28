@@ -1,13 +1,17 @@
-<section id="faq" class="faq">
-  <div class="divider inline-divider">
-    <strong>FAQ</strong>
-  </div>
-  <div class="row">
-    <div class="column medium-10 medium-offset-1">
-      <div rv-each-faq="widget:faqs" rv-class-open="faq:open" class="qa">
-        <h4 rv-html="faq:question" rv-on-click="faq.toggle"></h4>
-        <p rv-html="faq:answer"></p>
+<dialog open>
+
+  <div id="faq" class="faq">
+    <div class="close" rv-on-click="widget.hide"><i class="fa fa-times"></i></div>
+    <div class="divider inline-divider">
+      <strong>FAQ</strong>
+    </div>
+    <div class="row">
+      <div class="column medium-10 medium-offset-1">
+        <div rv-each-faq="widget:faqs" rv-class-open="faq:open" class="qa">
+          <h4 rv-html="faq:question" rv-on-click="faq.toggle"></h4>
+          <p rv-html="faq:answer"></p>
+        </div>
       </div>
-    </div>
-    </div>
-</section>
+      </div>
+  </div>
+</dialog>

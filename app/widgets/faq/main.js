@@ -7,10 +7,8 @@ asWidget('faq', function(hub) {
 
   widget.template('/widgets/faq/index.html')
   widget.on('installed', function() {
-    widget.start()
-    hub.once('faqScrolledTo', function() {
-      hub.trigger('faqNeeded')
-    })
+    widget.start().hide()
+    hub.trigger('faqNeeded')
   })
 
   var FAQ = Backbone.Model.extend({
@@ -18,6 +16,11 @@ asWidget('faq', function(hub) {
       this.set('open', !this.get('open'))
     }
   })
+
+  hub.on('showFaq', function() {
+    widget.show()
+  })
+
   hub.on('faqLoaded', function(faqs) {
     widget.set('faqs', faqs.map(function(faq) { return new FAQ(faq) }))
   })

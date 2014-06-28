@@ -12,6 +12,7 @@
     "browserify": "^3.46.1",
     "debowerify": "^0.7.1",
     "express": "*",
+    "foundation": "^4.2.1-1",
     "gulp": "^3.8.2",
     "jquery": "^2.1.1",
     "jquery-browserify": "^1.8.1",

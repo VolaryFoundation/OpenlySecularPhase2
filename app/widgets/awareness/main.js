@@ -126,18 +126,33 @@ asWidget('awareness', function(hub) {
     hub.trigger('showDonation')
   }
 
+  widget.showFaq = function() {
+    hub.trigger('showFaq')
+  }
+
+  hub.on('donationCompleted', function() {
+    widget.set('alreadyDonated', true)
+  })
+
   widget.showContact = function() {
     hub.trigger('showContact')
   }
 
   widget.set('subscribeStep', 1)
   widget.nextSubscribeStep = function() {
+
     var step = widget.get('subscribeStep')
     var next = step + 1
-    widget.set('subscribeStep', next)
-    if (next == 3) {
+
+    if (next == 2) {
+      if (!/\w+@\w+\.\w+/.test(widget.get('subscribeEmail'))) {
+        return widget.set('subscribeEmailError', 'Email must be valid.')
+      }
+    } else if (next == 3) {
       console.log('sending subscribe data', widget.get('subscribeEmail'), widget.get('subscribeName'))
     }
+
+    widget.set('subscribeStep', next)
   }
 
   var photos = [

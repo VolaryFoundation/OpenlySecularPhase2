@@ -1,6 +1,7 @@
 
 var asWidget = require('widget')
 var Backbone = require('backbone')
+var $ = require('jquery')
 
 asWidget('contact', function(hub) {
   var widget = this
@@ -18,6 +19,12 @@ asWidget('contact', function(hub) {
 
   widget.submit = function() {
     console.log('sending contact form', widget.contact.toJSON())
+    $.post('http://submit.jotformpro.com/submit/41775081989975/', {
+      formID: '41775081989975',
+      q3_whatsYour: widget.contact.get('name'),
+      q5_yourEmail: widget.contact.get('email'),
+      q4_whatsOn: widget.contact.get('message')
+    })
     widget.contact.attributes = {}
     widget.hide()
   }

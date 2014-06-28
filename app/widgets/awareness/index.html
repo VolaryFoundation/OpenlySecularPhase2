@@ -20,7 +20,6 @@
     <a href="#" rv-on-click="widget.toMission" rv-class-active="widget:activeSection | eql mission">Mission</a>
     <a href="#" rv-on-click="widget.toWhoWeAre" rv-class-active="widget:activeSection | eql whoWeAre">Who We Are</a>
     <a href="#" rv-on-click="widget.toPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a>
-    <a href="#" rv-on-click="widget.toFAQ" rv-class-active="widget:activeSection | eql faq">FAQ</a>
     <a href="#" rv-on-click="widget.toMedia" rv-class-active="widget:activeSection | eql media">Media</a>
     <div class="contact-links">
       <a href="#" rv-on-click="widget.showContact" class="email"><i class="fa fa-envelope"></i></a>
@@ -41,10 +40,11 @@
           <h4><i class="fa fa-lg fa-paper-plane"></i> Stay Informed</h4>
           <div rv-if="widget:subscribeStep | eql 1">
             <p>Sign up for our newsletter.</p>
-            <form rv-on-submit="widget.nextSubscribeStep">
+            <form novalidate="novalidate" rv-on-submit="widget.nextSubscribeStep">
               <div class="row collapse">
-                <div class="small-10 columns">
-                  <input rv-value="widget:subscribeEmail" type="email" name="email" class="subscribe-input" placeholder="Email address">
+                <div class="small-10 columns" rv-class-error-field="widget:subscribeEmailError">
+                  <input rv-value="widget:subscribeEmail" required type="email" name="email" class="subscribe-input" placeholder="Email address">
+                  <label class="error">{ widget:subscribeEmailError }</label>
                 </div>
                 <div class="small-2 columns">
                   <button type="submit" class="button postfix"><i class="fa fa-arrow-right"></i></button>
@@ -70,14 +70,22 @@
           </div>
         </div>
         <div class="action column small-6 medium-4" id="donate">
-          <h4><i class="fa fa-lg fa-heart"></i> Make a Donation</h4>
-          <p>
-            Contribute towards a difference.
-            <br><small>All donations are tax-deductable.</small> <span class="faq-link">FAQ</span>
-          </p>
-          <form>
-            <button rv-on-click="widget.showDonation" class="small">Donate</button>
-          </form>
+          <div rv-unless="widget:alreadyDonated">
+            <h4><i class="fa fa-lg fa-heart"></i> Make a Donation</h4>
+            <p>
+              Contribute towards a difference.
+              <br><small>All donations are tax-deductable.</small> <a href="#" rv-on-click="widget.showFaq" class="faq-link">FAQ</a>
+            </p>
+            <form>
+              <button rv-on-click="widget.showDonation" class="small">Donate</button>
+            </form>
+          </div>
+          <div rv-if="widget:alreadyDonated">
+            <h4>Thanks for donating to the cause!</h4>
+            <p> Inform all your friends and increase your impact. </p>
+            <figure class="social-button"><i class="fa fa-twitter"></i></figure>
+            <figure class="social-button"><i class="fa fa-facebook"></i></figure>
+          </div>
         </div>
         <div class="action column small-6 medium-4">
           <h4><i class="fa fa-lg fa-group"></i> Get Involved</h4>
@@ -92,19 +100,17 @@
 
   <div rv-widget-about></div>
 
-  <div rv-widget-faq></div>
-
   <section id="media" rv-widget-media></section>
 
-
 </div>
+
 
 <dialog class="story-form" rv-show="widget:showingStoryForm" open>
   <div class="close" rv-on-click="widget.toggleStoryForm"><i class="fa fa-times"></i></div>
   <iframe src="https://docs.google.com/forms/d/18hMfj36YbhQJKbU9cnbj9_7pyx9zAVONPJuRAKFtKjg/viewform?embedded=true" width="700" height="1500" frameborder="0">Loading...</iframe>
 </dialog>
 
-
+<div rv-widget-faq></div>
 <div rv-widget-donation></div>
 <div rv-widget-contact></div>
 <div rv-widget-video></div>
