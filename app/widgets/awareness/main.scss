@@ -399,78 +399,142 @@ footer {
   right: 0;
   left: 0;
   background: $blue;
-  background-image: url('widgets/awareness/img/dna_1.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position-x: 70%;
   color: $white;
-  padding: 5px 10px;
+  padding: 10px 10px 20px;
   z-index: 3;
   @media #{$medium-up} {
-    padding: 25px 10px;
     background-position-x: 90%;
-  }
-  nav {
-    text-align: center;
-    @media #{$small-only} {
-      display: none;
-    }
-    a {
-      color: $blue-light;
-      font-weight: 700;
-      display: inline-block;
-      margin: 0 20px;
-      border-bottom: 2px solid transparent;
-      padding: 0 0 5px;
-      &:hover, &.active {
-        border-bottom: 2px solid $red;
-        color: $white;
-      }
-      /*&:last-child {
-        margin: 0 20px 0 0;
-        float: right;
-      }
-      */
-    }
-
-  }
+    background-image: url('widgets/awareness/img/dna_1.png');
+  }  
 }
 
-.mobile-menu-button {
-  display: block;
-  width: 38px;
-  height: 38px;
-  margin: 0 5px;
-  font-size: 21px;
+
+#toggle, .toggle { display: none; }
+.menu > li { list-style: none; display: inline-block;	}
+
+@media only screen and (max-width: 640px){
+	.menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
+	.menu > li { display: block; width: 100%; margin: 0; }
+	.menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+	.toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+	#toggle:checked ~ .menu { display: block; opacity: 1;}
+}
+
+nav{
+	display: block;
+}
+
+nav, .menu, .menu > li, .menu > li > a{
+  position: relative;
+	height: 100%;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+
+.menu {
+  margin: 0;
+  padding: 0;
   text-align: center;
-  padding-top: 7px;
-  color: $blue-light;
-  background: rgba(0,0,0,0.1);
-  transition: background-color 300ms ease-out;
-  border-radius: 5px;
-  @media #{$medium-up} {
-    display: none;
-  }
-    &:hover {
-      color: $white;
-      background: rgba(0,0,0,0.3);
-      border-bottom: 2px solid $red;
-      &:after {
-        border-bottom: 2px solid $red;
-      }
-    }
-    &:after {
-      display: block;
-      font-size: 16px;
-      content: "Menu";
-      position: absolute;
-      top: 16px;
-      margin-left: 50px;
-    }
+  @media #{$medium-only} { text-align: left;}
 }
+
+.menu > li > a{
+	display: block;
+	padding: 0 0 5px;
+  margin: 0 20px;
+  color: $blue-light;
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1;
+  border-bottom: 2px solid transparent;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.menu > li > a:hover, .menu > li > a:focus, li > a.active{
+  color: $white;
+	border-color: $red;
+}
+
+.toggle{
+	z-index: 2;
+}
+
+@media only screen and (max-width: 640px){
+	.menu{
+		background: $blue;
+	}
+
+	.menu, .menu > li, .menu > li > a{
+		height: auto;
+	}
+
+	.menu > li > a{
+		padding: 15px 15px;
+    margin: 0;
+	}
+
+	.menu > li > a:hover, .menu > li > a:focus{
+		padding: 15px 15px 15px 25px;
+	}
+
+  .toggle:before {
+    color: $white;
+    content: "\f0c9";
+    font-family: FontAwesome;
+    font-size: 21px;
+    font-weight: 300;
+    position: absolute;
+    top: 3px;
+    left: 10px;
+  }
+
+	.toggle:after {
+		content: 'Menu';
+		display: block;
+		width: 100px;
+		padding: 5px 40px;
+		background: rgba(0,0,0,0.1);
+    border-bottom: 2px solid rgba(0,0,0,0.3);
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		text-align: center;
+		font-size: 18px;
+		color: $blue-light;
+		-webkit-transition: all 0.5s linear;
+		-moz-transition: all 0.5s linear;
+		-o-transition: all 0.5s linear;
+		transition: all 0.5s linear;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.toggle:hover:after{
+    color: $white;
+		background: rgba(0,0,0,0.3);
+    border-bottom: 2px solid $red;
+	}
+
+  #toggle:checked + .toggle:before{
+    content: '\f00d';
+  }
+
+	#toggle:checked + .toggle:after{
+		content: 'Menu';
+	}
+}
+
 .contact-links {
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 1%;
   a {
     display: inline-block;
@@ -489,6 +553,7 @@ footer {
     }
   }
 }
+
 $divider-size: 40;
 .divider {
   text-align: center;

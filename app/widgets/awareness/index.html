@@ -15,18 +15,23 @@
   </div>
 </header>
 
+
 <footer>
-  <a class="mobile-menu-button"><i class="fa fa-bars"></i></a>
-  <nav>
-    <a href="#" rv-on-click="widget.toMission" rv-class-active="widget:activeSection | eql mission">Mission</a>
-    <a href="#" rv-on-click="widget.toWhoWeAre" rv-class-active="widget:activeSection | eql whoWeAre">Who We Are</a>
-    <a href="#" rv-on-click="widget.toPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a>
-    <a href="#" rv-on-click="widget.toMedia" rv-class-active="widget:activeSection | eql media">Media</a>
-  </nav>
+	<nav>
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" onclick></label>
+		<ul class="menu">
+			<li><a href="#" rv-on-click="widget.toMission" rv-class-active="widget:activeSection | eql mission">Mission</a></li>
+			<li><a href="#" rv-on-click="widget.toWhoWeAre" rv-class-active="widget:activeSection | eql whoWeAre">Who We Are</a></li>
+			<li><a href="#" rv-on-click="widget.toPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a></li>
+			<li><a href="#" rv-on-click="widget.toMedia" rv-class-active="widget:activeSection | eql media">Media</a></li>
+		</ul>
+	</nav>
+
   <div class="contact-links">
     <a href="#" rv-on-click="widget.showContact" class="email"><i class="fa fa-envelope"></i></a>
-    <a class="twitter"><i class="fa fa-twitter"></i></a>
-    <a class="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="https://twitter.com/OpenlySecular" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a>
+    <a href="https://www.facebook.com/OpenlySecular" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a>
   </div>
 </footer>
 
