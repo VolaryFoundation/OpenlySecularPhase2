@@ -26,6 +26,9 @@ body {
   color: $gray;
 }
 
+dialog {
+}
+
 .error {
   display: none;
 }
@@ -47,6 +50,8 @@ body {
     max-height: 600px;
     overflow-y: auto;
     width: 100%;
+    min-height: 500px;
+    border: none;
   }
 }
 

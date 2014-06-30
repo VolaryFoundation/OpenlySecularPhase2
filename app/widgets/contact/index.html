@@ -1,8 +1,13 @@
 
-<dialog class="contact-widget" open>
+<dialog rv-modal="widget:visible" class="contact-widget" open>
   <div class="close" rv-on-click="widget.hide"><i class="fa fa-times"></i></div>
   <h3>Contact</h3>
   <form rv-on-submit="widget.submit">
+    <div class="error-field" rv-if="widget:errors">
+      <ul class="error">
+        <li rv-each-error="widget:errors">{ error }</li>
+      </ul>
+    </div>
     <label>What's your name?</label>
     <input type="text" rv-value="widget.contact:name" />
     <label>Your Email</label>

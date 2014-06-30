@@ -18,7 +18,19 @@ asWidget('contact', function(hub) {
   widget.contact = new Backbone.Model
 
   widget.submit = function() {
-    console.log('sending contact form', widget.contact.toJSON())
+
+    var errors = []
+
+    if (!widget.contact.get('name')) errors.push('Please include a name.')
+    if (!widget.contact.get('email')) errors.push('Please include an email.')
+    else if (!/\w+@\w+\.\w+/.test(widget.contact.get('email'))) errors.push('Email is invalid')
+    if (!widget.contact.get('message')) errors.push('Please include a message.')
+
+    widget.set('errors', [])
+    if (errors.length) {
+      return widget.set('errors', errors)
+    }
+
     $.post('http://submit.jotformpro.com/submit/41775081989975/', {
       formID: '41775081989975',
       q3_whatsYour: widget.contact.get('name'),

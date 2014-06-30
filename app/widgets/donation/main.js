@@ -3,6 +3,9 @@ var asWidget = require('widget')
 var Backbone = require('backbone')
 var _ = require('lodash')
 
+var Donation = Backbone.Model.extend({
+})
+
 asWidget('donation', function(hub) {
   var widget = this
 
@@ -11,7 +14,7 @@ asWidget('donation', function(hub) {
     widget.start().hide()
   })
 
-  widget.set('donation', new Backbone.Model({
+  widget.set('donation', new Donation({
     amount: '',
     reason: '',
     recurring: false,

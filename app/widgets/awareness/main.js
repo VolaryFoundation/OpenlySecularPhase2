@@ -7,75 +7,9 @@ require('../../assets/rivets_config')
 
 // require all widgets
 
-rivets.binders.autoscroll = function(el, val) {
-
-  var winHeight = document.body.clientHeight
-  var placeholder = document.querySelector('#placeholder')
-  if (placeholder) placeholder.style.height = (winHeight - 290) + 'px'
-
-  var section = document.getElementById(val)
-  if (section) {
-    var bodyRect = document.body.getBoundingClientRect()
-    var elemRect = section.getBoundingClientRect()
-    var offset   = elemRect.top - bodyRect.top
-    $(document.body).animate({ scrollTop: offset - 100 }, '500')
-  }
-}
-
-function isElementInViewport(el) {
-
-  var docTop = $(window).scrollTop()
-  var docHeight = $(window).height()
-  var docBottom = docTop + docHeight
-
-  var elTop = $(el).offset().top;
-  var elBottom = elTop + $(el).height();
-
-  // eltop is in top half of page//, or elbottom is in bottom half of page
-  return ((elTop >= docTop && elTop <= docTop + (docHeight / 2)))// || (elBottom <= docBottom && elBottom >= docBottom - (docHeight / 2)))
-}
-
-function shouldSectionBeLoaded(el) {
-
-  var docTop = $(window).scrollTop()
-  var docHeight = $(window).height()
-  var docBottom = docTop + docHeight
-
-  var elTop = $(el).offset().top;
-  var elBottom = elTop + $(el).height();
-
-  return elTop <= docTop + docHeight
-}
 
 asWidget('awareness', function(hub) {
   var widget = this
-
-  // TODO hacky
-  window.addEventListener('scroll', _.throttle(function() {
-    var bodyBounds = document.body.getBoundingClientRect()
-    var bodyTop = bodyBounds.top * -1
-    var docRange = [ bodyTop, bodyTop + bodyBounds.height ]
-    var sections = document.querySelectorAll('section')
-    var possibleSections = _.filter(sections, function(section) {
-      return isElementInViewport(section)
-    })
-    var possibleLoading = _.filter(sections, function(section) {
-      return shouldSectionBeLoaded(section)
-    })
-
-    if (possibleSections[0]) {
-      var section = _.last(possibleSections)
-      if (section.getAttribute('id') == widget.get('activeSection')) return
-      hub.trigger('sectionInView', section.getAttribute('id'))
-    }
-
-    if (possibleLoading[0]) {
-      _.each(possibleLoading, function(section) {
-        hub.trigger(section.getAttribute('id') + 'ScrolledTo')
-      })
-    }
-
-  }, 500))
 
   widget.set('logo', '/widgets/awareness/img/logo.png')
 
@@ -138,6 +72,32 @@ asWidget('awareness', function(hub) {
     hub.trigger('showContact')
   }
 
+  function subscribeEmail(email, name) {
+
+    if (name) {
+      var parts = name.split(' ')
+      var first = parts[0]
+      var last = parts.slice(1).join(' ')
+    }
+
+    $.ajax({
+      async: false,
+      url: 'http://openlysecular.us8.list-manage1.com/subscribe/post-json',
+      type: 'GET',
+      dataType    : 'jsonp',
+      jsonp: 'c',
+      contentType: "application/json; charset=utf-8",
+      data: {
+        u: 'cf4a6ca2c3378383a4f3a714f',
+        id: 'd4555ed76d',
+        MERGE0: email,
+        MERGE1: first,
+        MERGE2: last,
+        b_cf4a6ca2c3378383a4f3a714f_d4555ed76d: ''
+      }
+    })
+  }
+
   widget.set('subscribeStep', 1)
   widget.nextSubscribeStep = function() {
 
@@ -148,8 +108,10 @@ asWidget('awareness', function(hub) {
       if (!/\w+@\w+\.\w+/.test(widget.get('subscribeEmail'))) {
         return widget.set('subscribeEmailError', 'Email must be valid.')
       }
+      hub.on('appAboutToExit', widget.nextSubscribeStep)
     } else if (next == 3) {
-      console.log('sending subscribe data', widget.get('subscribeEmail'), widget.get('subscribeName'))
+      hub.off('appAboutToExit', widget.nextSubscribeStep)
+      subscribeEmail(widget.get('subscribeEmail'), widget.get('subscribeName'))
     }
 
     widget.set('subscribeStep', next)

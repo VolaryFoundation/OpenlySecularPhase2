@@ -37,6 +37,11 @@ asWidget('about', function(hub) {
     widget.set('partners', partners)
   })
 
+  widget.toggleShowingPartnersApplication = function() {
+    var current = widget.get('showingPartnersApplication')
+    widget.set('showingPartnersApplication', !current)
+  }
+
 })
 
 //==========================================================================//

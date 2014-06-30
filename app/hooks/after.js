@@ -1,7 +1,13 @@
 
 var rivets = require('rivets')
+var hub = require('widget').hub
 
 rivets.bind(document.getElementById('app'), {});
+
+window.onbeforeunload = function() {
+  hub.trigger('appAboutToExit')
+}
+
 
 //==========================================================================//
 // This file is part of Widget Server.                                      //
