@@ -10,8 +10,8 @@ $step-size: 35;
   }
   .divider strong {
     background-image: none;
-    &:before{
-      display:none;
+    &:after{
+      background:none;
     }
   }
   .lock {

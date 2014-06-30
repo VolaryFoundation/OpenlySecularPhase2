@@ -1,7 +1,7 @@
 <div class="about-widget">
   <section id="mission">
     <div class="row mission">
-      <div class="divider inline-divider">
+      <div class="divider">
         <strong>Our Mission</strong>
       </div>
       <p class="section-description">The mission of Openly Secular is to eliminate discrimination and increase acceptance by getting secular people to be open about their beliefs.</p>
@@ -14,18 +14,12 @@
   <section id="whoWeAre">
     <div class="row who-we-are">
       <div class="column">
-        <div class="divider inline-divider">
+        <div class="divider">
           <strong>Who We Are</strong>
         </div>
         <p class="section-description">Openly Secular is the joint project of four of the best-known and respected secular organizations:</p>
         <div class="partners-list">
           <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
-            <li rv-each-partner="widget:partners">
-              <div class="partner">
-                <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-                <span class="partners-title">{ partner.title }</span>
-              </div>
-            </li>
             <li rv-each-partner="widget:partners">
               <div class="partner">
                 <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
@@ -43,7 +37,7 @@
     </div>
   </section>
   <section id="partners" class="partners">
-    <div class="divider inline-divider">
+    <div class="divider">
       <strong>Partners &amp; Allies</strong>
     </div>
     <div class="partners-list">
@@ -56,21 +50,9 @@
             <span class="partners-title">{ partner.title }</span>
           </div>
         </li>
-        <li rv-each-partner="widget:partners">
-          <div class="partner">
-            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-            <span class="partners-title">{ partner.title }</span>
-          </div>
-        </li>
       </ul>
       <h3>Organizational Allies</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
-        <li rv-each-partner="widget:partners">
-          <div class="partner">
-            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-            <span class="partners-title">{ partner.title }</span>
-          </div>
-        </li>
         <li rv-each-partner="widget:partners">
           <div class="partner">
             <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
