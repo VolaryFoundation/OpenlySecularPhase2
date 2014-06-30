@@ -84,6 +84,24 @@ button {
   }
 }
 
+.contact-widget, .story-form {
+  padding: 0;
+
+  form {
+    padding: 20px 40px;
+  }
+}
+.modal-header {
+  padding: 40px 0 0;
+  background: $blue-light;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  .divider strong {
+    color: $blue;
+    &:after {
+      border-color: $blue;
+    }
+  }
+}
 .close {
   position: absolute;
   top: -6px;

@@ -1,7 +1,10 @@
-
 <dialog rv-modal="widget:visible" class="contact-widget" open>
-  <div class="close" rv-on-click="widget.hide"><i class="fa fa-times"></i></div>
-  <h3>Contact</h3>
+  <div class="modal-header">
+    <div class="close" rv-on-click="widget.hide"><i class="fa fa-times"></i></div>
+    <div class="divider">
+      <strong>Contact</strong>
+    </div>
+  </div>
   <form rv-on-submit="widget.submit">
     <div class="error-field" rv-if="widget:errors">
       <ul class="error">
