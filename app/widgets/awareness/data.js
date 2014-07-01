@@ -42,12 +42,21 @@ hub.on('teamNeeded', function() {
 })
 
 hub.on('partnersNeeded', function() {
-  $.ajax(BASE_URL + '/partners', {
-    type: 'GET',
-    success: function(partners) {
-      hub.trigger('partnersLoaded', partners)
-    }
-  })
+  var all = []
+  function fetch(page) {
+    $.ajax(BASE_URL + '/partners?page=' + page, {
+      type: 'GET',
+      success: function(partners) {
+        all = all.concat(partners)
+        if (partners.length == 10) {
+          fetch(page + 1)
+        } else {
+          hub.trigger('partnersLoaded', all)
+        }
+      }
+    })
+  }
+  fetch(1)
 })
 
 hub.on('blogNeeded', function() {
