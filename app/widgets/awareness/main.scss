@@ -27,6 +27,7 @@ body {
 }
 
 dialog {
+  border: 1px solid rgba(0,0,0,0.3);
 }
 
 .error {
@@ -35,6 +36,7 @@ dialog {
 .error-field {
   .error {
     display: block;
+    list-style: none;
     background: $red;
     color: $white;
     padding: 5px 20px;
@@ -43,6 +45,11 @@ dialog {
     border-color: $red;
     margin-bottom: 0 !important;
   }
+}
+
+video {
+  width: 100%    !important;
+  height: auto   !important;
 }
 
 .story-form {
@@ -76,7 +83,7 @@ fieldset {
   border: none;
 }
 
-button {
+button, .button {
   border-radius: 5px;
   border-bottom: 2px solid rgba(0,0,0,0.2);
 
@@ -402,6 +409,10 @@ header {
     &:hover {
       background-color: darken( $red, 15%);
     }
+  }
+  .facebook, .twitter {
+    position: relative;
+    top: 30px;
   }
 }
 

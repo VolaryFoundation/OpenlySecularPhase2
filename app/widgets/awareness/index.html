@@ -1,4 +1,4 @@
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 <header>
   <div class="row collapse photos">
@@ -59,7 +59,7 @@
             </form>
           </div>
           <div rv-if="widget:subscribeStep | eql 2">
-            <p>Thanks! You are all set.<br>But you should let us know your name.</p>
+            <p>Thanks! You are all set.<br>But what is your name?</p>
             <form rv-on-submit="widget.nextSubscribeStep">
               <div class="row collapse">
                 <div class="small-10 columns">
@@ -72,7 +72,9 @@
             </form>
           </div>
           <div rv-if="widget:subscribeStep | eql 3">
-            <p>Great! Thanks for signing up.<br>Keep your friends informed too.</p>
+            <p>Great! Thanks for signing up.<br>Stay informed on social media.</p>
+            <a href="https://twitter.com/OpenlySecular" target="_blank" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.facebook.com/OpenlySecular" target="_blank" class="social-button facebook"><i class="fa fa-facebook"></i></a>
           </div>
         </div>
         <div class="action column small-6 medium-4" id="donate">
@@ -80,17 +82,18 @@
             <h4><i class="fa fa-lg fa-heart"></i> Make a Donation</h4>
             <p>
               Contribute towards a difference.
-              <br><small>All donations are tax-deductable.</small> <a href="#" rv-on-click="widget.showFaq" class="faq-link">FAQ</a>
+              <br><small>All donations are tax-deductible.</small> <a href="#" rv-on-click="widget.showFaq" class="faq-link">FAQ</a>
             </p>
             <form>
               <button rv-on-click="widget.showDonation" class="small">Donate</button>
             </form>
           </div>
           <div rv-if="widget:alreadyDonated">
-            <h4>Thanks for donating to the cause!</h4>
-            <p> Inform all your friends and increase your impact. </p>
-            <button class="social-button twitter"><i class="fa fa-twitter"></i></button>
-            <button class="social-button facebook"><i class="fa fa-facebook"></i></button>
+            <h4><i class="fa fa-lg fa-heart"></i> Thanks for Donating</h4>
+            <p> Increase your impact by informing your friends. </p>
+            <p>
+            <a href="http://twitter.com/home?status=I%20just%20donated%20to%20@openlysecular%20www.openlysecular.org" target="blank" class="button tiny twitter"><i class="fa fa-fw fa-twitter"></i> Tweet</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=www.openlysecular.org" target="blank" class="button tiny facebook"><i class="fa fa-fw fa-facebook"></i> Share</a></p>
           </div>
         </div>
         <div class="action column small-6 medium-4">

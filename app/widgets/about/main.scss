@@ -22,11 +22,13 @@
     margin-top: 100px;
     ul {
       margin-top: 40px;
+      margin-bottom: 20px;
       li {
         list-style: none;
         img {
           display: block;
           margin: 0 auto;
+          max-height: 100px
         }
         text-align: center;
       }
@@ -49,11 +51,12 @@
   }
   .partners-list {
     h3 {
-      margin-left: 20%;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     ul {
       margin: 0 auto;
-      padding: 40px 0 40px 0;
+      margin-bottom: 40px;
       max-width: 77.71429rem;
       max-height: 400px;
       overflow-y: auto;
@@ -101,7 +104,7 @@
       }
     }
     .apply {
-      left: 62%;
+      float: right;
       margin-bottom: -20px;
     }
   }

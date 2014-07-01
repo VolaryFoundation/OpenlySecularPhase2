@@ -4,7 +4,7 @@
       <div class="divider">
         <strong>Our Mission</strong>
       </div>
-      <p class="section-description">The mission of Openly Secular is to eliminate discrimination and increase acceptance by getting secular people to be open about their beliefs.</p>
+      <p class="section-description">The mission of Openly Secular is to eliminate discrimination and increase acceptance by getting secular people – including atheists, freethinkers, agnostics, humanists and nonreligious people – to be open about their beliefs.</p>
         <p class="column small-10 small-offset-1" rv-html="widget:about.mission"></p>
     </div>
     <div class="row vision">
@@ -18,16 +18,6 @@
           <strong>Who We Are</strong>
         </div>
         <p class="section-description">Openly Secular is the joint project of four of the best-known and respected secular organizations:</p>
-        <div class="partners-list">
-          <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
-            <li rv-each-partner="widget:acceleratedPartners">
-              <div class="partner">
-                <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-                <span class="partners-title">{ partner.title }</span>
-              </div>
-            </li>
-          </ul>
-        </div>
         <div class="row">
           <div class="column medium-10 medium-offset-1">
             <p rv-html="widget:about.about"></p>
@@ -42,7 +32,17 @@
     </div>
     <div class="partners-list">
       <p class="section-description">These groups are openly committed to supporting equality and fighting discrimination.</p>
-      <h3>Movement Partners</h3>
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+        <li rv-each-partner="widget:accelerationPartners">
+          <div class="partner">
+            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+            <span class="partners-title">{ partner.title }</span>
+          </div>
+        </li>
+      </ul>
+      <div class="row text-center">
+        <h3>Movement Partners</h3>
+      </div>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:movementPartners">
           <div class="partner">
@@ -51,7 +51,9 @@
           </div>
         </li>
       </ul>
-      <h3>Organizational Allies</h3>
+      <div class="row text-center">
+        <h3>Organizational Allies</h3>
+      </div>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:organizationalAllies">
           <div class="partner">
@@ -60,7 +62,9 @@
           </div>
         </li>
       </ul>
-      <button class="apply small" rv-on-click="widget.toggleShowingPartnersApplication">Apply</button>
+      <div class="row">
+        <button class="apply small" rv-on-click="widget.toggleShowingPartnersApplication">Apply</button>
+      </div>
     </div>
   </section>
 </div>
