@@ -38,10 +38,14 @@
   </div>
 </div>
 
-<dialog open rv-modal="widget:details">
+<dialog open rv-modal="widget:details" class="modal-window">
   <div class="close" rv-on-click="widget.hideDetails"><i class="fa fa-times"></i></div>
-  <h3>{ widget:details.title }</h3>
-  <div rv-html="widget:details.content"></div>
+  <div class="modal-header">
+    <div class="divider">
+      <strong>{ widget:details.title }</strong>
+    </div>
+  </div>
+  <div rv-html="widget:details.content" class="modal-content"></div>
 </dialog>
 
 <!--=========================================================================-->

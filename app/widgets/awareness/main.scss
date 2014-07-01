@@ -110,10 +110,10 @@ button, .button {
   }
 }
 
-.contact-widget, .story-form, .faq {
+.contact-widget, .story-form, .faq, .modal-window {
   padding: 0;
 
-  form {
+  form, .modal-content {
     padding: 20px 40px;
   }
 }

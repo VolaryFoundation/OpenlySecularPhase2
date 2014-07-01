@@ -18,6 +18,13 @@
           <strong>Who We Are</strong>
         </div>
         <p class="section-description">Openly Secular is the joint project of four of the best-known and respected secular organizations:</p>
+        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+          <li rv-each-partner="widget:accelerationPartners">
+            <div class="partner">
+              <span class="partners-title">{ partner.title }</span>
+            </div>
+          </li>
+        </ul>
         <div class="row">
           <div class="column medium-10 medium-offset-1">
             <p rv-html="widget:about.about"></p>
