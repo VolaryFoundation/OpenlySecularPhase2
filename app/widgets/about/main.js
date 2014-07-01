@@ -35,7 +35,7 @@ asWidget('about', function(hub) {
 
   hub.on('partnersLoaded', function(partners) {
     widget.set('accelerationPartners', partners.filter(function(p) { return p.terms.involvement[0].slug == 'acceleration-partner' }))
-    widget.set('movementPartners', partners.filter(function(p) { return p.terms.involvement[0].slug == 'acceleration-partner' }))
+    widget.set('movementPartners', partners.filter(function(p) { return p.terms.involvement[0].slug == 'movement-partner' }))
     widget.set('organizationalAllies', partners.filter(function(p) { return p.terms.involvement[0].slug == 'organizational-ally' }))
   })
 

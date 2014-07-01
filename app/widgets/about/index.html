@@ -20,7 +20,7 @@
         <p class="section-description">Openly Secular is the joint project of four of the best-known and respected secular organizations:</p>
         <div class="partners-list">
           <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
-            <li rv-each-partner="widget:partners">
+            <li rv-each-partner="widget:acceleratedPartners">
               <div class="partner">
                 <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
                 <span class="partners-title">{ partner.title }</span>
@@ -44,7 +44,7 @@
       <p class="section-description">These groups are openly committed to supporting equality and fighting discrimination.</p>
       <h3>Movement Partners</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
-        <li rv-each-partner="widget:partners">
+        <li rv-each-partner="widget:movementPartners">
           <div class="partner">
             <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
             <span class="partners-title">{ partner.title }</span>
@@ -53,7 +53,7 @@
       </ul>
       <h3>Organizational Allies</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
-        <li rv-each-partner="widget:partners">
+        <li rv-each-partner="widget:organizationalAllies">
           <div class="partner">
             <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
             <span class="partners-title">{ partner.title }</span>
