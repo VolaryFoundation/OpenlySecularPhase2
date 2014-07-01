@@ -23,6 +23,13 @@ asWidget('about', function(hub) {
     hub.once('partnersScrolledTo', function() {
       hub.trigger('partnersNeeded')
     })
+
+    // lets not be TOO lazy...
+    setTimeout(function() {
+      hub.trigger('missionScrolledTo')
+      hub.trigger('whoWeAreScrolledTo')
+      hub.trigger('partnersScrolledTo')
+    }, 1000)
   })
 
   hub.on('aboutLoaded', function(about) {
