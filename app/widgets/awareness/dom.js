@@ -4,14 +4,22 @@ var $ = require('jquery')
 var hub = require('widget').hub
 var _ = require('lodash')
 
+// TODO loads
 rivets.binders.modal = function(el, val) {
   if (val) {
     el.style.display = 'block'
+    $(document.body).addClass('showing-dialog')
     var bodyRect = document.body.getBoundingClientRect()
     var elemRect = el.getBoundingClientRect()
     var placeholderTop = $(el).offsetParent().offset().top
-    el.style.top = ((bodyRect.top * -1) - placeholderTop + 100) + 'px'
+    var styles = {
+      top: ((bodyRect.top * -1) - placeholderTop + (bodyRect.height * .1)) + 'px',
+      maxHeight: (bodyRect.height * .8) + 'px'
+    }
+    $(el).css(styles)
+      .find('.inner').css(styles)
   } else {
+    $(document.body).removeClass('showing-dialog')
     el.style.display = 'none'
   }
 }

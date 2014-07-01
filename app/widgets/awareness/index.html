@@ -114,14 +114,17 @@
 </div>
 
 
+<div id="dialog-backdrop"></div>
 <dialog class="story-form" rv-modal="widget:showingStoryForm" open>
-  <div class="modal-header">
-    <div class="close" rv-on-click="widget.toggleStoryForm"><i class="fa fa-times"></i></div>
-    <div class="divider">
-      <strong>Share your Story</strong>
+  <div class="close" rv-on-click="widget.toggleStoryForm"><i class="fa fa-times"></i></div>
+  <div class="inner">
+    <div class="modal-header">
+      <div class="divider">
+        <strong>Share your Story</strong>
+      </div>
     </div>
+    <iframe src="https://docs.google.com/forms/d/18hMfj36YbhQJKbU9cnbj9_7pyx9zAVONPJuRAKFtKjg/viewform?embedded=true" width="700" height="1500" frameborder="0">Loading...</iframe>
   </div>
-  <iframe src="https://docs.google.com/forms/d/18hMfj36YbhQJKbU9cnbj9_7pyx9zAVONPJuRAKFtKjg/viewform?embedded=true" width="700" height="1500" frameborder="0">Loading...</iframe>
 </dialog>
 
 <div rv-widget-faq></div>

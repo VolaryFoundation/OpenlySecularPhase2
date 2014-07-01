@@ -28,6 +28,27 @@ body {
 
 dialog {
   border: 1px solid rgba(0,0,0,0.3);
+  .inner {
+    overflow-y: auto;
+  }
+}
+
+#dialog-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: .5;
+  background: $black;
+  display: none;
+}
+
+body.showing-dialog {
+  overflow: hidden;
+  #dialog-backdrop {
+    display: block;
+  }
 }
 
 .error {
@@ -54,12 +75,9 @@ video {
 
 .story-form {
   iframe {
-    max-height: 600px;
-    overflow-y: auto;
+    border: none;
     width: 100%;
     min-height: 500px;
-    padding: 0 40px;
-    border: none;
   }
 }
 
