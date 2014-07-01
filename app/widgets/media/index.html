@@ -9,7 +9,7 @@
         <h3>In the News</h3>
         <ul>
           <li rv-each-article="widget:news">
-            <h5 class="title">{ article.title }</h5>
+            <h5 class="title"><a href="#" rv-on-click="widget.showDetails">{ article.title }</a></h5>
             <p class="meta">{ article.modified | postDate }</p>
           </li>
         </ul>
@@ -17,9 +17,9 @@
       <div class="press-releases">
         <h3>Press Releases</h3>
         <ul>
-          <li rv-each-release="widget:releases">
-            <h5 class="title">{ release.title }</h5>
-            <p class="meta">{ release.modified | postDate }</p>
+          <li rv-each-article="widget:releases">
+            <h5 class="title"><a href="#" rv-on-click="widget.showDetails">{ article.title }</a></h5>
+            <p class="meta">{ article.modified | postDate }</p>
           </li>
         </ul>
       </div>
@@ -35,6 +35,12 @@
     </div>
   </div>
 </div>
+
+<dialog open rv-modal="widget:details">
+  <div class="close" rv-on-click="widget.hideDetails"><i class="fa fa-times"></i></div>
+  <h3>{ widget:details.title }</h3>
+  <div rv-html="widget:details.content"></div>
+</dialog>
 
 <!--=========================================================================-->
 <!-- This file is part of Widget Server.                                     -->

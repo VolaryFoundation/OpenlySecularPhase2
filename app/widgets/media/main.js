@@ -33,6 +33,18 @@ asWidget('media', function(hub) {
     widget.set('releases', releases)
   })
 
+  widget.showDetails = function(_, _, binding) {
+    var post = binding.view.models.article
+    widget.set('details', {
+      title: post.title,
+      content: post.content
+    })
+  }
+
+  widget.hideDetails = function() {
+    widget.set('details', null)
+  }
+
 })
 
 //==========================================================================//
