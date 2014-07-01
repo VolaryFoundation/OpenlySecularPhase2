@@ -51,6 +51,7 @@ dialog {
     overflow-y: auto;
     width: 100%;
     min-height: 500px;
+    padding: 0 40px;
     border: none;
   }
 }
@@ -84,7 +85,7 @@ button {
   }
 }
 
-.contact-widget, .story-form {
+.contact-widget, .story-form, .faq {
   padding: 0;
 
   form {
@@ -154,25 +155,17 @@ button {
   &:hover {
     color: $white;
   }
-
-  &:after {
-    display: block;
-    content: "";
-    width: 40px;
-    height: 3px;
-    background: $blue;
-  }
 }
 
 .facebook {
-  //background-color: #3B5998;
+  background-color: #3B5998;
   &:hover {
     background-color: darken( #3B5998, 10%);
   }
 }
 
 .twitter {
-  //background-color: #00ACEE;
+  background-color: #00ACEE;
   &:hover {
     background-color: darken( #00ACEE, 10%);
   }

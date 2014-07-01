@@ -4,22 +4,21 @@
     margin-bottom: 10px;
   }
   h4 {
-    background: $blue-light;
-    color: rgba(0,0,0,0.6);
+    color: $blue-medium;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 0;
     padding: 10px 0;
-    border-radius: 5px;
-    border-bottom: 2px solid rgba(0,0,0,0.2);
+    border-bottom: 2px solid $blue-light;
     &:hover {
-      background: $blue;
-      color: $white;
+      color: $blue;
+      cursor: pointer;
       small {
-        color: $white;
+        color: $blue;
       }
     }
     small {
-      color: rgba(0,0,0,0.6);
+      color: $blue-medium;
       font-size: 85%;
     }
   }
@@ -36,11 +35,15 @@
     }
   }
   .open h4 {
-    border-radius: 0;
+    color: $gray;
+    background: lighten( $blue-light, 5% );
     &:after {
       content: "\f068";
       font-family: FontAwesome;
       margin-left: 20px;
+    }
+    small {
+      color: $gray;
     }
   }
   p {
@@ -50,6 +53,5 @@
     display: block;
     padding: 20px 0;
     color: rgba(0,0,0,0.6);
-    background: lighten( $blue-light, 5% );
   }
 }
