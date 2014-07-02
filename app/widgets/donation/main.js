@@ -14,6 +14,10 @@ asWidget('donation', function(hub) {
     widget.start().hide()
   })
 
+  widget.showFaq = function() {
+    hub.trigger('showFaq')
+  }
+
   widget.set('donation', new Donation({
     amount: '',
     reason: '',
@@ -100,6 +104,7 @@ asWidget('donation', function(hub) {
   }
 
 })
+
 
 //==========================================================================//
 // This file is part of Widget Server.                                      //

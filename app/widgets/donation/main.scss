@@ -3,6 +3,11 @@ $step-size: 35;
 
 .donation-widget {
   padding: 0;
+  .faq-link {
+    position: absolute;
+    top: 120px;
+    right: 20px;
+  }
   fieldset {
     padding: 0;
     margin: 0;
