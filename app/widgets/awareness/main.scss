@@ -243,6 +243,10 @@ section {
   background: $white;
 }
 
+.splash {
+  z-index: 0;
+}
+
 header {
   .photos {
     width: 100%;
