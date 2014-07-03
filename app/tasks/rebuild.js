@@ -131,7 +131,7 @@ function buildFiles(config, widgets) {
   }
 
   function buildJS() {
-    return promise(function(res, rej) { 
+    return promise(function(res, rej) {
       var paths = _.flatten(_.pluck(widgets, 'js')).map(function(path) { return path.replace('.js', '') })
 
       var afterHook = promise(function(res, rej) {
@@ -187,7 +187,7 @@ function storeFiles(config, files) {
   return rsvp.all([
     writeFile[location]('build.css', files.css, config.domain, 'text/css', config.storageLocation),
     writeFile[location]('build.js', files.js, config.domain, 'application/javascript', config.storageLocation),
-    writeFile[location]('build.html', "<!DOCTYPE html><head><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html', config.storageLocation )
+    writeFile[location]('build.html', "<!DOCTYPE html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html', config.storageLocation )
   ])
 }
 
