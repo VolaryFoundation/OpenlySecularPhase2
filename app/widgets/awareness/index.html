@@ -11,7 +11,7 @@
     <img class="logo" rv-src="widget:logo" />
 
     <h2 class="tagline">Let's end secular discrimination and increase acceptance<small>by being open about our beliefs</small></h2>
-    <button rv-on-click="widget.play"><i class="fa fa-play"></i></button>
+    <button rv-on-click="widget.navToVideo"><i class="fa fa-play"></i></button>
   </div>
 </header>
 
@@ -21,15 +21,15 @@
 		<input type="checkbox" id="toggle" />
 		<label for="toggle" class="toggle" onclick></label>
 		<ul class="menu">
-			<li><a href="#" rv-on-click="widget.toMission" rv-class-active="widget:activeSection | eql mission">Mission</a></li>
-			<li><a href="#" rv-on-click="widget.toWhoWeAre" rv-class-active="widget:activeSection | eql whoWeAre">Who We Are</a></li>
-			<li><a href="#" rv-on-click="widget.toPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a></li>
-			<li><a href="#" rv-on-click="widget.toMedia" rv-class-active="widget:activeSection | eql media">Media</a></li>
+			<li><a href="#" rv-on-click="widget.navToMission" rv-class-active="widget:activeSection | eql mission">Mission</a></li>
+			<li><a href="#" rv-on-click="widget.navToWhoWeAre" rv-class-active="widget:activeSection | eql whoWeAre">Who We Are</a></li>
+			<li><a href="#" rv-on-click="widget.navToPartners" rv-class-active="widget:activeSection | eql partners">Partners &amp; Allies</a></li>
+			<li><a href="#" rv-on-click="widget.navToMedia" rv-class-active="widget:activeSection | eql media">Media</a></li>
 		</ul>
 	</nav>
 
   <div class="contact-links">
-    <a href="#" rv-on-click="widget.showContact" class="email"><i class="fa fa-envelope"></i></a>
+    <a href="#" rv-on-click="widget.navToContact" class="email"><i class="fa fa-envelope"></i></a>
     <a href="https://twitter.com/OpenlySecular" target="_blank"><i class="fa fa-twitter"></i></a>
     <a href="https://www.facebook.com/OpenlySecular" target="_blank"><i class="fa fa-facebook"></i></a>
   </div>
@@ -85,7 +85,7 @@
               <br><small>All donations are tax-deductible.</small> <a href="#" rv-on-click="widget.showFaq" class="faq-link">FAQ</a>
             </p>
             <form>
-              <button rv-on-click="widget.showDonation" class="small">Donate</button>
+              <button rv-on-click="widget.navToDonation" class="small">Donate</button>
             </form>
           </div>
           <div rv-if="widget:alreadyDonated">
@@ -100,7 +100,7 @@
           <h4><i class="fa fa-lg fa-group"></i> Get Involved</h4>
           <p> Share your own story.  </p>
           <form>
-            <button rv-on-click="widget.toggleStoryForm" class="small">Share</button>
+            <button rv-on-click="widget.navToStory" class="small">Share</button>
           </form>
         </div>
       </div>
@@ -115,8 +115,8 @@
 
 
 <div id="dialog-backdrop"></div>
-<dialog class="story-form" rv-modal="widget:showingStoryForm" open>
-  <div class="close" rv-on-click="widget.toggleStoryForm"><i class="fa fa-times"></i></div>
+<dialog class="story-form" rv-modal="widget:showingStory" open>
+  <div class="close" rv-on-click="widget.navToStory"><i class="fa fa-times"></i></div>
   <div class="inner">
     <div class="modal-header">
       <div class="divider">

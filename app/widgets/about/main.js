@@ -14,22 +14,9 @@ asWidget('about', function(hub) {
   this.template('/widgets/about/index.html')
   this.on('installed', function() {
     widget.start()
-    hub.once('missionScrolledTo', function() {
-      hub.trigger('aboutNeeded')
-    })
-    hub.once('whoWeAreScrolledTo', function() {
-      hub.trigger('teamNeeded')
-    })
-    hub.once('partnersScrolledTo', function() {
-      hub.trigger('partnersNeeded')
-    })
-
-    // lets not be TOO lazy...
-    setTimeout(function() {
-      hub.trigger('missionScrolledTo')
-      hub.trigger('whoWeAreScrolledTo')
-      hub.trigger('partnersScrolledTo')
-    }, 1000)
+    hub.trigger('aboutNeeded')
+    hub.trigger('teamNeeded')
+    hub.trigger('partnersNeeded')
   })
 
   hub.on('aboutLoaded', function(about) {
@@ -38,6 +25,7 @@ asWidget('about', function(hub) {
 
   hub.on('teamLoaded', function(team) {
     widget.set('team', team)
+    hub.trigger('appReady')
   })
 
   hub.on('partnersLoaded', function(partners) {
@@ -50,6 +38,12 @@ asWidget('about', function(hub) {
     var current = widget.get('showingPartnersApplication')
     widget.set('showingPartnersApplication', !current)
   }
+
+  hub.on('navTo', function(place) {
+    if (place == 'partnersApplication') {
+      widget.toggleShowingPartnersApplication()
+    }
+  })
 
 })
 

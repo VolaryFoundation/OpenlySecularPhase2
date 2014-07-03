@@ -65,6 +65,7 @@ function shouldSectionBeLoaded(el) {
 }
 
 // TODO hacky
+/*
 window.addEventListener('scroll', _.throttle(function() {
   var bodyBounds = document.body.getBoundingClientRect()
   var bodyTop = bodyBounds.top * -1
@@ -89,4 +90,4 @@ window.addEventListener('scroll', _.throttle(function() {
   }
 
 }, 500))
-
+*/

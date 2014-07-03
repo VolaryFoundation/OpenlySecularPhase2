@@ -3,6 +3,7 @@ var asWidget = require('widget')
 var $ = require('jquery')
 var rivets = require('rivets')
 var moment = require('moment')
+var _ = require('lodash')
 
 rivets.formatters.postDate = function(raw) {
   return moment(raw).format('MMMM d, YYYY')
@@ -14,15 +15,8 @@ asWidget('media', function(hub) {
   this.template('/widgets/media/index.html')
   this.on('installed', function() {
     widget.start()
-    hub.once('mediaScrolledTo', function() {
-      hub.trigger('blogNeeded')
-      hub.trigger('newsNeeded')
-      hub.trigger('releasesNeeded')
-    })
-  })
-
-  hub.on('blogLoaded', function(posts) {
-    widget.set('posts', posts)
+    hub.trigger('newsNeeded')
+    hub.trigger('releasesNeeded')
   })
 
   hub.on('newsLoaded', function(articles) {
@@ -31,19 +25,39 @@ asWidget('media', function(hub) {
 
   hub.on('releasesLoaded', function(releases) {
     widget.set('releases', releases)
+    hub.trigger('appReady')
   })
 
   widget.showDetails = function(_, _, binding) {
     var post = binding.view.models.article
+    showDetails(post)
+  }
+
+  widget.hideDetails = function() {
+    widget.set('details', null)
+  }
+
+  function showDetails(post) {
     widget.set('details', {
       title: post.title,
       content: post.content
     })
   }
 
-  widget.hideDetails = function() {
-    widget.set('details', null)
+  function findAndShowDetails(list, id) {
+    var post = _.find(list, { slug: id })
+    if (post) {
+      showDetails(post) 
+    }
   }
+
+  hub.on('navTo', function(place, id) {
+    if (place == 'article') {
+      findAndShowDetails(widget.get('news'),id)
+    } else if (place == 'release') {
+      findAndShowDetails(widget.get('releases'),id)
+    }
+  })
 
 })
 

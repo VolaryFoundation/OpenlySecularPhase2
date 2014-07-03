@@ -3,6 +3,8 @@ var asWidget = require('widget')
 var rivets = require('rivets')
 var _ = require('lodash')
 var $ = require('jquery')
+var Backbone = require('backbone')
+Backbone.$ = $
 require('../../assets/rivets_config')
 
 // require all widgets
@@ -10,6 +12,7 @@ require('../../assets/rivets_config')
 
 asWidget('awareness', function(hub) {
   var widget = this
+  window.hub = hub
 
   widget.set('logo', '/widgets/awareness/img/logo.png')
 
@@ -27,50 +30,41 @@ asWidget('awareness', function(hub) {
   hub.on("pageSelected", function(name) {
     widget.set("page", name)
   })
+  widget.navToWhoWeAre = function() { hub.trigger('pageSelected', 'whoWeAre') }
+  widget.navToMission = function() { hub.trigger('pageSelected', 'mission') }
+  widget.navToPartners = function() { hub.trigger('pageSelected', 'partners') }
+  widget.navToFaq = function() { hub.trigger('pageSelected', 'faq') }
+  widget.navToMedia = function() { hub.trigger('pageSelected', 'media') }
 
-  widget.play = function() {
+  widget.navToVideo = function() {
     hub.trigger('play')
   }
 
-  widget.toggleStoryForm = function() {
-    widget.set('showingStoryForm', !widget.get('showingStoryForm'))
+  widget.navToStory = function() {
+    widget.set('showingStory', !widget.get('showingStory'))
   }
 
-  widget.toWhoWeAre = function() {
-    hub.trigger('pageSelected', 'whoWeAre')
-  }
-
-  widget.toMission = function() {
-    hub.trigger('pageSelected', 'mission')
-  }
-
-  widget.toPartners = function() {
-    hub.trigger('pageSelected', 'partners')
-  }
-
-  widget.toFAQ = function() {
-    hub.trigger('pageSelected', 'faq')
-  }
-
-  widget.toMedia = function() {
-    hub.trigger('pageSelected', 'media')
-  }
-
-  widget.showDonation = function() {
+  widget.navToDonation = function() {
     hub.trigger('showDonation')
   }
 
-  widget.showFaq = function() {
+  widget.navToFaq = function() {
     hub.trigger('showFaq')
+  }
+
+  widget.navToContact = function() {
+    hub.trigger('showContact')
   }
 
   hub.on('donationCompleted', function() {
     widget.set('alreadyDonated', true)
   })
 
-  widget.showContact = function() {
-    hub.trigger('showContact')
-  }
+  function cap(str) { return str.charAt(0).toUpperCase() + str.slice(1) }
+  hub.on('navTo', function(place) {
+    var fn = widget['navTo' + cap(place)]
+    if (fn) fn()
+  })
 
   function subscribeEmail(email, name) {
 
@@ -137,12 +131,65 @@ asWidget('awareness', function(hub) {
   ]
 
   widget.set('photoLists', _.times(6, function() {
-    return _.sample(photos, 10)
+    return photos
   }))
 
   hub.on('sectionInView', function(name) {
     widget.set('activeSection', name)
   })
+
+  //routing
+  var router = new (Backbone.Router.extend({}))
+
+  router.route('who-we-are', 'whoWeAre', function() {
+    hub.trigger('navTo', 'whoWeAre')
+  })
+
+  router.route('mission', 'mission', function() {
+    hub.trigger('navTo', 'mission')
+  })
+
+  router.route('partners', 'partners', function() {
+    hub.trigger('navTo', 'partners')
+  })
+
+  router.route('media', 'media', function() {
+    hub.trigger('navTo', 'media')
+  })
+
+  router.route('donation', 'donation', function() {
+    hub.trigger('navTo', 'donation')
+  })
+
+  router.route('contact', 'contact', function() {
+    hub.trigger('navTo', 'contact')
+  })
+
+  router.route('faq', 'faq', function() {
+    hub.trigger('navTo', 'faq')
+  })
+
+  router.route('story', 'story', function() {
+    hub.trigger('navTo', 'story')
+  })
+
+  router.route('partners-application', 'partnersApplication', function() {
+    hub.trigger('navTo', 'partnersApplication')
+  })
+
+  router.route('articles/:slug', 'article', function(slug) {
+    //hub.trigger('navTo', 'media')
+    hub.trigger('navTo', 'article', slug)
+  })
+
+  router.route('releases/:slug', 'release', function(slug) {
+    //hub.trigger('navTo', 'media')
+    hub.trigger('navTo', 'release', slug)
+  })
+
+  hub.on('appReady', _.after(2, function() {
+    Backbone.history.start()
+  }))
 })
 
 module.exports = {}
