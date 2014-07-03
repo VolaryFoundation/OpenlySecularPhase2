@@ -28,6 +28,7 @@ asWidget('awareness', function(hub) {
   })
 
   hub.on("pageSelected", function(name) {
+    hub.trigger('urlHash', name)
     widget.set("page", name)
   })
   widget.navToWhoWeAre = function() { hub.trigger('pageSelected', 'whoWeAre') }
@@ -41,7 +42,9 @@ asWidget('awareness', function(hub) {
   }
 
   widget.navToStory = function() {
+    hub.trigger('urlHash', 'story')
     widget.set('showingStory', !widget.get('showingStory'))
+    if (!widget.get('showingStory')) hub.trigger('urlHash', '')
   }
 
   widget.navToDonation = function() {
@@ -111,7 +114,7 @@ asWidget('awareness', function(hub) {
     widget.set('subscribeStep', next)
   }
 
-  var photos = [
+  var photos = _.shuffle([
     '/widgets/awareness/img/01.png',
     '/widgets/awareness/img/02.png',
     '/widgets/awareness/img/03.png',
@@ -135,12 +138,10 @@ asWidget('awareness', function(hub) {
     '/widgets/awareness/img/21.png',
     '/widgets/awareness/img/22.png',
     '/widgets/awareness/img/23.png'
-  ]
+  ])
 
-  var speedDating = _.shuffle(photos)
-
-  widget.set('photoLists', _.times(6, function() {
-    return speedDating.splice(0,4)
+  widget.set('photoLists', _.times(4, function(i) {
+    return photos.slice(i * 4, (i * 4) + 4)
   }))
 
   hub.on('sectionInView', function(name) {
@@ -150,50 +151,57 @@ asWidget('awareness', function(hub) {
   //routing
   var router = new (Backbone.Router.extend({}))
 
-  router.route('who-we-are', 'whoWeAre', function() {
+  router.route('', 'home', function() {
+  })
+
+  router.route('_/who-we-are', 'whoWeAre', function() {
     hub.trigger('navTo', 'whoWeAre')
   })
 
-  router.route('mission', 'mission', function() {
+  router.route('_/mission', 'mission', function() {
     hub.trigger('navTo', 'mission')
   })
 
-  router.route('partners', 'partners', function() {
+  router.route('_/partners', 'partners', function() {
     hub.trigger('navTo', 'partners')
   })
 
-  router.route('media', 'media', function() {
+  router.route('_/media', 'media', function() {
     hub.trigger('navTo', 'media')
   })
 
-  router.route('donation', 'donation', function() {
+  router.route('_/donation', 'donation', function() {
     hub.trigger('navTo', 'donation')
   })
 
-  router.route('contact', 'contact', function() {
+  router.route('_/contact', 'contact', function() {
     hub.trigger('navTo', 'contact')
   })
 
-  router.route('faq', 'faq', function() {
+  router.route('_/faq', 'faq', function() {
     hub.trigger('navTo', 'faq')
   })
 
-  router.route('story', 'story', function() {
+  router.route('_/story', 'story', function() {
     hub.trigger('navTo', 'story')
   })
 
-  router.route('partners-application', 'partnersApplication', function() {
+  router.route('_/partnersApplication', 'partnersApplication', function() {
     hub.trigger('navTo', 'partnersApplication')
   })
 
-  router.route('articles/:slug', 'article', function(slug) {
+  router.route('_/articles/:slug', 'article', function(slug) {
     //hub.trigger('navTo', 'media')
     hub.trigger('navTo', 'article', slug)
   })
 
-  router.route('releases/:slug', 'release', function(slug) {
+  router.route('_/releases/:slug', 'release', function(slug) {
     //hub.trigger('navTo', 'media')
     hub.trigger('navTo', 'release', slug)
+  })
+
+  hub.on('urlHash', function(hash) {
+    router.navigate('_/' + hash)
   })
 
   hub.on('appReady', _.after(2, function() {

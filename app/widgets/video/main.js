@@ -10,6 +10,10 @@ asWidget('video', function(hub) {
     widget.start().hide()
   })
 
+  widget.on('change:visible', function() {
+    if (!widget.get('visible')) hub.trigger('urlHash', '')
+  })
+
   hub.on('play', function() {
     widget.show()
   })

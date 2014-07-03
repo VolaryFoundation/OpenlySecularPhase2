@@ -13,6 +13,11 @@ asWidget('contact', function(hub) {
 
   hub.on('showContact', function() {
     widget.show()
+    hub.trigger('urlHash', 'contact')
+  })
+
+  widget.on('change:visible', function() {
+    if (!widget.get('visible')) hub.trigger('urlHash', '')
   })
 
   widget.contact = new Backbone.Model

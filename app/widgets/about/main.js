@@ -21,7 +21,7 @@ asWidget('about', function(hub) {
 
   hub.on('aboutLoaded', function(about) {
     //hack
-    about.about = about.about.replace(/Please donate/, 'Please <a href="#/donation">donate</a>')
+    about.about = about.about.replace(/Please donate/, 'Please <a href="#_/donation">donate</a>')
     widget.set('about', about)
   })
 
@@ -39,10 +39,13 @@ asWidget('about', function(hub) {
   widget.toggleShowingPartnersApplication = function() {
     var current = widget.get('showingPartnersApplication')
     widget.set('showingPartnersApplication', !current)
+    if (!current) hub.trigger('urlHash', '')
+    else hub.trigger('urlHash', 'partnersApplication')
   }
 
   hub.on('navTo', function(place) {
     if (place == 'partnersApplication') {
+      hub.trigger('urlHash', place)
       widget.toggleShowingPartnersApplication()
     }
   })

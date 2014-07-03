@@ -34,10 +34,16 @@ asWidget('media', function(hub) {
   }
 
   widget.hideDetails = function() {
+    hub.trigger('urlHash', '')
     widget.set('details', null)
   }
 
+  function isRelease(post) {
+    return _.any(post.terms.category, function(cat) { return cat.slug == 'press-release' })
+  }
+
   function showDetails(post) {
+    hub.trigger('urlHash', (isRelease(post) ? 'releases' : 'articles') + '/' + post.slug)
     widget.set('details', {
       title: post.title,
       content: post.content

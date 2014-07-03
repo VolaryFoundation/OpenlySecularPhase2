@@ -34,6 +34,10 @@ asWidget('donation', function(hub) {
     return new Backbone.Model({ amount: num, active: false })
   }))
 
+  widget.on('change:visible', function() {
+    if (!widget.get('visible')) hub.trigger('urlHash', '')
+  })
+
   widget.on('change:customAmount', function() {
     widget.get('donation').set('amount', widget.get('customAmount'))
   })
@@ -47,6 +51,7 @@ asWidget('donation', function(hub) {
   })
 
   hub.on('showDonation', function() {
+    hub.trigger('urlHash', 'donation')
     widget.show()
   })
 

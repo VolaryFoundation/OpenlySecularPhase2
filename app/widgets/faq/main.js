@@ -19,6 +19,11 @@ asWidget('faq', function(hub) {
 
   hub.on('showFaq', function() {
     widget.show()
+    hub.trigger('urlHash', 'faq')
+  })
+
+  widget.on('change:visible', function() {
+    hub.trigger('urlHash', '')
   })
 
   hub.on('faqLoaded', function(faqs) {
