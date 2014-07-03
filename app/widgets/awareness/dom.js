@@ -5,8 +5,10 @@ var hub = require('widget').hub
 var _ = require('lodash')
 
 // TODO loads
+var currentModals = []
 rivets.binders.modal = function(el, val) {
   if (val) {
+    currentModals.push(el)
     el.style.display = 'block'
     $(document.body).addClass('showing-dialog')
     var bodyRect = document.body.getBoundingClientRect()
@@ -19,8 +21,11 @@ rivets.binders.modal = function(el, val) {
     $(el).css(styles)
       .find('.inner').css(styles)
   } else {
-    $(document.body).removeClass('showing-dialog')
     el.style.display = 'none'
+    currentModals.splice(currentModals.indexOf(el), 1)
+    if (!currentModals.length) {
+      $(document.body).removeClass('showing-dialog')
+    }
   }
 }
 

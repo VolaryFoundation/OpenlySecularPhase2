@@ -20,6 +20,8 @@ asWidget('about', function(hub) {
   })
 
   hub.on('aboutLoaded', function(about) {
+    //hack
+    about.about = about.about.replace(/Please donate/, 'Please <a href="#/donation">donate</a>')
     widget.set('about', about)
   })
 

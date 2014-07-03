@@ -24,4 +24,8 @@ asWidget('faq', function(hub) {
   hub.on('faqLoaded', function(faqs) {
     widget.set('faqs', faqs.map(function(faq) { return new FAQ(faq) }))
   })
+
+  hub.on('navTo', function(place) {
+    if (place !== 'faq') widget.hide()
+  })
 })
