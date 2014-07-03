@@ -136,6 +136,7 @@ button, .button {
   position: absolute;
   top: -6px;
   left: -6px;
+  z-index: 9001;
 
   &:hover {
     cursor: pointer;

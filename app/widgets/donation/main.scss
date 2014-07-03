@@ -4,9 +4,8 @@ $step-size: 35;
 .donation-widget {
   padding: 0;
   .faq-link {
-    position: absolute;
-    top: 120px;
-    right: 20px;
+    float: right;
+    padding-right: 20px;
   }
   fieldset {
     padding: 0;
@@ -16,10 +15,9 @@ $step-size: 35;
     margin-top: 20px;
   }
   .lock {
-    position: absolute;
-    top: 0;
-    right: 100px;
+    float: right;
     padding: 5px 15px;
+    margin-right: 20px;
     color: rgba(0,0,0,0.5);
     background: rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.3);
@@ -34,10 +32,11 @@ $step-size: 35;
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     .inner {
+      clear: both;
       width: 400px;
       margin: auto;
       overflow: auto;
-      padding: 40px;
+      padding: 10px 40px 30px;
       div {
         position: relative;
         border: 2px solid rgba(0,0,0,0.3);
@@ -106,6 +105,7 @@ $step-size: 35;
     }
   }
   .amount-section {
+    clear: both;
     label {
       font-size: 16px;
       text-align: center;
