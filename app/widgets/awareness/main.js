@@ -128,10 +128,19 @@ asWidget('awareness', function(hub) {
     '/widgets/awareness/img/14.png',
     '/widgets/awareness/img/15.png',
     '/widgets/awareness/img/16.png',
+    '/widgets/awareness/img/17.png',
+    '/widgets/awareness/img/18.png',
+    '/widgets/awareness/img/19.png',
+    '/widgets/awareness/img/20.png',
+    '/widgets/awareness/img/21.png',
+    '/widgets/awareness/img/22.png',
+    '/widgets/awareness/img/23.png'
   ]
 
+  var speedDating = _.shuffle(photos)
+
   widget.set('photoLists', _.times(6, function() {
-    return photos
+    return speedDating.splice(0,4)
   }))
 
   hub.on('sectionInView', function(name) {
