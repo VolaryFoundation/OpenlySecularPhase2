@@ -4,7 +4,6 @@
       <div class="divider">
         <strong>Our Mission</strong>
       </div>
-      <p class="section-description">The mission of Openly Secular is to eliminate discrimination and increase acceptance by getting secular people - including atheists, freethinkers, agnostics, humanists and nonreligious people - to be open about their beliefs.</p>
         <p class="column small-10 small-offset-1" rv-html="widget:about.mission"></p>
     </div>
     <div class="row vision">
@@ -34,11 +33,24 @@
     </div>
   </section>
   <section id="partners" class="partners">
-    <div class="divider">
-      <strong>Partners &amp; Allies</strong>
+    <div class="row">
+      <div class="column small-12  medium-12 large-6 large-offset-3">
+        <div class="divider">
+          <strong>Partners &amp; Allies</strong>
+        </div>
+        <p class="section-description">These groups are openly committed to supporting equality and fighting discrimination.</p>
+      </div>
+      <div class="column small-12 medium-12 large-3">
+        <div class="action">
+          <h4>Become a Partner or ALly!</h4>
+          <button class="apply small" rv-on-click="widget.toggleShowingPartnersApplication">Apply</button>
+        </div>
+      </div>
     </div>
     <div class="partners-list">
-      <p class="section-description">These groups are openly committed to supporting equality and fighting discrimination.</p>
+      <div class="row text-center">
+        <h3>Acceleration Partners</h3>
+      </div>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:accelerationPartners">
           <div class="partner">
@@ -69,9 +81,6 @@
           </div>
         </li>
       </ul>
-      <div class="row">
-        <button class="apply small" rv-on-click="widget.toggleShowingPartnersApplication">Apply</button>
-      </div>
     </div>
   </section>
 </div>
