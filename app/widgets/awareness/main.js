@@ -9,7 +9,6 @@ require('../../assets/rivets_config')
 
 // require all widgets
 
-
 asWidget('awareness', function(hub) {
   var widget = this
   window.hub = hub
@@ -146,6 +145,12 @@ asWidget('awareness', function(hub) {
 
   hub.on('sectionInView', function(name) {
     widget.set('activeSection', name)
+  })
+
+  // this should be dynamic but it isnt in groupData yet
+  hub.on('aboutLoaded', function(groupData) {
+    var title = 'Openly Secular'
+    document.title = title
   })
 
   //routing
