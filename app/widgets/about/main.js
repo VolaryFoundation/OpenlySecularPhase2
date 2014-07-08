@@ -39,7 +39,7 @@ asWidget('about', function(hub) {
   widget.toggleShowingPartnersApplication = function() {
     var current = widget.get('showingPartnersApplication')
     widget.set('showingPartnersApplication', !current)
-    if (!current) hub.trigger('urlHash', '')
+    if (current) hub.trigger('urlHash', '')
     else hub.trigger('urlHash', 'partnersApplication')
   }
 
