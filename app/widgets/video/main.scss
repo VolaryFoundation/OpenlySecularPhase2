@@ -1,6 +1,11 @@
+
+
 .video-widget {
   background: rgba(0,0,0,0.8);
-
+  .inner {
+    overflow-y: visible;
+    text-align: center;
+  }
   .close {
     i {
       color: $gray;
@@ -16,8 +21,7 @@
     }
   }
   iframe {
-    width: 100%;
-    height: 100%;
+    margin: 0 auto;
     min-height: 400px;
   }
 }
