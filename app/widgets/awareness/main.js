@@ -3,6 +3,7 @@ var asWidget = require('widget')
 var rivets = require('rivets')
 var _ = require('lodash')
 var $ = require('jquery')
+window.jQuery = $
 var Backbone = require('backbone')
 Backbone.$ = $
 require('../../assets/rivets_config')
@@ -12,6 +13,10 @@ require('../../assets/rivets_config')
 asWidget('awareness', function(hub) {
   var widget = this
   window.hub = hub
+
+  $.getScript('https://js.stripe.com/v2/', function() {
+    Stripe.setPublishableKey('pk_test_4MOVrG9m0CJA4y32dOYzamuG')
+  });
 
   widget.set('logo', '/widgets/awareness/img/logo.png')
 
@@ -80,7 +85,7 @@ asWidget('awareness', function(hub) {
       async: false,
       url: 'http://openlysecular.us8.list-manage1.com/subscribe/post-json',
       type: 'GET',
-      dataType    : 'jsonp',
+      dataType: 'jsonp',
       jsonp: 'c',
       contentType: "application/json; charset=utf-8",
       data: {

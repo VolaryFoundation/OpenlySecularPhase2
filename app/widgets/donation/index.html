@@ -91,6 +91,11 @@
       </div>
 
       <div rv-if="widget:step | eql 2">
+        <div class="error-field" rv-if="widget:mainError">
+          <ul class="error">
+            <li>{ mainError }</li>
+          </ul>
+        </div>
         <div class="error-field" rv-if="widget:errors">
           <ul class="error">
             <li rv-each-error="widget:errors">{ error }</li>
