@@ -31,7 +31,7 @@
 
     <form class="row">
       <a href="#" rv-on-click="widget.showFaq" class="faq-link">FAQ</a>
-      <div rv-if="widget:step | eql 1">
+      <div rv-show="widget:step | eql 1">
         <div class="error-field" rv-if="widget:errors">
           <ul class="error">
             <li rv-each-error="widget:errors">{ error }</li>
@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <div rv-if="widget:step | eql 2">
+      <div rv-show="widget:step | eql 2">
         <div class="error-field" rv-if="widget:mainError">
           <ul class="error">
             <li>{ mainError }</li>
@@ -121,8 +121,8 @@
         <div class="column small-12 large-6 payment-details">
           <div class="credit-card">
           <div class="row collapse">
-            <div class="column small-8 stripe">recurring weekly<span rv-if="widget:recurring"> recurring { widget:recurringFrequency }</span></div>
-            <strong class="column small-4 total">{ widget:amount }$20</strong>
+            <div class="column small-8 stripe"><span rv-if="widget:donation:recurring"> recurring { widget:donation:recurringFrequency }</span></div>
+            <strong class="column small-4 total">${ widget:donation:amount }</strong>
           </div>
           <div class="card-details">
             <label>Card Number:</label>
