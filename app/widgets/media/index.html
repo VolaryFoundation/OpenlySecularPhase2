@@ -4,16 +4,27 @@
   </div>
   <div class="row">
     <p class="section-description">This year, we launch a PR campaign and major social media campaign to spread the message. Mercury Public Affairs has been hired to conduct focus groups and surveys, as well as to develop messaging and branding.  In addition, we are creating tools and materials to help secular people become open with fewer social consequences.</p>
-    <div class="columns medium-7 large-8">
+    <div class="columns medium-6 large-7">
       <div class="news">
         <h3>In the News</h3>
         <ul>
           <li rv-each-article="widget:news">
-            <h5 class="title"><a href="#" rv-on-click="widget.showDetails">{ article.title }</a></h5>
-            <p class="meta">{ article.modified | postDate }</p>
+            <h5 class="title"><a rv-href="article.meta.links.custom.ct_Source_URL_text_b614" target="_blank">{ article.title }</a></h5>
+            <p class="meta"><strong>{ article.meta.links.custom.ct_Source_Nam_text_aacd } - </strong> { article.modified | postDate }</p>
           </li>
         </ul>
       </div>
+
+    </div>
+    <div class="columns medium-6 large-5">
+      <aside class="press-info">
+        <h3>Press Contact</h3>
+
+        <p>Carolyn E. Becker
+        <br><a href="mailto:press@openlysecular.org">press@openlysecular.org</a>
+        <br><a href="tel:916.444.1380">916.444.1380</a></p>
+        <p><a href="widgets/awareness/videos/Openly_Secular_Media_Kit.zip" target="_blank" class="button tiny"><i class="fa fa-fw fa-download fa-lg"></i> Press Kit</a></p>
+      </aside>
       <div class="press-releases">
         <h3>Press Releases</h3>
         <ul>
@@ -23,17 +34,6 @@
           </li>
         </ul>
       </div>
-    </div>
-    <div class="columns medium-5 large-4">
-      <aside class="press-info">
-        <h3>Press Contact</h3>
-        <p>Carolyn E. Becker
-        <br><a href="mailto:press@openlysecular.org">press@openlysecular.org</a>
-        <br><a href="tel:916.444.1380">916.444.1380</a></p>
-        <h3>Press Kit</h3>
-        <p>Assets to help guide media coverage.</p>
-        <a href="widgets/awareness/videos/Openly_Secular_Media_Kit.zip" target="_blank" class="button small">Download</a>
-      </aside>
     </div>
   </div>
 </div>

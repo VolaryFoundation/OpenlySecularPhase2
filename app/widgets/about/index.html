@@ -17,10 +17,12 @@
           <strong>Who We Are</strong>
         </div>
         <p class="section-description">Openly Secular is the joint project of four of the best-known and respected secular organizations:</p>
-        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+        <ul class="small-block-grid-1 medium-block-grid-4 large-block-grid-4">
           <li rv-each-partner="widget:accelerationPartners">
             <div class="partner">
-              <span class="partners-title">{ partner.title }</span>
+              <a rv-href="partner.meta.links.custom.url" target="_blank">
+                <span class="partners-title">{ partner.title }</span>
+              </a>
             </div>
           </li>
         </ul>
@@ -54,8 +56,10 @@
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:accelerationPartners">
           <div class="partner">
-            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-            <span class="partners-title">{ partner.title }</span>
+            <a rv-href="partner.meta.links.custom.url" target="_blank">
+              <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+              <span class="partners-title">{ partner.title }</span>
+            </a>
           </div>
         </li>
       </ul>
@@ -65,8 +69,10 @@
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:movementPartners">
           <div class="partner">
-            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-            <span class="partners-title">{ partner.title }</span>
+            <a rv-href="partner.meta.links.custom.url" target="_blank">
+              <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+              <span class="partners-title">{ partner.title }</span>
+            </a>
           </div>
         </li>
       </ul>
@@ -76,8 +82,10 @@
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         <li rv-each-partner="widget:organizationalAllies">
           <div class="partner">
-            <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
-            <span class="partners-title">{ partner.title }</span>
+            <a rv-href="partner.meta.links.custom.url" target="_blank">
+              <img rv-src="partner | featuredImage | default http://placehold.it/300x200" />
+              <span class="partners-title">{ partner.title }</span>
+            </a>
           </div>
         </li>
       </ul>
