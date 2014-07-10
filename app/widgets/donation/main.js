@@ -113,7 +113,7 @@ asWidget('donation', function(hub) {
             contact_id: user.id
           })
         })
-        .then(function(donation) {
+        .then(function() {
           if (donation.get('recurring')) {
 
           } else return new rsvp.Promise(function(res) { res() })
@@ -154,6 +154,7 @@ asWidget('donation', function(hub) {
           res(data)
         },
         error: function() {
+          debugger
           rej()
         }
       })
@@ -172,7 +173,10 @@ asWidget('donation', function(hub) {
         exp_year: data.donation.get('cardExpiration').year
       }, function(status, response) {
 
-        if (response.error) return rej()
+        if (response.error) {
+          debugger
+          return rej()
+        }
 
         var query = $.param(civiQuery({
           contact_id: data.contact_id,
@@ -212,6 +216,7 @@ asWidget('donation', function(hub) {
                 res(data)
               },
               error: function() {
+                debugger
                 rej()
               }
             })
@@ -231,6 +236,7 @@ asWidget('donation', function(hub) {
                 res(data)
               },
               error: function() {
+                debugger
                 rej()
               }
             })
