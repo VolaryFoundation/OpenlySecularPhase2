@@ -25,7 +25,7 @@ asWidget('donation', function(hub) {
     amount: '',
     reason: '',
     recurring: false,
-    recurringFrequency: 'weekly',
+    recurringFrequency: 'week',
     firstName: '',
     lastName: '',
     cardNumber: '',
