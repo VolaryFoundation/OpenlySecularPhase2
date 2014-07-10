@@ -186,7 +186,9 @@ asWidget('donation', function(hub) {
       contentType: "application/json; charset=utf-8",
       dataType: 'json'
     }).then(function(user) {
-      return createAddress(donation, user)
+      return createAddress(donation, user).then(function() {
+        return user
+      })
     })
   }
 
