@@ -32,6 +32,8 @@ asWidget('donation', function(hub) {
     cardExpiration: { month: '', year: '' }
   }))
 
+  widget.set('confirmText', 'Confirm')
+
   widget.set('step', 1)
   widget.set('presetAmounts', [ 10, 25, 50, 100, 250, 500 ].map(function(num) {
     return new Backbone.Model({ amount: num, active: false })
@@ -73,12 +75,6 @@ asWidget('donation', function(hub) {
     }
   }
 
-  widget.basicStep = function() {
-  }
-
-  widget.paymentStep = function() {
-  }
-
   function validateBasics(errors, donation, widget) {
     if (!donation.get('amount') && !widget.get('customAmount')) {
       errors.push('Please select the amount you would like to donate.')
@@ -104,7 +100,13 @@ asWidget('donation', function(hub) {
     return errors
   }
 
+  widget.on('change:loading', function() {
+    widget.set('confirmText', widget.get('loading') ? 'Loading...' : 'Confirm')
+  })
+
   widget.next = function() {
+
+    if (widget.get('loading')) return
 
     var step = widget.get('step')
     var donation = widget.get('donation')
@@ -123,10 +125,13 @@ asWidget('donation', function(hub) {
 
     function makePayment() {
 
+      widget.set('loading', true)
+
       createToken(donation)
         .then(function(token) {
           return createCiviUser(donation).then(function(civiUser) {
             return createStripeUser(donation, token, civiUser).then(function(stripeUser) {
+              if (donation.get('recurring')) return true
               return charge(donation, stripeUser)
             }).then(function(stripeCharge) {
               return recordChargeInCivi(donation, civiUser, token)
@@ -135,6 +140,7 @@ asWidget('donation', function(hub) {
         }).then(function() {
           console.log('submitting payment!', widget.get('donation').toJSON())
           hub.trigger('donationCompleted')
+          widget.set('loading', false)
           widget.set('step', widget.get('step') + 1)
         })
     }
