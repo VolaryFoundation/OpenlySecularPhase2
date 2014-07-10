@@ -27,9 +27,19 @@ body {
 }
 
 dialog {
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 2px solid #bbb;
+  z-index: 4;
   .inner {
     overflow-y: auto;
+  }
+  .divider {
+    padding: 0 60px;
+    strong {
+      font-size: 22px;
+      &:after {
+        display: none;
+      }
+    }
   }
 }
 
@@ -42,6 +52,7 @@ dialog {
   opacity: .5;
   background: $black;
   display: none;
+  z-index: 3;
 }
 
 #faq {
@@ -118,7 +129,7 @@ button, .button {
   }
 }
 .modal-header {
-  padding: 40px 0 0;
+  padding: 20px 0 0;
   background: $blue-light;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   .divider strong {
@@ -131,7 +142,7 @@ button, .button {
 .close {
   position: absolute;
   top: -6px;
-  left: -6px;
+  right: -6px;
   z-index: 9001;
 
   &:hover {
