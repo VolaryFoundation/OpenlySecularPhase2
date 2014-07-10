@@ -113,6 +113,7 @@ asWidget('donation', function(hub) {
 
     var errors = []
     widget.set('errors', null)
+    widget.set('cardError', null)
     if (step == 1) {
       validateBasics(errors, donation, widget)
       if (errors.length) return widget.set('errors', errors)
@@ -142,6 +143,10 @@ asWidget('donation', function(hub) {
           hub.trigger('donationCompleted')
           widget.set('loading', false)
           widget.set('step', widget.get('step') + 1)
+        })
+        .catch(function() {
+          widget.set('cardError', 'Sorry, we couldn\'t process your transaction. Please double check your card information and try again.')
+          widget.set('loading', false)
         })
     }
   }

@@ -92,6 +92,9 @@
       </div>
 
       <div rv-show="widget:step | eql 2">
+        <div class="error-field" rv-show="widget:cardError">
+          <p class="error">{ widget:cardError }</p>
+        </div>
         <div class="error-field" rv-show="widget:errors">
           <ul class="error">
             <li rv-each-error="widget:errors">{ error }</li>

@@ -15,7 +15,7 @@ asWidget('awareness', function(hub) {
   window.hub = hub
 
   $.getScript('https://js.stripe.com/v2/', function() {
-    Stripe.setPublishableKey('pk_test_4MOVrG9m0CJA4y32dOYzamuG')
+    Stripe.setPublishableKey('pk_live_4MOVLw7lDUHEFQ7rOfbUHvZy')
   });
 
   widget.set('logo', '/widgets/awareness/img/logo.png')
