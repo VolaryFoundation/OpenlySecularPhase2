@@ -76,6 +76,7 @@ asWidget('donation', function(hub) {
     var step = widget.get('step')
 
     var donation = widget.get('donation')
+
     widget.set('errors', [])
     widget.set('mainError', '')
     var errors = []
@@ -102,158 +103,153 @@ asWidget('donation', function(hub) {
     }
 
     if (errors.length) return widget.set('errors', errors)
-    else widget.set('errors', null)
+    else {
+      widget.set('errors', null)
+      widget.set('mainError', null)
+      if (widget.get('step') < 2) widget.set('step', widget.get('step') + 1)
+    }
 
     if (step == 2) {
 
-      ensureUser(donation)
-        .then(function(user) {
-          return donate({
-            donation: donation,
-            contact_id: user.id
+      createToken(donation)
+        .then(function(token) {
+          return createCiviUser(donation).then(function(civiUser) {
+            return createStripeUser(donation, token, civiUser).then(function(stripeUser) {
+              return charge(donation, stripeUser)
+            }).then(function(stripeCharge) {
+              return recordChargeInCivi(donation, civiUser, token)
+            })
           })
-        })
-        .then(function() {
-          if (donation.get('recurring')) {
-
-          } else return new rsvp.Promise(function(res) { res() })
-        })
-        .then(function() {
+        }).then(function() {
           console.log('submitting payment!', widget.get('donation').toJSON())
           hub.trigger('donationCompleted')
           widget.set('step', widget.get('step') + 1)
         })
-        .catch(function(e) {
-          widget.set('mainError', 'Sorry, something went wrong. Please check your information and then try again!')
-        })
-    }
-
-    if (widget.get('step') < 2) {
-      widget.set('step', widget.get('step') + 1)
     }
   }
 
-  function ensureUser(donation) {
-    return new rsvp.Promise(function(res, rej) {
-
-      var query = $.param(civiQuery({
-        first_name: donation.get('firstName'),
-        last_name: donation.get('lastName'),
+  function createStripeUser(donation, token, civiUser) {
+    return ajax({
+      type: 'POST',
+      url: 'http://tinytower.info/wp-json/stripe/customer',
+      data: JSON.stringify({
+        civicrm_id: civiUser.id,
+        token: token.id,
         email: donation.get('email'),
-        entity: 'Contact',
-        action: 'create',
-        contact_type: 'Individual',
-      }))
+        frequency: donation.get('recurring') ? donation.get('recurringFrequency') : null,
+        amount: donation.get('recurring') ? (parseInt(donation.get('amount')) * 100) : null
+      })
+    }).then(function(stripeUser) {
+      return stripeUser
+    })
+  }
 
-      $.ajax({
-        type: 'POST',
-        url: 'http://tinytower.info/wp-content/plugins/civicrm/civicrm/extern/rest.php?' + query,
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        success: function(data) {
-          res(data)
-        },
-        error: function() {
-          debugger
-          rej()
-        }
+  function createCiviUser(donation) {
+
+    var url = civiUrl({
+      first_name: donation.get('firstName'),
+      last_name: donation.get('lastName'),
+      email: donation.get('email'),
+      entity: 'Contact',
+      action: 'create',
+      contact_type: 'Individual'
+    })
+
+    return ajax({
+      type: 'POST',
+      url: url,
+      contentType: "application/json; charset=utf-8",
+      dataType: 'json'
+    }).then(function(user) {
+      return createAddress(donation, user)
+    })
+  }
+
+  function createToken(donation) {
+    return new rsvp.Promise(function(res, rej) {
+      Stripe.card.createToken({
+        name: donation.get('firstName') + ' ' + donation.get('lastName'),
+        address_zip: donation.get('zip'),
+        number: donation.get('cardNumber'),
+        cvc: donation.get('cvc') || '012',
+        exp_month: donation.get('cardExpiration').month,
+        exp_year: donation.get('cardExpiration').year
+      }, function(status, response) {
+        response.error ? rej() : res(response)
       })
     })
   }
 
-  function donate(data) {
-    return new rsvp.Promise(function(res, rej) {
+  function createAddress(donation, user) {
 
-      Stripe.card.createToken({
-        name: data.donation.get('firstName') + ' ' + data.donation.get('lastName'),
-        address_zip: data.donation.get('zip'),
-        number: data.donation.get('cardNumber'),
-        cvc: data.donation.get('cvc') || '012',
-        exp_month: data.donation.get('cardExpiration').month,
-        exp_year: data.donation.get('cardExpiration').year
-      }, function(status, response) {
+    var url = civiUrl({
+      contact_id: user.id,
+      entity: 'Address',
+      action: 'create',
+      street_address: donation.get('address1'),
+      street_unit: donation.get('address2'),
+      city: donation.get('city'),
+      state: donation.get('state'),
+      postal_code_suffix: donation.get('zip'),
+      location_type_id: 'Home'
+    })
 
-        if (response.error) {
-          debugger
-          return rej()
-        }
-
-        var query = $.param(civiQuery({
-          contact_id: data.contact_id,
-          entity: 'Address',
-          action: 'create',
-          street_address: data.donation.get('address1'),
-          street_unit: data.donation.get('address2'),
-          city: data.donation.get('city'),
-          state: data.donation.get('state'),
-          postal_code_suffix: data.donation.get('zip'),
-          location_type_id: 'Home'
-        }))
-
-        $.ajax({
-          type: 'POST',
-          contentType: "application/json; charset=utf-8",
-          dataType: 'json',
-          url: 'http://tinytower.info/wp-content/plugins/civicrm/civicrm/extern/rest.php?' + query,
-          success: function(address) {
-            var query = $.param(civiQuery({
-              stripe_token: response.id,
-              contact_id: data.contact_id,
-              total_amount: data.donation.get('amount'),
-              entity: 'Contribution',
-              action: 'create',
-              contact_type: 'Individual',
-              contribution_page_id: 4,
-              financial_type_id: 'Donation'
-            }))
-
-            $.ajax({
-              type: 'POST',
-              contentType: "application/json; charset=utf-8",
-              dataType: 'json',
-              url: 'http://tinytower.info/wp-content/plugins/civicrm/civicrm/extern/rest.php?' + query,
-              success: function(data) {
-                res(data)
-              },
-              error: function() {
-                debugger
-                rej()
-              }
-            })
-
-            $.ajax({
-              type: 'POST',
-              contentType: "application/json; charset=utf-8",
-              dataType: 'json',
-              url: 'http://tinytower.info/wp-json/stripe',
-              data: JSON.stringify({
-                data: {
-                  token: response.id,
-                  amount: parseInt(data.donation.get('amount')) * 100
-                }
-              }),
-              success: function(data) {
-                res(data)
-              },
-              error: function() {
-                debugger
-                rej()
-              }
-            })
-          }
-        })
-      });
+    return ajax({
+      type: 'POST',
+      url: url
     })
   }
 
-  function civiQuery(others) {
-    return _.extend(others, {
+  function recordChargeInCivi(donation, civiUser, token) {
+
+    var url = civiUrl({
+      stripe_token: token.id,
+      contact_id: civiUser.id,
+      total_amount: donation.get('amount'),
+      entity: 'Contribution',
+      action: 'create',
+      contact_type: 'Individual',
+      contribution_page_id: 4,
+      financial_type_id: 'Donation'
+    })
+
+    return ajax({
+      type: 'POST',
+      url: url
+    })
+  }
+
+  function charge(donation, stripeUser) {
+    return ajax({
+      type: 'POST',
+      url: 'http://tinytower.info/wp-json/stripe/charge',
+      data: JSON.stringify({
+        customer_id: stripeUser.id,
+        amount: parseInt(donation.get('amount')) * 100
+      })
+    })
+  }
+
+  function ajax(data) {
+    return new rsvp.Promise(function(res, rej) {
+      $.ajax(_.extend(data, {
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: res,
+        error: rej
+      }))
+    })
+  }
+
+  function civiUrl(data) {
+    var query = $.param(_.extend(data, {
       debug: 1,
       sequential: 1,
       json: 1,
       key: '102d680b1f9463becb3fd73e18386312',
       api_key: 'UAMA7e4LpBXxeEwTTK9FzqL2'
-    })
+    }))
+    return 'http://tinytower.info/wp-content/plugins/civicrm/civicrm/extern/rest.php?' + query
   }
 
   window.donation = widget
