@@ -65,6 +65,7 @@ asWidget('donation', function(hub) {
 
   widget.back = function() {
     var step = widget.get('step')
+    widget.set('errors', null)
     if (step == 1) {
       widget.hide()
     } else {
@@ -72,44 +73,55 @@ asWidget('donation', function(hub) {
     }
   }
 
-  widget.next = function() {
-    var step = widget.get('step')
+  widget.basicStep = function() {
+  }
 
+  widget.paymentStep = function() {
+  }
+
+  function validateBasics(errors, donation, widget) {
+    if (!donation.get('amount') && !widget.get('customAmount')) {
+      errors.push('Please select the amount you would like to donate.')
+    } else if (widget.get('customAmount') && parseInt(widget.get('customAmount')) < 0) {
+      errors.push('Please only include positive numbers for custom amount.')
+    } else if (widget.get('customAmount') && !/^\d+$/.test(widget.get('customAmount'))) {
+      errors.push('Please only use numbers for custom amount.')
+    }
+    return errors
+  }
+
+  function validatePayment(errors, donation, widget) {
+    if (!donation.get('firstName')) errors.push('Please enter your first name.')
+    if (!donation.get('lastName')) errors.push('Please enter your last name.')
+    if (!donation.get('address1')) errors.push('Please enter your street address.')
+    if (!donation.get('city')) errors.push('Please enter your city.')
+    if (!donation.get('state')) errors.push('Please enter your state.')
+    if (!donation.get('zip')) errors.push('Please enter your zip code.')
+    if (!donation.get('email')) errors.push('Please enter your email.')
+    if (!donation.get('cardNumber')) errors.push('Please enter your card number.')
+    if (!donation.get('cardExpiration').month) errors.push('Please enter the month of your card expiration.')
+    if (!donation.get('cardExpiration').year) errors.push('Please enter the year of your card expiration.')
+    return errors
+  }
+
+  widget.next = function() {
+
+    var step = widget.get('step')
     var donation = widget.get('donation')
 
-    widget.set('errors', [])
-    widget.set('mainError', '')
     var errors = []
-
+    widget.set('errors', null)
     if (step == 1) {
-      if (!donation.get('amount') && !widget.get('customAmount')) {
-        errors.push('Please select the amount you would like to donate.')
-      } else if (widget.get('customAmount') && parseInt(widget.get('customAmount')) < 0) {
-        errors.push('Please only include positive numbers for custom amount.')
-      } else if (widget.get('customAmount') && !/^\d+$/.test(widget.get('customAmount'))) {
-        errors.push('Please only use numbers for custom amount.')
-      }
+      validateBasics(errors, donation, widget)
+      if (errors.length) return widget.set('errors', errors)
+      widget.set('step', 2)
     } else if (step == 2) {
-      if (!donation.get('firstName')) errors.push('Please enter your first name.')
-      if (!donation.get('lastName')) errors.push('Please enter your last name.')
-      if (!donation.get('address1')) errors.push('Please enter your street address.')
-      if (!donation.get('city')) errors.push('Please enter your city.')
-      if (!donation.get('state')) errors.push('Please enter your state.')
-      if (!donation.get('zip')) errors.push('Please enter your zip code.')
-      if (!donation.get('email')) errors.push('Please enter your email.')
-      if (!donation.get('cardNumber')) errors.push('Please enter your card number.')
-      if (!donation.get('cardExpiration').month) errors.push('Please enter the month of your card expiration.')
-      if (!donation.get('cardExpiration').year) errors.push('Please enter the year of your card expiration.')
+      validatePayment(errors, donation, widget)
+      if (errors.length) return widget.set('errors', errors)
+      makePayment()
     }
 
-    if (errors.length) return widget.set('errors', errors)
-    else {
-      widget.set('errors', null)
-      widget.set('mainError', null)
-      if (widget.get('step') < 2) widget.set('step', widget.get('step') + 1)
-    }
-
-    if (step == 2) {
+    function makePayment() {
 
       createToken(donation)
         .then(function(token) {

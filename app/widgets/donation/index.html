@@ -32,7 +32,7 @@
     <form class="row">
       <a href="#" rv-on-click="widget.showFaq" class="faq-link">FAQ</a>
       <div rv-show="widget:step | eql 1">
-        <div class="error-field" rv-if="widget:errors">
+        <div class="error-field" rv-show="widget:errors">
           <ul class="error">
             <li rv-each-error="widget:errors">{ error }</li>
           </ul>
@@ -91,12 +91,7 @@
       </div>
 
       <div rv-show="widget:step | eql 2">
-        <div class="error-field" rv-if="widget:mainError">
-          <ul class="error">
-            <li>{ mainError }</li>
-          </ul>
-        </div>
-        <div class="error-field" rv-if="widget:errors">
+        <div class="error-field" rv-show="widget:errors">
           <ul class="error">
             <li rv-each-error="widget:errors">{ error }</li>
           </ul>
