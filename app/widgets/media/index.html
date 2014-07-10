@@ -23,14 +23,14 @@
         <p>Carolyn E. Becker
         <br><a href="mailto:press@openlysecular.org">press@openlysecular.org</a>
         <br><a href="tel:916.444.1380">916.444.1380</a></p>
-        <p><a href="widgets/awareness/videos/Openly_Secular_Media_Kit.zip" target="_blank" class="button tiny"><i class="fa fa-fw fa-download fa-lg"></i> Press Kit</a></p>
+        <p><a href="widgets/awareness/Openly_Secular_Media_Kit.zip" target="_blank" class="button tiny"><i class="fa fa-fw fa-download fa-lg"></i> Press Kit</a></p>
       </aside>
       <div class="press-releases">
         <h3>Press Releases</h3>
         <ul>
           <li rv-each-article="widget:releases">
             <h5 class="title"><a href="#" rv-on-click="widget.showDetails">{ article.title }</a></h5>
-            <p class="meta">{ article.modified | postDate }</p>
+            <p class="meta">{ article.meta.links.custom.ct_Published__text_761a }</p>
           </li>
         </ul>
       </div>
