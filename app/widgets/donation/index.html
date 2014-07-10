@@ -124,8 +124,17 @@
             <strong class="column small-4 total">${ widget:donation:amount }</strong>
           </div>
           <div class="card-details">
-            <label>Card Number:</label>
-            <input type="text" rv-value="widget:donation:cardNumber" maxlength="16" placeholder="xxxx xxxx xxxx xxxx" />
+            <div class="row collapse">
+            <div class="column small-8">
+              <label>Card Number:</label>
+              <input type="text" rv-value="widget:donation:cardNumber" maxlength="16" placeholder="xxxx xxxx xxxx xxxx" />
+            </div>
+            <div class="column small-4">
+              <label>CVC:</label>
+              <input type="text" rv-value="widget:donation:cvc" maxlength="4" placeholder="xxxx" />
+            </div>
+          </div>
+            
             <label>Card Expiration:</label>
             <select rv-value="widget:donation:cardExpiration.month" class="column small-7">
               <option value="" selected>Month</option>

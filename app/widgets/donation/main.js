@@ -29,6 +29,7 @@ asWidget('donation', function(hub) {
     firstName: '',
     lastName: '',
     cardNumber: '',
+    cvc: '',
     cardExpiration: { month: '', year: '' }
   }))
 
@@ -95,6 +96,7 @@ asWidget('donation', function(hub) {
     if (!donation.get('zip')) errors.push('Please enter your zip code.')
     if (!donation.get('email')) errors.push('Please enter your email.')
     if (!donation.get('cardNumber')) errors.push('Please enter your card number.')
+    if (!donation.get('cvc')) errors.push('Please enter your CVC.')
     if (!donation.get('cardExpiration').month) errors.push('Please enter the month of your card expiration.')
     if (!donation.get('cardExpiration').year) errors.push('Please enter the year of your card expiration.')
     return errors
@@ -194,7 +196,7 @@ asWidget('donation', function(hub) {
         name: donation.get('firstName') + ' ' + donation.get('lastName'),
         address_zip: donation.get('zip'),
         number: donation.get('cardNumber'),
-        cvc: donation.get('cvc') || '012',
+        cvc: donation.get('cvc'),
         exp_month: donation.get('cardExpiration').month,
         exp_year: donation.get('cardExpiration').year
       }, function(status, response) {
