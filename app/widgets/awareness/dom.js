@@ -4,6 +4,15 @@ var $ = require('jquery')
 var hub = require('widget').hub
 var _ = require('lodash')
 
+$(document).on('touchstart', function(e){ 
+  if ($(document.body).hasClass('showing-dialog')) {
+    if ($(e.target).parents('dialog').length == 0) {
+      e.preventDefault();
+    }
+    e.stopPropagation();
+  }
+})
+
 // TODO loads
 var currentModals = []
 rivets.binders.modal = function(el, val) {

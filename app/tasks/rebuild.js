@@ -187,7 +187,7 @@ function storeFiles(config, files) {
   return rsvp.all([
     writeFile[location]('build.css', files.css, config.domain, 'text/css', config.storageLocation),
     writeFile[location]('build.js', files.js, config.domain, 'application/javascript', config.storageLocation),
-    writeFile[location]('build.html', "<!DOCTYPE html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html', config.storageLocation )
+    writeFile[location]('index.html', "<!DOCTYPE html><head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'><link rel='stylesheet' href='build.css' /></head><body><div id='app' rv-widget-" + config.widget + "></div>" + files.html + "<script src='build.js'></script></body></html>", config.domain, 'text/html', config.storageLocation )
   ])
 }
 

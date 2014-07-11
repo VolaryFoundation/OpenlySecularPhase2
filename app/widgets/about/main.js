@@ -5,7 +5,7 @@ var rivets = require('rivets')
 
 rivets.formatters.featuredImage = function(val) {
   if (!val.featured_image) return false
-  return val.featured_image.source
+  return val.featured_image.attachment_meta.sizes.medium.url
 }
 
 asWidget('about', function(hub) {
