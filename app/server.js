@@ -41,7 +41,7 @@ server.get('/build.css', withDomainDirectory, function(req, res) {
 })
 
 server.get('*', withDomainDirectory, function(req, res) {
-  res.sendfile(req.domainDirectory + 'build.html')
+  res.sendfile(req.domainDirectory + 'index.html')
 })
 
 module.exports = server
