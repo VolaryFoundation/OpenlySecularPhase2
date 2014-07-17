@@ -67,6 +67,7 @@ function buildWidgetList(widgetName) {
   function buildWidget(name) {
     return promise(function(res, rej) {
       var path = widgetPath(name)
+      console.log('path', path)
       fs.readdir(path, function(e, files) {
         var fullPaths = files.map(prepend(path + '/'))
         if (e) rej(e)

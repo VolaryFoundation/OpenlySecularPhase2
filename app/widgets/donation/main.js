@@ -156,7 +156,7 @@ asWidget('donation', function(hub) {
   function createStripeUser(donation, token, civiUser) {
     return ajax({
       type: 'POST',
-      url: 'http://tinytower.info/wp-json/stripe/customer',
+      url: 'http://admin.openlysecular.org/wp-json/stripe/customer',
       data: JSON.stringify({
         civicrm_id: civiUser.id,
         token: token.id,
@@ -249,7 +249,7 @@ asWidget('donation', function(hub) {
   function charge(donation, stripeUser) {
     return ajax({
       type: 'POST',
-      url: 'http://tinytower.info/wp-json/stripe/charge',
+      url: 'http://admin.openlysecular.org/wp-json/stripe/charge',
       data: JSON.stringify({
         customer_id: stripeUser.id,
         amount: parseInt(donation.get('amount')) * 100
@@ -276,7 +276,7 @@ asWidget('donation', function(hub) {
       key: '102d680b1f9463becb3fd73e18386312',
       api_key: 'UAMA7e4LpBXxeEwTTK9FzqL2'
     }))
-    return 'http://tinytower.info/wp-content/plugins/civicrm/civicrm/extern/rest.php?' + query
+    return 'http://admin.openlysecular.org/wp-content/plugins/civicrm/civicrm/extern/rest.php?' + query
   }
 
   window.donation = widget

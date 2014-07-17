@@ -2,7 +2,7 @@
 var hub = require('widget').hub
 var $ = require('jquery')
 
-var BASE_URL = 'http://tinytower.info/wp-json'
+var BASE_URL = 'http://admin.openlysecular.org/wp-json'
 
 var cache = {}
 
